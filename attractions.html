@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="images/favicon.ico">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drop In Dubai</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- Navbar -->
+    <header class="navbar">
+      <div class="logo">
+        <img src="images/logo.png" alt="Drop In Dubai Logo" />
+      </div>
+    <nav>
+        <a href="index.html" >Home</a>
+        <a href="hotels.html">Hotels</a>
+        <a href="restaurants.html">Restaurants</a>
+        <a href="attractions.html">Attractions</a>
+        <a href="events.html">Events</a>
+        <a href="profile.html">Profile</a>
+        <a href="login.html" class="login-btn">Log In</a>
+    </nav>
+  </header>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Discover Dubai Attractions</h1>
+        <p>Explore the best things to do in Dubai!</p>
+    </div>
+
+    <!-- Filter Section -->
+    <div class="filter-section">
+        <h2>Search & Filters</h2>
+        <form class="filter-form">
+            <label>
+                Search
+                <input type="text" id="search" placeholder="Attraction name">
+            </label>
+            <label>
+                Type
+                <select id="type">
+                    <option value="">All</option>
+                    <option value="Theme Park">Theme Park</option>
+                    <option value="Museum">Museum</option>
+                    <option value="Beach">Beach</option>
+                    <option value="Shopping">Shopping</option>
+                    <option value="Other">Other</option>
+                </select>
+            </label>
+            <label>
+                Rating
+                <select id="rating">
+                    <option value="">All</option>
+                    <option value="5★">5★</option>
+                    <option value="4★ & Up">4★ & Up</option>
+                    <option value="3★ & Up">3★ & Up</option>
+                </select>
+            </label>
+            <label>
+                Price (AED)
+                <select id="priceRange">
+                    <option value="">Any</option>
+                    <option value="50">Up to 50</option>
+                    <option value="100">Up to 100</option>
+                    <option value="200">Up to 200</option>
+                    <option value="500">Up to 500</option>
+                </select>
+            </label>
+            <button type="submit" class="filter-btn">Filter</button>
+        </form>
+    </div>
+
+    <!-- Attractions Cards -->
+<section class="attractions-list">
+    <h2>Top Attractions</h2>
+    <div class="cards-grid attractions">
+
+        <!-- 1. IMG Worlds of Adventure -->
+        <div class="card attraction-card" data-id="1" data-type="Theme Park" data-price="350" data-rating="5">
+            <img src="images/img.jpg" alt="IMG Worlds of Adventure">
+            <h3>IMG Worlds of Adventure</h3>
+            <p class="description">Dubai’s largest indoor theme park featuring rides, attractions & characters.</p>
+            <div class="location">Dubai, City Walk</div>
+            <div class="rating">★★★★★</div>
+            <div class="price">AED 350</div>
+            <div class="actions">
+                <span class="fav-btn heart">♥</span>
+                <button class="book-btn">Book Now</button>
+            </div>
+        </div>
+
+        <!-- 2. Dubai Museum -->
+        <div class="card attraction-card" data-id="2" data-type="Museum" data-price="100" data-rating="4">
+            <img src="images/dubaimuseum.jpg" alt="Dubai Museum">
+            <h3>Dubai Museum</h3>
+            <p class="description">Explore Dubai’s history and heritage at the Al Fahidi Fort museum.</p>
+            <div class="location">Al Fahidi, Bur Dubai</div>
+            <div class="rating">★★★★</div>
+            <div class="price">AED 100</div>
+            <div class="actions">
+                <span class="fav-btn heart">♥</span>
+                <button class="book-btn">Book Now</button>
+            </div>
+        </div>
+
+        <!-- 3. JBR Beach -->
+        <div class="card attraction-card" data-id="3" data-type="Beach" data-price="0" data-rating="5">
+            <img src="images/jbrbeach.jpg" alt="JBR Beach">
+            <h3>JBR Beach</h3>
+            <p class="description">Relax on the golden sands and enjoy cafes, watersports and beach activities.</p>
+            <div class="location">Jumeirah Beach Residence</div>
+            <div class="rating">★★★★★</div>
+            <div class="price">Free</div>
+            <div class="actions">
+                <span class="fav-btn heart">♥</span>
+                <button class="book-btn">Book Now</button>
+            </div>
+        </div>
+
+        <!-- 4. The Dubai Mall -->
+        <div class="card attraction-card" data-id="4" data-type="Shopping" data-price="0" data-rating="4">
+            <img src="images/dubaimall.jpg" alt="Dubai Mall">
+            <h3>The Dubai Mall</h3>
+            <p class="description">World’s largest shopping mall with shopping, dining, and attractions.</p>
+            <div class="location">Downtown Dubai</div>
+            <div class="rating">★★★★</div>
+            <div class="price">Varies</div>
+            <div class="actions">
+                <span class="fav-btn heart">♥</span>
+                <button class="book-btn">Book Now</button>
+            </div>
+        </div>
+
+        <!-- 5. Motiongate Dubai -->
+        <div class="card attraction-card" data-id="5" data-type="Theme Park" data-price="250" data-rating="4">
+            <img src="images/motiongate.jpg" alt="Motiongate Dubai">
+            <h3>Motiongate Dubai</h3>
+            <p class="description">Hollywood-inspired theme park with rides, shows and dining options.</p>
+            <div class="location">Dubai Parks & Resorts</div>
+            <div class="rating">★★★★</div>
+            <div class="price">AED 250</div>
+            <div class="actions">
+                <span class="fav-btn heart">♥</span>
+                <button class="book-btn">Book Now</button>
+            </div>
+        </div>
+
+        <!-- 6. Burj Khalifa -->
+        <div class="card attraction-card" data-id="6" data-type="Landmark" data-price="50" data-rating="4.5">
+            <img src="images/burjkhalifa.jpg" alt="Burj Khalifa">
+            <h3>Burj Khalifa</h3>
+            <p class="description">The world's tallest building offering panoramic views of Dubai.</p>
+            <div class="location">Downtown Dubai</div>
+            <div class="rating">★★★★☆</div>
+            <div class="price">From AED 50</div>
+            <div class="actions">
+                <span class="fav-btn heart">♥</span>
+                <button class="book-btn">Book Now</button>
+            </div>
+        </div>
+
+        <!-- 7. Burj Al Arab -->
+        <div class="card attraction-card" data-id="7" data-type="Luxury Hotel" data-price="25" data-rating="4.5">
+            <img src="images/burjalarab.jpg" alt="Burj Al Arab">
+            <h3>Burj Al Arab</h3>
+            <p class="description">An iconic sail-shaped hotel offering unparalleled luxury.</p>
+            <div class="location">Jumeirah</div>
+            <div class="rating">★★★★☆</div>
+            <div class="price">From AED 25</div>
+            <div class="actions">
+                <span class="fav-btn heart">♥</span>
+                <button class="book-btn">Book Now</button>
+            </div>
+        </div>
+
+        <!-- 8. Dubai Aquarium & Underwater Zoo -->
+        <div class="card attraction-card" data-id="8" data-type="Aquarium" data-price="55" data-rating="4.2">
+            <img src="images/dubaiaquarium.jpg" alt="Dubai Aquarium & Underwater Zoo">
+            <h3>Dubai Aquarium & Underwater Zoo</h3>
+            <p class="description">One of the largest suspended aquariums in the world.</p>
+            <div class="location">Dubai Mall</div>
+            <div class="rating">★★★★☆</div>
+            <div class="price">From AED 55</div>
+            <div class="actions">
+                <span class="fav-btn heart">♥</span>
+                <button class="book-btn">Book Now</button>
+            </div>
+        </div>
+
+        <!-- 9. Museum of the Future -->
+        <div class="card attraction-card" data-id="9" data-type="Museum" data-price="30" data-rating="5">
+            <img src="images/museumofthefuture.jpg" alt="Museum of the Future">
+            <h3>Museum of the Future</h3>
+            <p class="description">A futuristic museum showcasing innovative technologies.</p>
+            <div class="location">Downtown Dubai</div>
+            <div class="rating">★★★★★</div>
+            <div class="price">From AED 30</div>
+            <div class="actions">
+                <span class="fav-btn heart">♥</span>
+                <button class="book-btn">Book Now</button>
+            </div>
+        </div>
+
+        <!-- 10. Dubai Frame -->
+        <div class="card attraction-card" data-id="10" data-type="Landmark" data-price="20" data-rating="4.4">
+            <img src="images/dubaiframe.jpg" alt="Dubai Frame">
+            <h3>Dubai Frame</h3>
+            <p class="description">A giant frame offering views of both old and new Dubai.</p>
+            <div class="location">Zabeel Park</div>
+            <div class="rating">★★★★☆</div>
+            <div class="price">From AED 20</div>
+            <div class="actions">
+                <span class="fav-btn heart">♥</span>
+                <button class="book-btn">Book Now</button>
+            </div>
+        </div>
+
+        <!-- 11. Dubai Miracle Garden -->
+        <div class="card attraction-card" data-id="11" data-type="Garden" data-price="30" data-rating="4.6">
+            <img src="images/miraclegarden.jpg" alt="Dubai Miracle Garden">
+            <h3>Dubai Miracle Garden</h3>
+            <p class="description">The world's largest natural flower garden in full bloom.</p>
+            <div class="location">Al Barsha South</div>
+            <div class="rating">★★★★★</div>
+            <div class="price">From AED 30</div>
+            <div class="actions">
+                <span class="fav-btn heart">♥</span>
+                <button class="book-btn">Book Now</button>
+            </div>
+        </div>
+
+        <!-- 12. Wild Wadi Water Park -->
+        <div class="card attraction-card" data-id="12" data-type="Water Park" data-price="80" data-rating="4.3">
+            <img src="images/wildwadi.jpg" alt="Wild Wadi Water Park">
+            <h3>Wild Wadi Water Park</h3>
+            <p class="description">A water park with thrilling rides and attractions.</p>
+            <div class="location">Jumeirah</div>
+            <div class="rating">★★★★☆</div>
+            <div class="price">From AED 80</div>
+            <div class="actions">
+                <span class="fav-btn heart">♥</span>
+                <button class="book-btn">Book Now</button>
+            </div>
+        </div>
+
+        <!-- 13. Atlantis Aquaventure Waterpark -->
+        <div class="card attraction-card" data-id="13" data-type="Water Park" data-price="90" data-rating="4.5">
+            <img src="images/aquaventure.jpg" alt="Atlantis Aquaventure Waterpark">
+            <h3>Atlantis Aquaventure Waterpark</h3>
+            <p class="description">A sprawling waterpark with slides and marine encounters.</p>
+            <div class="location">Palm Jumeirah</div>
+            <div class="rating">★★★★☆</div>
+            <div class="price">From AED 90</div>
+            <div class="actions">
+                <span class="fav-btn heart">♥</span>
+                <button class="book-btn">Book Now</button>
+            </div>
+        </div>
+
+        <!-- 14. Global Village -->
+        <div class="card attraction-card" data-id="14" data-type="Theme Park" data-price="15" data-rating="4.1">
+            <img src="images/globalvillage.jpg" alt="Global Village">
+            <h3>Global Village</h3>
+            <p class="description">A multicultural festival park with pavilions, rides, and shows.</p>
+            <div class="location">Dubailand</div>
+            <div class="rating">★★★★</div>
+            <div class="price">From AED 15</div>
+            <div class="actions">
+                <span class="fav-btn heart">♥</span>
+                <button class="book-btn">Book Now</button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2025 Dubai Explorer. All rights reserved.
+    </footer>
+    
+</body>
+</html>
