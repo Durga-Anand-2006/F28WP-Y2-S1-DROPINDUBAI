@@ -1,0 +1,239 @@
+/*------------Common  Styles------------*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+body{
+    background-color: #fff;
+    color: #000;
+}
+
+/*------------Navigation Bar------------*/
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 40px;
+    font-weight: bold;
+    font-size: large;
+    color:white;
+    background-color: #091057;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    position: relative;
+    z-index: 1000;
+
+}
+
+.navbar .logo img{
+    height: 50px;
+    width: auto;
+    display: block;
+}
+
+.navbar .nav-links{
+    list-style: none;
+    display: flex;
+    color: white;
+    gap: 50px;
+    align-items: center;
+
+}
+
+.navbar .nav-links a{
+    text-decoration: none;
+    color:white;
+    font-weight: bold;
+    white-space: nowrap;
+    transition: color 0.3s;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 70px;    
+
+}
+
+/*.nav-links a:hover {
+    color: #edc38b; #eea13d change hover color/bg color later
+}*/
+
+.navbar nav a:hover,
+.navbar nav .active {
+    color: #EC8305;
+}
+
+.navbar .login-btn{
+    background-color: #ec8305;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: background 0.3s;
+}
+
+.navbar .login-btn:hover {
+    background: #024CAA;
+}
+
+/* Hamburger */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background: #EC8305;
+}
+
+
+/* Mobile nav */
+.mobile-nav {
+    display: none; 
+    position: absolute;
+    top: 60px; 
+    right: 20px; 
+    background: #091057;
+    flex-direction: column;
+    align-items: flex-start; 
+    gap: 10px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 1001;
+}
+
+.mobile-nav.show {
+    display: flex; 
+}
+
+
+.mobile-nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+    padding: 10px 20px;
+}
+
+.mobile-nav a:hover,
+.mobile-nav .active {
+    color: #EC8305;
+}
+
+/*------------Hero Section------------*/
+.hero{
+    background: url('images/homehero.jpg') no-repeat center center/cover;
+    background-color: rgb(240, 240, 240);
+    height: 60vh;
+    display: flex;
+    flex-direction: column; 
+    line-height: 1.8;
+    justify-content: center;
+    color: white;
+    align-items: center;
+    position: relative;
+    padding: 20px;
+}
+
+.hero h1, p{
+    font-family: Verdana, sans-serif;
+}
+
+.section{
+    padding: 30px;
+}
+
+.carousel{
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.cards{
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    animation: scroll-left 20s linear infinite;
+    
+}
+
+@keyframes scroll-left {
+    from{
+        transform: translateX(0);
+    }
+    to{
+        transform: translateX(-50%); /*moves to left*/
+    }
+    
+}
+
+.card{
+    background-color: rgb(240, 240, 240);
+    flex: 0 0 300px;  
+    border-style: solid;
+    border-color: rgb(216, 215, 215);
+    border-radius: 10px;
+    height: 300px;
+    
+
+}
+
+.card h3,p {
+    padding:10px;
+}
+
+.card h3:hover{
+    color: #ec8305;
+    
+}
+
+.card img{
+    
+    width: 100%;
+    height: 60%;
+    display: block;
+    border-radius: 10px 10px 0px 0PX;
+    padding-bottom: 10px;
+}
+
+.see-more{
+    /*align to right*/
+    background-color: #ec8305;
+    border-radius: 10px;
+    flex: space-between;
+    padding: 10px 20px;
+    text-decoration: none;
+    color:white;
+    font-size: large;
+    float: right;
+}
+
+.see-more:hover{
+    /*color: #ec8305;*/
+    text-decoration-line: underline;
+
+}
+
+footer{
+    background-color: #091057;/**/
+    color:white;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    width: 100%;
+    bottom: 0;
+}
