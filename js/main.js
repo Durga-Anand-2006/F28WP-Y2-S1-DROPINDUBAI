@@ -38,10 +38,36 @@ document.addEventListener("DOMContentLoaded", function(){
  * 2. HAMBURGER MENU TOGGLE
  * -----------------------------
  */
+document.addEventListener("DOMContentLoaded", function(){
+    const hamburger = document.querySelectorAll(".hamburger");
+    const mobileNav = document.querySelectorAll(".mobile-nav");
+
+    hamburger.addEventListener("click", function(){
+        mobileNav.classList.toggle("active");
+        hamburger.classList.toggle("active");
+    });
+});
 
 /**
  * ---------------------------
  * 3. SMOOTH SCROLLING 
  * ---------------------------
  */
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor =>{
+    anchor.addEventListener('click', function(e){
+        e.preventDefault(); // Stops the default jump behaviour
+
+        // get the target section e.g "#hotels" -> section id="hotels"
+        const target = document.querySelector(this.getAttribute('href'));
+        
+        // If the target exists, scroll to it smoothly
+        if(target){
+            target.scrollIntoView({
+                behavior: 'smooth',  // makes it glide
+                block: 'start'      // alighs to top of viewport
+            });
+        }
+    });
+});
 
