@@ -167,18 +167,13 @@ body{
     align-items: center;
     gap: 15px;
     padding: 20px;
-    animation: scroll-left 20s linear infinite;
+    overflow-x: auto;
+    scroll-behavior: smooth; /* Makes scrolling smooth*/
     
 }
-
-@keyframes scroll-left {
-    from{
-        transform: translateX(0);
-    }
-    to{
-        transform: translateX(-50%); /*moves to left*/
-    }
-    
+/*Hide scrollbar for a cleaner look*/
+.cards ::-webkit-scrollbar {
+    display:none;
 }
 
 .card{
@@ -188,11 +183,9 @@ body{
     border-color: rgb(216, 215, 215);
     border-radius: 10px;
     height: 300px;
-    
-
 }
 
-.card h3,p {
+.card h3, .card p {
     padding:10px;
 }
 
