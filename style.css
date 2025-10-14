@@ -167,7 +167,7 @@ body{
     align-items: center;
     gap: 15px;
     padding: 20px;
-    overflow-x: auto;
+    overflow-x: hidden;  /*To show the scroll bar again change to auto */
     scroll-behavior: smooth; /* Makes scrolling smooth*/
     
 }
