@@ -7,9 +7,150 @@
   <title>Sign Up</title>
   <link rel="stylesheet" href="style.css" />
   <script src="js/main.js" defer></script>
-  
+  <style>
+    /*------------Sign Up Page------------*/
+    body {
+      background: url('images/signup.jpg') no-repeat center center/cover;
+      font-family: 'Poppins', sans-serif;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-size: cover;
+      background-position: center;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(181, 181, 181, 0.621); /* Reduced opacity for background image */
+      z-index: -1;
+    }
+
+    .container{
+      display: flex;
+      width: 800px;
+      background: rgba(255, 255, 255, 0.7); /* white with 70% opacity */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      overflow: hidden
+
+    }
+
+    .left-section{
+      display: flex;
+      width: 40%;
+      padding: 40px;
+      background-color: #091057;
+      color: white;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    
+    .left-section h1, .left-section p {
+      padding-bottom: 20px;
+
+    }
+
+    .button-link{
+      display: inline-block; 
+      padding: 10px 20px;
+      font-weight: bold;
+      background-color: #EC8305; /* Sign In button color */
+      color: white;
+      text-decoration: none;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .button-link:hover {
+      background-color: #f9b25c; /* Slightly lighter on hover */
+    }
+    
+    .go-back-home {
+      text-align: end;
+      margin-top: 150px; /* Spacing after the form */
+    }
+
+    .go-back-home a {
+      display: inline-block;
+      text-decoration: none;
+      background-color: #EC8305;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .go-back-home a:hover {
+      background-color: #f9b25c; /* lighter shade on hover */
+    }
+
+    .right-section{
+      display: flex;
+      width: 60%;
+      padding: 30px;
+      border-color: black;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .right-section h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      color: #000000; 
+    }
+
+    .right-section input[type="text"],
+    .right-section input[type="email"],
+    .right-section input[type="password"] {
+      width: calc(100% - 22px);
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #D1D5DB; /* Light Gray */
+      border-radius: 5px;
+      font-size: 1em;
+      color: #333333; /* Dark Gray */
+    }
+
+    .right-section button {
+      width: 100%;
+      padding: 12px;
+      background-color:#EC8305;
+      color: white;
+      opacity: 1;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 1em;
+      cursor: pointer;
+      opacity: 1;
+    }
+
+    .right-section button:hover {
+      background-color: #f9b25c; /* Slightly darker on hover */
+    }
+
+    @media (max-width: 600px) {
+    .button-link, .right-section button {
+      width: 100%;
+      margin-top: 0;
+    }
+  }
+  </style>
 </head>
-<body class="signup">
+    
+<body>
     <div class="container">
       <div class="left-section">
         <h1>Join Drop In Dubai!</h1>
