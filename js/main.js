@@ -1,10 +1,14 @@
-// Debugging line- checking if the connection was made correctly *delete later*
+// Debugging line- checking if the connection was made correctly 
 // console.log("main.js is loaded");
 
 /**
  * ----------------------------
  * 1. CAROUSEL AUTO SCORLL 
  * ---------------------------
+ */
+/** It loops through each carousel, moves it a tiny bit every frame , 
+ * and resets it to the start when it reaches the end. Jovering the 
+ * mouse over any of the carousels pauses it using a boolean flag.
  */
 document.addEventListener("DOMContentLoaded", function(){
     const carousels = document.querySelectorAll(".carousel .cards");
@@ -28,7 +32,6 @@ document.addEventListener("DOMContentLoaded", function(){
         cards.addEventListener("mouseleave", () => isPaused = false);
         
         // Start scrolling 
-        //requestAnimationFrame(scroll);
         scroll();
     });
 });
@@ -38,9 +41,13 @@ document.addEventListener("DOMContentLoaded", function(){
  * 2. HAMBURGER MENU TOGGLE
  * -----------------------------
  */
+/** When the hamburger icon is clicked on, it toggles the class active on 
+ * both the icon and the mobile navigation menu, which will either show or 
+ * hide the dropdwon menu on mobile.
+ */
 document.addEventListener("DOMContentLoaded", function(){
-    const hamburger = document.querySelectorAll(".hamburger");
-    const mobileNav = document.querySelectorAll(".mobile-nav");
+    const hamburger = document.querySelector(".hamburger");
+    const mobileNav = document.querySelector(".mobile-nav");
 
     hamburger.addEventListener("click", function(){
         mobileNav.classList.toggle("active");
@@ -53,6 +60,7 @@ document.addEventListener("DOMContentLoaded", function(){
  * 3. SMOOTH SCROLLING 
  * ---------------------------
  */
+/** This allows in-page links to scroll smoothly to a section instead of jumping instantly. */
 
 document.querySelectorAll('a[href^="#"]').forEach(anchor =>{
     anchor.addEventListener('click', function(e){
