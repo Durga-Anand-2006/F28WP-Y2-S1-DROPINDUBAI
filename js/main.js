@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function(){
     const carousels = document.querySelectorAll(".carousel .cards");
 
     carousels.forEach(cards =>{
-        let scrollSpeed = 0.7; // pixels per frame
+        let scrollSpeed = 0.7;  // pixels per frame
         let isPaused = false; 
         // console.log(cards);
 
