@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dubai Explorer Admin</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* ===== GENERAL ===== */
+    body {
+        margin: 0;
+        font-family: 'Inter', sans-serif;
+        background-color: #F4F4F4;
+        color: #091057;
+    }
+
+    header {
+        background-color: #091057;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 40px;
+    }
+
+    header img {
+        height: 45px;
+        border-radius: 10px;
+    }
+
+    header a {
+        background-color: #EC8305;
+        color: white;
+        padding: 0.6rem 1rem;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: 0.3s;
+        font-weight: 500;
+    }
+
+    header a:hover {
+        background-color: #024CAA;
+    }
+
+    .admin-page {
+        display: flex;
+        height: calc(100vh - 70px);
+    }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar {
+        width: 190px;
+        background-color: #024CAA;
+        color:  white;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sidebar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        font-size: 1.1rem;
+        font-weight: bold;
+    }
+
+    .sidebar li {
+        padding: 1rem 1.5rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .sidebar li:hover,
+    .sidebar li.active {
+        background-color: #EC8305;
+        color: #fff;
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .main-content {
+        flex: 1;
+        padding: 2rem ;
+        overflow-y: auto;
+        background-color: #F4F4F4;
+    }
+
+    .section {
+        display: none;
+        animation: fadeIn 0.3s ease;
+    }
+
+    .section.active {
+        display: block;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== CARDS ===== */
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .card {
+        background-color: #fff;
+        padding: 1rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card h3 {
+        margin-bottom: 0.5rem;
+        color: #024CAA;
+    }
+    .card:hover {
+        transform: translateY(-5px); 
+        box-shadow: 0 8px 20px #505152; 
+    }
+
+    /* ===== CHARTS ===== */
+    .charts {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2.5rem;            
+        margin-top: 2rem;
+        max-width: 1200px;      
+        padding: 0 1.5rem;      
+        margin-left: auto;
+        margin-right: auto;       
+        }
+
+    .chart-card {
+        background-color: #fff;
+        padding: 1rem;           
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        height: 300px;         
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        }
+
+    .chart-card canvas {
+        width: 100% ;
+        height: 100% ;
+    }
+
+
+    /* ===== TABLES ===== */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-top: 1rem;
+    }
+
+    th, td {
+        padding: 0.8rem;
+        text-align: left;
+        border-bottom: 1px solid #DBD3D3;
+    }
+
+    th {
+        background-color: #024CAA;
+        color: white;
+    }
+
+
+    .actions button {
+        background-color: grey;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 5px 8px;
+        cursor: pointer;
+        margin-right: 5px;
+        transition: 0.3s;
+    }
+
+    .actions button:hover {
+        background-color: #EC8305;
+    }
+
+    .actions button:last-child {
+        background-color: #e74c3c; /* red */
+    }
+
+    .actions button:last-child:hover {
+        background-color: #c0392b; /* darker red on hover */
+    }
+
+
+    .add-btn {
+        background-color: green;
+        color: white;
+        border: none;
+        padding: 0.6rem 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-bottom: 1rem;
+        transition: 0.3s;
+        font-size: 0.9rem;
+    }
+
+    .add-btn:hover {
+        background-color: #024CAA;
+    }
+
+    /* ===== MODAL ===== */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 100;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content {
+        background-color: white;
+        padding: 1.5rem;
+        padding-right: 2rem;
+        margin-right: 2rem;
+        border-radius: 10px;
+        width: 400px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .modal-content h3 {
+        color: #024CAA;
+        margin-top: 0;
+    }
+
+    .modal-content input {
+        width: calc(100% - 15px);
+        padding: 0.5rem;
+        margin: 0.5rem;
+        border-radius: 5px;
+        border: 1px solid #DBD3D3;
+    }
+
+    /* Modal Save Button */
+    #modalForm button {
+        background-color: #024CAA;  
+        color: white;               
+        padding: 0.5rem 1rem;      
+        border: none;
+        border-radius: 8px;
+        font-size: 0.9rem;             
+        cursor: pointer;
+        transition: 0.3s;
+        margin-top: 1rem;
+        margin-left: 0.5rem; ;
+    }
+
+    #modalForm button:hover {
+        background-color: #EC8305;   
+        transform: translateY(-2px);  
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .close {
+        float: right;
+        cursor: pointer;
+        color: #EC8305;
+        font-weight: bold;
+    }
+
+    /* ===== SETTINGS ===== */
+    .settings-option {
+        background: white;
+        border-radius: 10px;
+        padding: 1rem 1.5rem;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        margin-bottom: 1rem;
+    }
+
+    label {
+        font-weight: 500;
+    }
+
+    input[type="checkbox"] {
+        transform: scale(1.2);
+        margin-right: 0.5rem;
+    }
+
+    .save-settings {
+        background-color: #EC8305;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 0.6rem 1rem;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .save-settings:hover {
+        background-color: #024CAA;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+        background:#091057;
+        color: white;
+        text-align: center;
+        padding: 20px;
+        font-size: 16px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="images/logo.jpg" alt="Logo">
+    <a href="profile.html">View as User</a>
+  </header>
+
+  <div class="admin-page">
+    <aside class="sidebar">
+      <ul>
+        <li class="active" data-section="dashboard">Dashboard</li>
+        <li data-section="hotels">Hotels</li>
+        <li data-section="restaurants">Restaurants</li>
+        <li data-section="attractions">Attractions</li>
+        <li data-section="events">Events</li>
+        <li data-section="settings">Settings</li>
+      </ul>
+    </aside>
+
+    <main class="main-content">
+
+      <!-- Dashboard -->
+      <section id="dashboard" class="section active">
+        <h1>Admin Dashboard Overview</h1>
+        <div class="cards">
+          <div class="card"><h3>Total Users</h3><p>4,520</p></div>
+          <div class="card"><h3>Total Listings</h3><p>1,240</p></div>
+          <div class="card"><h3>Total Bookings</h3><p>12,560</p></div>
+          <div class="card"><h3>Revenue</h3><p>AED 8,450,000</p></div>
+        </div>
+
+        <div class="charts">
+            <div class="chart-card">
+              <canvas id="pieChart"></canvas>
+            </div>
+            <div class="chart-card">
+              <canvas id="lineChart"></canvas>
+            </div>
+          </div>
+      </section>
+
+      <!-- Hotels -->
+      <section id="hotels" class="section">
+        <h1>Hotels</h1>
+        <button class="add-btn" onclick="openModal('hotel')">Add Hotel</button>
+        <table id="hotelsTable">
+          <tr><th>Name</th><th>Location</th><th>Price</th><th>Actions</th></tr>
+          <tr><td>Burj Al Arab</td><td>Jumeirah</td><td>2500 AED</td><td class="actions"><button onclick="editRow(this)">Edit</button><button onclick="deleteRow(this)">Delete</button></td></tr>
+          <tr><td>Atlantis The Palm</td><td>Palm Jumeirah</td><td>2000 AED</td><td class="actions"><button onclick="editRow(this)">Edit</button><button onclick="deleteRow(this)">Delete</button></td></tr>
+        </table>
+      </section>
+
+      <!-- Restaurants -->
+      <section id="restaurants" class="section">
+        <h1>Restaurants</h1>
+        <button class="add-btn" onclick="openModal('restaurant')">Add Restaurant</button>
+        <table id="restaurantsTable">
+          <tr><th>Name</th><th>Cuisine</th><th>Rating</th><th>Actions</th></tr>
+          <tr><td>Zuma</td><td>Japanese</td><td>4.8</td><td class="actions"><button onclick="editRow(this)">Edit</button><button onclick="deleteRow(this)">Delete</button></td></tr>
+          <tr><td>Gaia</td><td>Mediterranean</td><td>4.6</td><td class="actions"><button onclick="editRow(this)">Edit</button><button onclick="deleteRow(this)">Delete</button></td></tr>
+        </table>
+      </section>
+
+      <!-- Attractions -->
+      <section id="attractions" class="section">
+        <h1>Attractions</h1>
+        <button class="add-btn" onclick="openModal('attraction')">Add Attraction</button>
+        <table id="attractionsTable">
+          <tr><th>Name</th><th>Location</th><th>Type</th><th>Actions</th></tr>
+          <tr><td>Burj Khalifa</td><td>Downtown</td><td>Observation Deck</td><td class="actions"><button onclick="editRow(this)">Edit</button><button onclick="deleteRow(this)">Delete</button></td></tr>
+          <tr><td>Dubai Frame</td><td>Zabeel Park</td><td>Landmark</td><td class="actions"><button onclick="editRow(this)">Edit</button><button onclick="deleteRow(this)">Delete</button></td></tr>
+        </table>
+      </section>
+
+      <!-- Events -->
+      <section id="events" class="section">
+        <h1>Events</h1>
+        <button class="add-btn" onclick="openModal('event')">Add Event</button>
+        <table id="eventsTable">
+          <tr><th>Event</th><th>Date</th><th>Venue</th><th>Actions</th></tr>
+          <tr><td>Dubai Shopping Festival</td><td>Dec 2025</td><td>Citywide</td><td class="actions"><button onclick="editRow(this)">Edit</button><button onclick="deleteRow(this)">Delete</button></td></tr>
+          <tr><td>Tech Week</td><td>Apr 2026</td><td>DICEC</td><td class="actions"><button onclick="editRow(this)">Edit</button><button onclick="deleteRow(this)">Delete</button></td></tr>
+        </table>
+      </section>
+
+      <!-- Settings -->
+      <section id="settings" class="section">
+        <h1>Settings</h1>
+        <div class="settings-option">
+          <label for="adminPass">Change Admin Password:</label><br>
+          <input type="password" id="adminPass" placeholder="Enter new password">
+        </div>
+        <button class="save-settings" onclick="saveSettings()">Save Settings</button>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h3 id="modalTitle">Add Listing</h3>
+      <form id="modalForm">
+        <input type="text" id="input1" placeholder="Name" required>
+        <input type="text" id="input2" placeholder="Detail 1" required>
+        <input type="text" id="input3" placeholder="Detail 2" required>
+        <button type="submit">Save</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Sidebar navigation
+    const menuItems = document.querySelectorAll('.sidebar li');
+    const sections = document.querySelectorAll('.section');
+    menuItems.forEach(item => {
+      item.addEventListener('click', () => {
+        menuItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+        sections.forEach(sec => sec.classList.remove('active'));
+        document.getElementById(item.dataset.section).classList.add('active');
+      });
+    });
+
+    // Pie Chart
+    const pieCtx = document.getElementById('pieChart');
+    new Chart(pieCtx, {
+    type: 'pie',
+    data: {
+        labels: ['Hotels', 'Restaurants', 'Attractions', 'Events'],
+        datasets: [{
+        data: [40, 25, 20, 15],
+        backgroundColor: ['#024CAA', '#EC8305', '#091057', '#DBD3D3']
+        }]
+    },
+    options: { 
+        responsive: true, 
+        maintainAspectRatio: false 
+    }
+    });
+
+    // Line Chart
+    const lineCtx = document.getElementById('lineChart');
+    new Chart(lineCtx, {
+    type: 'line',
+    data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+        label: 'Monthly Bookings',
+        data: [300, 400, 500, 700, 800, 950],
+        borderColor: '#024CAA',
+        fill: false,
+        tension: 0.3
+        }]
+    },
+    options: { 
+        responsive: true, 
+        maintainAspectRatio: false, 
+        scales: { y: { beginAtZero: true } } 
+    }
+    });
+
+    // Modal logic
+    let currentType = '', currentRow = null;
+    function openModal(type) {
+      currentType = type;
+      currentRow = null;
+      document.getElementById('modalTitle').innerText = 'Add ' + capitalize(type);
+      document.getElementById('input1').value = '';
+      document.getElementById('input2').value = '';
+      document.getElementById('input3').value = '';
+      document.getElementById('modal').style.display = 'flex';
+    }
+
+    function closeModal() { document.getElementById('modal').style.display = 'none'; }
+    window.onclick = e => { if (e.target == document.getElementById('modal')) closeModal(); };
+
+    function editRow(btn) {
+      currentRow = btn.closest('tr');
+      const cells = currentRow.querySelectorAll('td');
+      document.getElementById('input1').value = cells[0].innerText;
+      document.getElementById('input2').value = cells[1].innerText;
+      document.getElementById('input3').value = cells[2].innerText;
+      document.getElementById('modalTitle').innerText = 'Edit Listing';
+      document.getElementById('modal').style.display = 'flex';
+    }
+
+    document.getElementById('modalForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const v1 = document.getElementById('input1').value;
+      const v2 = document.getElementById('input2').value;
+      const v3 = document.getElementById('input3').value;
+
+      if (currentRow) {
+        currentRow.children[0].innerText = v1;
+        currentRow.children[1].innerText = v2;
+        currentRow.children[2].innerText = v3;
+      } else {
+        const table = document.getElementById(currentType + 'sTable');
+        const newRow = table.insertRow();
+        newRow.innerHTML = `<td>${v1}</td><td>${v2}</td><td>${v3}</td>
+        <td class="actions"><button onclick="editRow(this)">Edit</button>
+        <button onclick="deleteRow(this)">Delete</button></td>`;
+      }
+      closeModal();
+    });
+
+    function deleteRow(btn) {
+      if (confirm('Delete this listing?')) btn.closest('tr').remove();
+    }
+
+    function capitalize(str) { return str.charAt(0).toUpperCase() + str.slice(1); }
+
+    // Settings
+    function saveSettings() {
+      const maintenance = document.getElementById('maintenance').checked;
+      const password = document.getElementById('adminPass').value;
+      const theme = document.getElementById('theme').value;
+      alert(`Settings saved!\nMaintenance: ${maintenance}\nPassword: ${password ? 'Updated' : 'No Change'}\nTheme: ${theme}`);
+    }
+  </script>
+
+ <footer>
+    &copy; 2025 Drop In Dubai. All rights reserved.
+  </footer>
+
+</body>
+</html>
