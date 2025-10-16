@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sign Up</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="js/main.js" defer></script>
+  <script src="script.js" defer></script>
+  
   <style>
     /*------------Sign Up Page------------*/
     body {
@@ -39,7 +40,6 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       border-radius: 10px;
       overflow: hidden
-
     }
 
     .left-section{
@@ -54,8 +54,8 @@
     }
     
     .left-section h1, .left-section p {
+      margin-top: 5px;
       padding-bottom: 20px;
-
     }
 
     .button-link{
@@ -65,10 +65,11 @@
       background-color: #EC8305; /* Sign In button color */
       color: white;
       text-decoration: none;
+      text-align: center;
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      margin-top: 20px;
+      overflow: hidden;
     }
 
     .button-link:hover {
@@ -83,7 +84,7 @@
     .go-back-home a {
       display: inline-block;
       text-decoration: none;
-      background-color: #f9b25c;
+      background-color: #024caa;
       color: white;
       padding: 8px 15px;
       border-radius: 4px;
@@ -93,7 +94,7 @@
     }
 
     .go-back-home a:hover {
-      background-color: #EC8305; /* darker shade on hover */
+      background-color: #EC8305; /* lighter shade on hover */
     }
 
     .right-section{
@@ -108,7 +109,7 @@
     .right-section h2 {
       font-size: 2em;
       margin-bottom: 20px;
-      color: #000000; 
+      color: black; 
     }
 
     .right-section input[type="text"],
@@ -149,13 +150,13 @@
   }
   </style>
 </head>
-    
+
 <body>
     <div class="container">
       <div class="left-section">
         <h1>Join Drop In Dubai!</h1>
         <p>Sign up to unlock the best of Dubai - from hidden gems to must-visit spots and exciting events.</p>
-        <p>Already have an account?</p>
+        <p class="signin">Already have an account?</p>
         <a href="login.html" class="button-link">Sign In</a>
         <div class="go-back-home">
             <a href="index.html">⬅ Go back to Home</a>
@@ -179,6 +180,5 @@
       </div>
     </div>
   </body>
-  </html>
-  
-  
+    
+</html>
