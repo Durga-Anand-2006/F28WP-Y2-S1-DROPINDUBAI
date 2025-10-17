@@ -135,7 +135,7 @@ body{
 
 /*------------ Hero Section ------------*/
 .hero{
-    background: url('images/homehero.jpg') no-repeat center center/cover;
+    background: url('images/homehero.avif') no-repeat center center/cover;
     background-color: rgb(240, 240, 240);
     height: 60vh;
     display: flex;
@@ -495,7 +495,17 @@ body.login-page::before, body.signup-page::before{
 
 /*------------ Log In page ------------*/
 .login-page{
-    background: url('images/login.jpg') no-repeat center center/cover;
+    background: url('images/skyline.avif') no-repeat  center/cover;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    position: relative;
 }
 
 .login-form {
@@ -612,7 +622,7 @@ body.login-page::before, body.signup-page::before{
 
 /*------------ Sign In Page ------------*/
 .signup-page{
-  background: url('images/signup.jpg') no-repeat center center/cover;
+  background: url('images/skyline.avif') no-repeat center center/cover;
 }
 
 .left-section{
