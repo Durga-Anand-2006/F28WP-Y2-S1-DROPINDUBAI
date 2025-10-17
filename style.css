@@ -1,4 +1,4 @@
-/*------------Common  Styles------------*/
+/* ===== COMMON  ===== */
 * {
     margin: 0;
     padding: 0;
@@ -16,7 +16,7 @@ body{
     color: #000;
 }
 
-/*------------Navigation Bar------------*/
+/* ===== NAVBAR ===== */
 .navbar{
     display: flex;
     align-items: center;
@@ -61,21 +61,29 @@ body{
     color: #faab4b; 
 }
 
-.navbar .login-btn{
-    background-color: #ec8305;
-    color: white;
-    text-decoration: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-weight: 500;
-    transition: background 0.3s;
+.navbar .profile-btn {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #EC8305;
+    transition: all 0.3s ease;
 }
 
-.navbar .login-btn:hover {
-    background: #024CAA; /*#faab4b*/
+.navbar .profile-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
-/* Hamburger */
+.navbar .profile-btn:hover {
+    border-color: #091057;
+    transform: scale(1.1);
+}
+
+
 .hamburger {
     display: none;
     flex-direction: column;
@@ -89,7 +97,6 @@ body{
     background: #EC8305;
 }
 
-/* Mobile nav */
 .mobile-nav {
     display: none; 
     position: absolute;
@@ -109,7 +116,6 @@ body{
     display: flex; 
 }
 
-
 .mobile-nav a {
     color: white;
     text-decoration: none;
@@ -123,18 +129,17 @@ body{
     color: #EC8305;
 }
 
-/*---Responsive Navbar---*/
 @media (max-width: 900px) {
-    .navbar nav {
-    display: none;
+    .navbar .nav-links {
+      display: none; 
     }
+  
     .hamburger {
-    display: flex;
+      display: flex; 
     }
-}
-
-/*------------ Hero Section ------------*/
-.hero{
+  }
+  
+.indexhero {
     background: url('images/homehero.avif') no-repeat center center/cover;
     background-color: rgb(240, 240, 240);
     height: 60vh;
@@ -146,13 +151,29 @@ body{
     align-items: center;
     position: relative;
     padding: 20px;
+} 
+
+.indexhero h1 {
+    font-size: 2.5rem;        
+    font-weight: 700;
 }
 
-.hero h1, p{
-    font-family: Verdana, sans-serif;
+.indexhero p {
+    font-size: 1.5rem;
+    margin-top: 10px;       
 }
 
-/*------------ Home page ------------*/
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+    .hero p {
+        font-size: 1.2rem;
+    }
+}
+
+/* ===== HOME PAGE ===== */
 .section{
     padding: 30px;
 }
@@ -170,8 +191,8 @@ body{
     align-items: center;
     gap: 15px;
     padding: 20px;
-    overflow-x: hidden;  /*To show the scroll bar again change to auto */
-    scroll-behavior: smooth; /* Makes scrolling smooth*/
+    overflow-x: hidden;  
+    scroll-behavior: smooth; 
 }
 
 /*Hide scrollbar for a cleaner look*/
@@ -194,7 +215,7 @@ body{
 }
 
 .card h3:hover{
-    color: #ec8305; /*Text color changes on hover*/
+    color: #ec8305; 
 }
 
 .card img{
@@ -213,67 +234,23 @@ body{
     text-decoration: none;
     color:white;
     font-size: large;
-    float: right;   /*align to right*/
+    float: right;   
 }
 
 .see-more:hover{
-    /*change to a lighter shade on hover*/
     background-color: #faab4b;
 
 }
 
-/*============= Common to login & signup pages ===============*/
-body.login-page, body.signup-page{
-    font-family: 'Poppins', sans-serif;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-size: cover;
-    background-position: center;
-} 
 
-body.login-page::before, body.signup-page::before{
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(181, 181, 181, 0.621); /* Reduced opacity for background image */
-    z-index: -1;
-}
-
-.login-page .login-container, .signup-page .container {
-    width: 800px; 
-    background: rgba(255, 255, 255, 0.7); /* white with 70% opacity */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    border-radius: 10px;
-    overflow: hidden;
-} 
-
-.login-page .go-back-home a, .signup-page .go-back-home a{
-    display: inline-block;
-    text-decoration: none;
-    background-color: #024caa; /* Match your theme color */
-    color: white;
-    padding: 8px 15px;
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: bold;
-    transition: background 0.3s ease;
-}
-
-/*------------ Profile page ------------*/
+/* ===== PROFILE PAGE ===== */
 .profile-page {
   display: flex;
   min-height: calc(100vh - 80px);
 }
 
 .profile-sidebar {
-  width: 260px;
+  width: 220px;
   background: #F4F4F4;
   padding: 25px;
   display: flex;
@@ -349,7 +326,6 @@ body.login-page::before, body.signup-page::before{
 .profile .section { display: none; }
 .profile .section-active { display: block; }
 
-/* Booking Cards */
 .booking-card {
   display: flex;
   justify-content: space-between;
@@ -384,7 +360,110 @@ body.login-page::before, body.signup-page::before{
 
 .view-btn:hover { background: #091057; }
 
-/* Favorites */
+/* ===== Profile Page Booking Modal  ===== */
+.profile-modal #bookingModal {
+    display: block;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.profile #bookingModal .modal-content {
+    background: linear-gradient(145deg, #ffffff, #f0f4ff);
+    border-radius: 16px;
+    padding: 25px;
+    width: 95%;
+    max-width: 500px;
+    max-height: 20vh;
+    position: relative;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+    transform: translateY(-20px);
+    opacity: 0;
+    animation: fadeInUp 0.4s forwards;
+    transition: transform 0.3s ease;
+}
+
+.profile #bookingModal .modal-content:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.3);
+}
+
+.profile #bookingModal .close {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #EC8305;
+    transition: color 0.3s;
+}
+
+.profile #bookingModal .close:hover {
+    color: #091057;
+}
+
+.profile #bookingModal img {
+    width: 100%;
+    max-height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    border: 3px solid #EC8305;
+}
+
+.profile #bookingModal h2 {
+    font-size: 1.6rem;
+    color: #091057;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.profile #bookingModal p {
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.profile #bookingModal .details {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.profile #bookingModal .book-btn {
+    width: 100%;
+    background-color: #EC8305;
+    color: white;
+    font-weight: 600;
+    padding: 12px 0;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.profile #bookingModal .book-btn:hover {
+    background-color: #091057;
+}
+
+@keyframes fadeInUp {
+    0% {opacity: 0; transform: translateY(-20px);}
+    100% {opacity: 1; transform: translateY(0);}
+}
+
 .profile .cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -405,9 +484,14 @@ body.login-page::before, body.signup-page::before{
   box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
+body.profile h2,
+body.profile h3 {
+    color: #091057; 
+}
+
 .profile .card img { width: 100%; height: 150px; object-fit: cover; }
 .profile .card-info { padding: 10px; }
-.profile .card-info h4 { margin: 5px 0; color: #024CAA; }
+.profile .card-info h4 { margin: 5px 0; color: #024CAA; margin-left: 0.5rem;}
 
 .logout-btn {
   margin-top: 25px;
@@ -493,20 +577,56 @@ body.login-page::before, body.signup-page::before{
     border-radius: 2px;
 }
 
-/*------------ Log In page ------------*/
-.login-page{
-    background: url('images/skyline.avif') no-repeat  center/cover;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: rgba(0, 0, 0, 0.7);
+/*============= Common to login & signup pages ===============*/
+body.login-page, body.signup-page{
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    margin: 0;
-    position: relative;
+    background-size: cover;
+    background-position: center;
+} 
+
+body.login-page::before, body.signup-page::before{
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(181, 181, 181, 0.621); 
+    z-index: -1;
 }
+
+.login-page .login-container, .signup-page .container {
+    width: 800px; 
+    background: rgba(255, 255, 255, 0.7); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    border-radius: 10px;
+    overflow: hidden;
+} 
+
+.login-page .go-back-home a, .signup-page .go-back-home a{
+    display: inline-block;
+    text-decoration: none;
+    background-color: #024caa; 
+    color: white;
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+/* ===== LOG IN ===== */
+
+.login-page {
+    background: url('images/skyline.avif') no-repeat center center/cover;
+}
+
 
 .login-form {
     display: inline-block;
@@ -539,10 +659,10 @@ body.login-page::before, body.signup-page::before{
     width: calc(100% - 22px);
     padding: 10px;
     margin-bottom: 20px;
-    border: 1px solid #ddd; /* Light Gray */
+    border: 1px solid #ddd; 
     border-radius: 5px;
     font-size: 1em;
-    color: #333333; /* Dark Gray */
+    color: #333333; 
 }
 
 .login-form .remember-forgot {
@@ -584,12 +704,12 @@ body.login-page::before, body.signup-page::before{
 
 .login-page .go-back-home {
     text-align: center;
-    margin-top: 50px; /* Spacing after the form */
+    margin-top: 50px; 
     float: left;
 }
 
 .login-page .go-back-home a:hover {
-    background-color: #091057; /* Darker shade on hover */
+    background-color: #091057; 
 }
 
 .design-section {
@@ -603,7 +723,7 @@ body.login-page::before, body.signup-page::before{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center; /* Centers the text */          
+    text-align: center;       
 }
 
 .design-section h2 {
@@ -612,40 +732,46 @@ body.login-page::before, body.signup-page::before{
     color: white;
 }
 
-/* Add your design elements here using absolute positioning, shapes, etc. */
 .design-section::before, .design-section::after {
     content: '';
     position: absolute;
-    /* Add your shapes and styling here */
 }
 
 
-/*------------ Sign In Page ------------*/
+/* ===== SIGN UP ===== */
 .signup-page{
   background: url('images/skyline.avif') no-repeat center center/cover;
 }
 
 .left-section{
-  display: flex;
-  width: 40%;
-  padding: 40px;
-  background-color: #091057;
-  color: white;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;    
+    align-items: center;         
+    width: 40%;
+    padding: 40px;
+    background-color: #091057;
+    color: white;
+    text-align: center;
+    height: 100%;  
 }
 
-.left-section h1, .left-section p {
-  margin-top: 5px;
+.left-section h1 {
+  margin-top: 3rem;
   padding-bottom: 20px;
+  
 }
+.left-section p {
+    margin-top: 5px;
+    padding-bottom: 20px;
+    
+  }
 
 .button-link{
   display: inline-block; 
   padding: 10px 20px;
   font-weight: bold;
-  background-color: #EC8305; /* Sign In button color */
+  background-color: #EC8305; 
   color: white;
   text-decoration: none;
   text-align: center;
@@ -653,19 +779,20 @@ body.login-page::before, body.signup-page::before{
   border-radius: 5px;
   cursor: pointer;
   overflow: hidden;
+  margin-bottom: -70px;
 }
 
 .button-link:hover {
-  background-color: #f9b25c; /* Slightly lighter on hover */
+  background-color: #f9b25c; 
 }
 
 .signup-page .go-back-home {
   text-align: end;
-  margin-top: 150px; /* Spacing after the form */
+  margin-top: 150px; 
 }
 
 .signup-page .go-back-home a:hover {
-  background-color: #EC8305; /* lighter shade on hover */
+  background-color: #EC8305; 
 }
 
 .right-section{
@@ -689,10 +816,10 @@ body.login-page::before, body.signup-page::before{
   width: calc(100% - 22px);
   padding: 10px;
   margin-bottom: 20px;
-  border: 1px solid #D1D5DB; /* Light Gray */
+  border: 1px solid #D1D5DB; 
   border-radius: 5px;
   font-size: 1em;
-  color: #333333; /* Dark Gray */
+  color: #333333; 
 }
 
 .right-section button {
@@ -710,10 +837,9 @@ body.login-page::before, body.signup-page::before{
 }
 
 .right-section button:hover {
-  background-color: #f9b25c; /* Slightly darker on hover */
+  background-color: #f9b25c; 
 }
 
-/*--- Responisve ---*/
 @media (max-width: 600px) {
 .button-link, .right-section button, .login-btn{
   width: 100%;
@@ -721,8 +847,7 @@ body.login-page::before, body.signup-page::before{
 }
 }
 
-/*------------ Admin Page ------------*/
-/* ===== GENERAL ===== */
+/* ===== ADMIN PAGE ===== */
 body.admin-page {
     margin: 0;
     font-family: 'Inter', sans-serif;
@@ -764,7 +889,7 @@ body.admin-page {
     height: calc(100vh - 70px);
 }
 
-/* ===== SIDEBAR ===== */
+/* ===== sidebar  ===== */
 .admin-page .sidebar {
     width: 190px;
     background-color: #024CAA;
@@ -793,7 +918,7 @@ body.admin-page {
     color: #fff;
 }
 
-/* ===== MAIN CONTENT ===== */
+/* ===== main content ===== */
 .admin-page .main-content {
     flex: 1;
     padding: 2rem ;
@@ -815,7 +940,7 @@ body.admin-page {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* ===== CARDS ===== */
+/* ===== cards ===== */
 .admincards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -840,7 +965,7 @@ body.admin-page {
     box-shadow: 0 8px 20px #505152; 
 }
 
-/* ===== CHARTS ===== */
+/* ===== charts ===== */
 .admin-page .charts {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -869,8 +994,7 @@ body.admin-page {
     height: 100% ;
 }
 
-
-/* ===== TABLES ===== */
+/* ===== tables ===== */
 .admin-page table {
     width: 100%;
     border-collapse: collapse;
@@ -931,7 +1055,7 @@ body.admin-page {
     background-color: #024CAA;
 }
 
-/* ===== MODAL ===== */
+/* ===== modal ===== */
 .modal {
     display: none;
     position: fixed;
@@ -968,7 +1092,6 @@ body.admin-page {
     border: 1px solid #DBD3D3;
 }
 
-/* Modal Save Button */
 #modalForm button {
     background-color: #024CAA;  
     color: white;               
@@ -995,7 +1118,7 @@ body.admin-page {
     font-weight: bold;
 }
 
-/* ===== SETTINGS ===== */
+/* ===== settings ===== */
 .admin-page .settings-option {
     background: white;
     border-radius: 10px;
@@ -1027,7 +1150,7 @@ body.admin-page {
     background-color: #024CAA;
 }
 
-/*------------ Footer ------------*/
+/* ===== FOOTER ===== */
 footer{
     background-color: #091057;
     color:white;
@@ -1036,3 +1159,504 @@ footer{
     width: 100%;
     bottom: 0;
 }
+
+/* ===== HOTELS, RESTAURANTS, ATTRACTIONS ===== */
+
+/* ===== Filter Section ===== */
+
+.filter-section {
+    background-color: #f5f5f6;
+    padding: 35px 25px;
+    margin: 90px auto 40px;
+    max-width: 1200px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.filter-section h2 {
+    text-align: left;
+    font-size: 2rem;
+    color: #091057;
+    font-weight: bold;
+    margin-bottom: 30px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+.filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 10px;
+}
+
+.filter-form label {
+    font-weight: 600;
+    color: #091057;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 0.95rem;
+}
+
+.filter-section input,
+.filter-section select {
+    padding: 8px 10px;
+    border: 1.5px solid #091057;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #091057;
+    width: 9rem;
+    height: 2rem;
+    box-sizing: border-box;
+}
+
+.filter-btn {
+    background-color: #EC8305;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.filter-btn:hover {
+    background-color: #091057;
+}
+
+@media (max-width: 768px) {
+    .filter-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .filter-form label {
+        width: 100%;
+    }
+    .filter-section input,
+    .filter-section select {
+        width: 100%;
+    }
+    .filter-section h2 {
+        margin-top: 0;
+        font-size: 1.6rem;
+    }
+}
+
+.restaurants-list h2,
+.attractions-list h2,
+.hotels-list h2 {
+    color: #091057;
+    margin: 25px 0;
+    font-size: 2em;
+    border-bottom: 3px solid #EC8305;
+    display: inline-block;
+    padding-bottom: 5px;
+    margin-left: 120px;
+}
+
+/* ===== Unified Cards Grid ===== */
+.hotels-list .cards-grid,
+.restaurants-list .cards-grid,
+.attractions-list .cards-grid,
+.events-list .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+    padding: 30px;
+    max-width: 1200px;
+    margin: 40px auto;
+    justify-content: center;
+}
+
+.hotel-card,
+.restaurant-card,
+.attraction-card,
+.event-card {
+    background: #f9f9f9;
+    border-radius: 12px;
+    border-left: 5px solid #091057;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 400px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hotel-card img,
+.restaurant-card img,
+.attraction-card img,
+.event-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-bottom: 1px solid #eee;
+}
+
+.hotel-card h3,
+.restaurant-card h3,
+.attraction-card h3,
+.event-card h3 {
+    color: #091057;
+    font-size: 1.4rem;
+    margin: 15px;
+    line-height: 1.3;
+}
+
+.hotel-card p,
+.restaurant-card p,
+.attraction-card p,
+.event-card p,
+.hotel-card .description,
+.restaurant-card .description,
+.attraction-card .description,
+.event-card .description {
+    margin: 8px 15px;
+    color: #333;
+    font-size: 1rem;
+    line-height: 1.5;
+    flex-grow: 1;
+}
+
+.hotel-card .actions,
+.restaurant-card .actions,
+.attraction-card .actions,
+.event-card .actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-top: 1px solid #f0f0f0;
+    margin-top: auto;
+}
+
+.hotel-card .location,
+.attraction-card .location,
+.event-card .location,
+.restaurant-card .location,
+.event-card .date {
+    margin: 5px 15px;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.book-btn {
+    background-color: #EC8305;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: background-color 0.2s ease;
+}
+.book-btn:hover {
+    background-color: #091057;
+}
+
+.fav-btn {
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #ccc;
+    transition: color 0.2s;
+    user-select: none;
+    padding: 5px;
+}
+.fav-btn.active,
+.fav-btn:hover {
+    color: #ff4d4d;
+}
+
+/* ===== Booking Modal ===== */
+#bookingModal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    padding-top: 60px;
+}
+#bookingModal .modal-content {
+    background-color: #ffffff;
+    margin: 10% auto;
+    padding: 30px;
+    border: none;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease-out;
+}
+#bookingModal .modal-content h2 {
+    color: #091057;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+#bookingModal .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+#bookingModal .close:hover,
+#bookingModal .close:focus {
+    color: #333;
+    text-decoration: none;
+}
+
+/* ===== Booking Form ===== */
+#bookingForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+#bookingForm label {
+    font-weight: 600;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9rem;
+}
+#bookingForm input[type="date"],
+#bookingForm input[type="number"] {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+#bookingForm input:focus {
+    border-color: #091057;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(9, 16, 87, 0.25);
+}
+#bookingForm .book-btn {
+    width: 100%;
+    margin-top: 20px;
+}
+/* ===== Card Info Flex ===== */
+.attraction-card .info {
+    display: flex;
+    flex-direction: column; 
+    align-items: left; 
+    gap: 8px;                           
+    margin-left: 1.5rem;
+    font-size: 0.95rem;
+    color: #555;
+}
+.attraction-card .info span {
+    display: block;          
+    margin: 0;  
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+}
+
+.hero p {
+    font-size: 1.5rem;
+}
+
+.hotel-card:hover,
+.restaurant-card:hover,
+.attraction-card:hover,
+.event-card:hover {
+    transform: translateY(-5px);                      
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);       
+    border-left-color: #EC8305;                        
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-left-color 0.3s ease;
+}
+
+/* ===== Events Heading ===== */
+.events-list h2 {
+    color: #091057;
+    margin: 25px 0;
+    font-size: 2em;
+    border-bottom: 3px solid #EC8305;
+    display: inline-block;
+    padding-bottom: 5px;
+    margin-left: 120px;
+}
+
+/* ===== Events Cards Grid ===== */
+.events-list .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+    justify-content: center;
+}
+@media (min-width: 1024px) {
+    .events-list .cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+/* ===== Individual Event Card ===== */
+.event-card {
+    background: #f4f4f4;
+    border-radius: 12px;
+    border-left: 5px solid #091057;
+    box-shadow: 0 6px 18px rgba(0, 123, 255, 0.15);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.event-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid #eee;
+}
+.event-card h3 {
+    color: #091057;
+    margin: 15px;
+    font-size: 1.3rem;
+}
+.event-card .description {
+    margin: 0 15px 8px;
+    color: #091057;
+    font-size: 1rem;
+}
+.event-card .location,
+.event-card .date,
+.event-card .price {
+    margin: 3px 15px;
+    font-size: 0.95rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+    margin-left: 1.5rem;
+    font-weight: 600;
+    color: #091057;
+}
+
+/* ===== Event Card Actions ===== */
+.event-card .actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-top: 1px solid #f0f0f0;
+    margin-top: auto;
+}
+.event-card .book-btn {
+    background-color: #EC8305;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+}
+.event-card .book-btn:hover {
+    background-color: #091057;
+}
+.event-card .fav-btn {
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #ccc;
+    transition: color 0.2s;
+    user-select: none;
+    padding: 5px;
+}
+.event-card .fav-btn.active,
+.event-card .fav-btn:hover {
+    color: #ff4d4d;
+}
+
+/* ===== Responsive Adjustment ===== */
+@media (max-width: 768px) {
+    .events-list h2 {
+        margin-left: 40px;
+        font-size: 1.5em;
+    }
+    .event-card img {
+        height: 160px;
+    }
+}
+/* ===== PAGE-SPECIFIC HERO IMAGES ===== */
+
+.hero {
+    background-color: rgb(240, 240, 240);
+    height: 60vh;
+    display: flex;
+    flex-direction: column; 
+    line-height: 1.8;
+    justify-content: center;
+    color: white;
+    align-items: center;
+    position: relative;
+    padding: 20px;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5); 
+    z-index: 0;
+}
+/* ===== Hero Text Styling (applied to all hero sections) ===== */
+.hero h1,
+.hero p {
+    position: relative;
+    z-index: 1;
+    color: white;            
+    text-align: center;       
+    margin: 0;               
+    padding: 0.5em 1em;      
+}
+
+.hero h1 {
+    font-size: 2.5rem;        
+    font-weight: 700;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-top: 10px;         
+}
+
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+    .hero p {
+        font-size: 1.2rem;
+    }
+}
+
+.restaurantshero {
+    background: url('images/restaurantshero.jpg') no-repeat center center/cover;
+}
+
+.attractionshero {
+    background: url('images/attractionshero.jpg') no-repeat center center/cover;
+}
+
+.eventshero {
+    background: url('images/eventshero.jpg') no-repeat center center/cover;
+}
+
+
+
