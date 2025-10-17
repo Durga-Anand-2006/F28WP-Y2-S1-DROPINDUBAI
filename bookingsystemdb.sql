@@ -182,8 +182,17 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`ID`, `Email`, `FullName`, `Bio`) VALUES
-(1, 'mickeymouse123@gmail.com', 'Mickey Mouse', 'Travel enthusiast discovering the best of Dubai - from luxury hotels to hidden local gems!');
+INSERT INTO `users` (`ID`, `Email`, `FullName`, `Password`, `Phone`, `Country`, `CardNumber`, `CardExpiry`, `CardCVV`, `ProfilePicture`, `DateJoined`, `Role`) VALUES
+(1, 'mickeymouse123@gmail.com', 'Mickey Mouse', '$2y$10$placeholderhash1', '+971-50-111-0001', 'Dubai, UAE', 'XXXX-XXXX-XXXX-1001', '02/27', 'XXX', 'images/profile.jpg', '2025-10-17 10:30:00', 'admin'),
+(2, 'minnie.mouse@example.com', 'Minnie Mouse', '$2y$10$placeholderhash2', '+971-50-111-0002', 'Dubai, UAE', 'XXXX-XXXX-XXXX-1002', '04/26', 'XXX', 'images/profile.jpg', '2025-10-17 10:35:00', 'user'),
+(3, 'bugs.bunny@example.com', 'Bugs Bunny', '$2y$10$placeholderhash3', '+971-50-111-0003', 'Dubai, UAE', 'XXXX-XXXX-XXXX-1003', '12/25', 'XXX', 'images/profile.jpg', '2025-10-17 09:00:00', 'user'),
+(4, 'spongebob@example.com', 'SpongeBob SquarePants', '$2y$10$placeholderhash4', '+971-50-111-0004', 'Dubai, UAE', 'XXXX-XXXX-XXXX-1004', '01/26', 'XXX', 'images/profile.jpg', '2025-10-17 09:10:00', 'user'),
+(5, 'daffy.duck@example.com', 'Daffy Duck', '$2y$10$placeholderhash10', '+971-50-111-0005', 'Dubai, UAE', 'XXXX-XXXX-XXXX-1005', '03/26', 'XXX', 'images/profile.jpg', '2025-10-17 09:20:00', 'user'),
+(6, 'tom.cat@example.com', 'Tom Cat', '$2y$10$placeholderhash6', '+971-50-111-0006', 'Dubai, UAE', 'XXXX-XXXX-XXXX-1006', '06/26', 'XXX', 'images/profile.jpg', '2025-10-17 09:30:00', 'user'),
+(7, 'jerry.mouse@example.com', 'Jerry Mouse', '$2y$10$placeholderhash7', '+971-50-111-0007', 'Dubai, UAE', 'XXXX-XXXX-XXXX-1007', '07/26', 'XXX', 'images/profile.jpg', '2025-10-17 09:40:00', 'user'),
+(8, 'donald.duck@example.com', 'Donald Duck', '$2y$10$placeholderhash8', '+971-50-111-0008', 'Dubai, UAE', 'XXXX-XXXX-XXXX-1008', '08/26', 'XXX', 'images/profile.jpg', '2025-10-17 09:50:00', 'admin'),
+(9, 'daisy.duck@example.com', 'Daisy Duck', '$2y$10$placeholderhash9', '+971-50-111-0009', 'Dubai, UAE', 'XXXX-XXXX-XXXX-1009', '09/26', 'XXX', 'images/profile.jpg', '2025-10-17 10:25:00', 'user'),
+(10, 'scooby.doo@example.com', 'Scooby Doo', '$2y$10$placeholderhash10', '+971-50-111-0010', 'Dubai, UAE', 'XXXX-XXXX-XXXX-1010', '10/26', 'XXX', 'images/profile.jpg', '2025-10-17 10:00:00', 'user');
 
 --
 -- Indexes for dumped tables
