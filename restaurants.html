@@ -10,37 +10,43 @@
 </head>
 <body>
   <!-- Navbar -->
-    <header class="navbar">
-      <div class="logo">
-       <img src="logo2.jpg" width="120" alt="Drop In Dubai Logo" />
-      </div>
-    <nav>
-        <a href="index.html" >Home</a>
-        <a href="hotels.html">Hotels</a>
-        <a href="restaurants.html" class="active">Restaurants</a>
-        <a href="attractions.html">Attractions</a>
-        <a href="events.html">Events</a>
-        <a href="profile.html">Profile</a>
-    </nav>
-        <a href="login.html" class="login-btn">Log In</a>
-    
-    <div class="hamburger">
-      <div></div>
-      <div></div>
-      <div></div>
+        <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="images/logo.jpg" alt="Drop In Dubai Logo">
     </div>
-    <div class="mobile-nav">
+
+    <nav class="nav-links">
       <a href="index.html">Home</a>
       <a href="hotels.html">Hotels</a>
       <a href="restaurants.html">Restaurants</a>
       <a href="attractions.html">Attractions</a>
       <a href="events.html">Events</a>
       <a href="profile.html" class="active">Profile</a>
+    </nav>
+
+    <a href="login.html" class="profile-btn">
+      <img src="images/profileicon.png" alt="Profile">
+  </a>
+
+    <div class="hamburger">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+    <div class="mobile-nav">
+      <a href="index.html">Home</a>
+      <a href="hotels.html">Hotels</a>
+      <a href="restaurants.html"class="active">Restaurants</a>
+      <a href="attractions.html">Attractions</a>
+      <a href="events.html">Events</a>
+      <a href="profile.html">Profile</a>
     </div>
   </header>
   
   <!-- Hero Section -->
-  <section class="hero">
+  <section class="hero restaurantshero">
     <h1>Discover Dubai's Best Restaurants</h1>
     <p>Find the best dining experience in Dubai</p>
   </section>
@@ -98,7 +104,7 @@
 
       <!-- Nobu -->
       <div class="card restaurant-card" data-id="nobu" data-cuisine="Japanese" data-rating="5" data-price="350">
-        <img src="nobu.jpg" alt="Nobu Restaurant">
+        <img src="images/nobu.jpg" alt="Nobu Restaurant">
         <h3>Nobu</h3>
         <p class="location">Atlantis, Palm Jumeirah</p>
         <p class="rating">★★★★★</p>
@@ -113,7 +119,7 @@
 
       <!-- Zuma -->
       <div class="card restaurant-card" data-id="zuma" data-cuisine="Japanese" data-rating="4" data-price="300">
-        <img src="zuma.jpg" alt="Zuma Restaurant">
+        <img src="images/zuma.jpg" alt="Zuma Restaurant">
         <h3>Zuma</h3>
         <p class="location">Grosvenor House</p>
         <p class="rating">★★★★</p>
@@ -128,7 +134,7 @@
 
       <!-- Coya -->
       <div class="card restaurant-card" data-id="coya" data-cuisine="Peruvian" data-rating="4" data-price="280">
-        <img src="coya.jpg" alt="Coya Restaurant">
+        <img src="images/coya.jpg" alt="Coya Restaurant">
         <h3>Coya</h3>
         <p class="location">Four Seasons</p>
         <p class="rating">★★★★</p>
@@ -143,7 +149,7 @@
 
       <!-- Additional Restaurants -->
       <div class="card restaurant-card" data-id="peppercorn" data-cuisine="Italian" data-rating="4" data-price="250">
-        <img src="pepper.jpg" alt="Peppercorn Restaurant">
+        <img src="images/pepper.jpg" alt="Peppercorn Restaurant">
         <h3>Peppercorn</h3>
         <p class="location">Downtown Dubai</p>
         <p class="rating">★★★★</p>
@@ -158,7 +164,7 @@
 
       <!-- Ossiano -->
       <div class="card restaurant-card" data-price="3" data-rating="5" data-cuisine="French">
-        <img src="ossiano.jpg" alt="Ossiano">
+        <img src="images/ossiano.jpg" alt="Ossiano">
         <h3>Ossiano</h3>
         <p>Underwater French fine dining at Atlantis The Palm.</p>
         <p class="cuisine">French</p>
@@ -173,7 +179,7 @@
 
       <!-- Fi'lia -->
       <div class="card restaurant-card" data-price="2" data-rating="4.5" data-cuisine="Italian">
-        <img src="filia.jpg" alt="Fi'lia">
+        <img src="images/filia.jpg" alt="Fi'lia">
         <h3>Fi'lia</h3>
         <p>Honest Italian cuisine with stunning views.</p>
         <p class="cuisine">Italian</p>
@@ -188,7 +194,7 @@
 
       <!-- Al Nafoorah -->
       <div class="card restaurant-card" data-price="3" data-rating="4.8" data-cuisine="Lebanese">
-        <img src="alnafoorah.jpg" alt="Al Nafoorah">
+        <img src="images/alnafoorah.jpg" alt="Al Nafoorah">
         <h3>Al Nafoorah</h3>
         <p>Authentic Lebanese flavors in a luxurious setting.</p>
         <p class="cuisine">Lebanese</p>
@@ -203,7 +209,7 @@
 
       <!-- The Meat Co -->
       <div class="card restaurant-card" data-price="3" data-rating="4.6" data-cuisine="Steakhouse">
-        <img src="themeatco.jpg" alt="The Meat Co">
+        <img src="images/themeatco.jpg" alt="The Meat Co">
         <h3>The Meat Co</h3>
         <p>Premium steakhouse offering South African cuts.</p>
         <p class="cuisine">Steakhouse</p>
@@ -218,7 +224,7 @@
 
       <!-- Pierchic -->
       <div class="card restaurant-card" data-price="3" data-rating="4.9" data-cuisine="Seafood">
-        <img src="pierchic.jpg" alt="Pierchic">
+        <img src="images/pierchic.jpg" alt="Pierchic">
         <h3>Pierchic</h3>
         <p>Romantic seafood dining at the end of a pier.</p>
         <p class="cuisine">Seafood</p>
@@ -233,7 +239,7 @@
 
       <!-- High Joint -->
       <div class="card restaurant-card" data-price="1" data-rating="4.5" data-cuisine="American">
-        <img src="highjoint.jpg" alt="High Joint">
+        <img src="images/highjoint.jpg" alt="High Joint">
         <h3>High Joint</h3>
         <p>Gourmet burgers with a local twist.</p>
         <p class="cuisine">American</p>
@@ -248,7 +254,7 @@
 
       <!-- Sticky Rice -->
       <div class="card restaurant-card" data-price="1" data-rating="4.7" data-cuisine="Thai">
-        <img src="stickyrice.jpg" alt="Sticky Rice">
+        <img src="images/stickyrice.jpg" alt="Sticky Rice">
         <h3>Sticky Rice</h3>
         <p>Authentic Thai street food in a cozy setting.</p>
         <p class="cuisine">Thai</p>
@@ -263,7 +269,7 @@
 
       <!-- LILA Wood-fired Taqueria -->
       <div class="card restaurant-card" data-price="2" data-rating="4.8" data-cuisine="Mexican">
-        <img src="lila.jpg" alt="LILA Wood-fired Taqueria">
+        <img src="images/lila.jpg" alt="LILA Wood-fired Taqueria">
         <h3>LILA Wood-fired Taqueria</h3>
         <p>Artisanal Mexican dishes with seasonal ingredients.</p>
         <p class="cuisine">Mexican</p>
@@ -278,7 +284,7 @@
 
       <!-- Mohalla -->
       <div class="card restaurant-card" data-price="2" data-rating="4.6" data-cuisine="Indian">
-        <img src="mohalla.jpg" alt="Mohalla">
+        <img src="images/mohalla.jpg" alt="Mohalla">
         <h3>Mohalla</h3>
         <p>Modern Indian cuisine with a street food flair.</p>
         <p class="cuisine">Indian</p>
