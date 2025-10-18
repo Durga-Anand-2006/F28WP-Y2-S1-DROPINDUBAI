@@ -328,6 +328,89 @@
     <footer>
         &copy; 2025 Drop In Dubai | All rights reserved | Social media
     </footer>
+
+    <!-- Booking Modal -->
+<div class="modal" id="bookingModal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Book Attraction: <span id="modalAttractionName"></span></h2>
+  
+      <form id="bookingForm">
+        <p class="modal-details">
+          <strong>Location:</strong> <span id="modalAttractionLocation"></span><br>
+          <strong>Price:</strong> <span id="modalAttractionPrice"></span><br>
+          <strong>Rating:</strong> <span id="modalAttractionRating"></span>
+        </p>
+  
+        <label>Date of Visit:
+          <input type="date" id="modalVisitDate" required>
+        </label>
+  
+        <label>Time Slot:
+          <select id="modalTimeSlot" required>
+            <option value="">Select Time</option>
+            <option value="Morning (9 AM - 12 PM)">Morning (9 AM - 12 PM)</option>
+            <option value="Afternoon (12 PM - 4 PM)">Afternoon (12 PM - 4 PM)</option>
+            <option value="Evening (4 PM - 8 PM)">Evening (4 PM - 8 PM)</option>
+          </select>
+        </label>
+  
+        <label>Number of Visitors:
+          <input type="number" id="modalVisitors" min="1" value="1" required>
+        </label>
+  
+        <button type="submit" class="book-btn">Confirm Booking</button>
+      </form>
+    </div>
+  </div>
+  
+  <!-- ===== Internal JavaScript ===== -->
+  <script>
+    // ===== Booking Modal Logic =====
+    const modal = document.getElementById("bookingModal");
+    const closeBtn = document.querySelector(".modal .close");
+    const bookingForm = document.getElementById("bookingForm");
+  
+    document.querySelectorAll(".book-btn").forEach(button => {
+      button.addEventListener("click", (e) => {
+        const card = e.target.closest(".attraction-card");
+  
+        // Get details from the clicked card
+        const name = card.querySelector("h3").textContent;
+        const location = card.querySelector(".location").textContent;
+        const price = card.querySelector(".price").textContent;
+        const rating = card.querySelector(".rating").textContent;
+  
+        // Fill modal with attraction details
+        document.getElementById("modalAttractionName").textContent = name;
+        document.getElementById("modalAttractionLocation").textContent = location;
+        document.getElementById("modalAttractionPrice").textContent = price;
+        document.getElementById("modalAttractionRating").textContent = rating;
+  
+        modal.style.display = "flex";
+      });
+    });
+  
+    // Close modal when clicking X
+    closeBtn.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+  
+    // Close modal when clicking outside content
+    window.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.style.display = "none";
+      }
+    });
+  
+    // Handle booking form submission
+    bookingForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      alert("✅ Your attraction booking has been confirmed!");
+      modal.style.display = "none";
+      bookingForm.reset();
+    });
+  </script>
     
 </body>
 </html>
