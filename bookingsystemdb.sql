@@ -175,7 +175,7 @@ CREATE TABLE `users` (
   `CardCVV` varchar(4) DEFAULT NULL, 
   `ProfilePicture` varchar(255) DEFAULT 'images/profile.jpg',
   `DateJoined` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `Role` enum('user', 'admin') NOT NULL DEFUALT 'user'
+  `Role` enum('user', 'admin') NOT NULL DEFAuLT 'user'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
