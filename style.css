@@ -140,7 +140,8 @@ body{
   }
   
 .indexhero {
-    background: url('images/homehero.avif') no-repeat center center/cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), /* Overlay */
+    url('images/homehero.avif') no-repeat center center/cover;
     background-color: rgb(240, 240, 240);
     height: 60vh;
     display: flex;
