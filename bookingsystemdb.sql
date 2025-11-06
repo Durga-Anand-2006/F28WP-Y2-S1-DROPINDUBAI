@@ -78,13 +78,13 @@ CREATE TABLE `events` (
 
 INSERT INTO `events` (`ID`, `Name`, `Description`, `Location`, `Start_Date`, `End_Date`, `Price`, `Category`, `ImagePath`) VALUES
 (1, 'UNTOLD Dubai', 'Mega electronic music festival with international DJs', 'Dubai Parks & Resorts', '2025-11-06', '2025-11-09', '475+', 'Festival', 'images/untolddubai.jpg'),
-(2, 'Dubai Design Week 2025', 'Showcasing architecture, installations, design talks & exhibitions', 'Dubai Design District (d3)', '2025-11-04', '2025-11-09', 'Free', 'Festival', NULL),
-(3, 'Al Habtoor Tennis Challenge 2025', 'Women\'s professional tennis tournament', 'Al Habtoor Grand Resort', '2025-12-01', '2025-12-07', '100+', 'Sports', NULL),
-(4, 'Global Village - Season 30', 'Year-long multicultural festival with live performances, rides, food & pavilions', 'Dubailand, Dubai', '2025-10-15', '2026-05-10', '25-30', 'Festival', NULL),
-(5, 'Dubai Fitness Challenge 2025', 'Month-long community fitness & sports events', 'Across Dubai (various venues)', '2025-11-01', '2025-11-30', 'Free', 'Sports', NULL),
-(6, 'Dubai Marathon (25th Edition)', 'International road race with elite athletes & public participation', 'Umm Sequim / Jumeirah Beach', '2026-02-01', '2026-02-01', '500', 'Sports', NULL),
-(7, 'Dubai Basketball vs Olympiacos & Real Madrid', 'Euroleague basketball matches', 'Coca-Cola Arena', '2026-02-03', '2026-02-05', '125+', 'Sports', NULL),
-(8, 'Dubai Open Swimming Championship', 'Competitive swimming competition for regional & international athletes', 'Hamdan Sports Complex', '2026-02-06', '2026-02-08', '90+', 'Sports', NULL),
+(2, 'Dubai Design Week 2025', 'Showcasing architecture, installations, design talks & exhibitions', 'Dubai Design District (d3)', '2025-11-04', '2025-11-09', 'Free', 'Festival', 'images/dubai-design-week'),
+(3, 'Al Habtoor Tennis Challenge 2025', 'Women\'s professional tennis tournament', 'Al Habtoor Grand Resort', '2025-12-01', '2025-12-07', '100+', 'Sports', 'images/alhabtoor-tennis.jpg'),
+(4, 'Global Village - Season 30', 'Year-long multicultural festival with live performances, rides, food & pavilions', 'Dubailand, Dubai', '2025-10-15', '2026-05-10', '25-30', 'Festival', 'images/global-village.jpg'),
+(5, 'Dubai Fitness Challenge 2025', 'Month-long community fitness & sports events', 'Across Dubai (various venues)', '2025-11-01', '2025-11-30', 'Free', 'Sports', 'images/dubai-fitness-challenge.jpg'),
+(6, 'Dubai Marathon (25th Edition)', 'International road race with elite athletes & public participation', 'Umm Sequim / Jumeirah Beach', '2026-02-01', '2026-02-01', '500', 'Sports', 'images/dubai-marathon.jpg'),
+(7, 'Dubai Basketball vs Olympiacos & Real Madrid', 'Euroleague basketball matches', 'Coca-Cola Arena', '2026-02-03', '2026-02-05', '125+', 'Sports', 'images/dubai-basketball.jpg'),
+(8, 'Dubai Open Swimming Championship', 'Competitive swimming competition for regional & international athletes', 'Hamdan Sports Complex', '2026-02-06', '2026-02-08', '90+', 'Sports', 'images/dubai-swimming-championship.jpg'),
 (9, 'World Sports Summit 2025', 'Gathering of sports industry leaders, athletes & experts to discuss future of sports', 'Madinat Jumeirah, Dubai', '2025-12-29', '2025-12-30', '125+', 'Sports', 'images/worldsportssummit.jpg'),
 (10, 'Dubai Shopping Festival', 'Mega retail & entertainment festival with massive discounts, nightly fireworks & drone shows', 'Dubai (various malls + outdoor venues)', '2025-12-05', '2026-01-11', 'Free', 'Festival', 'images/dubaishoppingfestival.jpg');
 
