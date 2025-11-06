@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Stays</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="js/main.js" defer></script>
+  <script src = "js/main.js" defer> </script>
+  <script src="js/hotels.js" defer></script>
 </head>
 <body>
   <!-- Navbar -->
@@ -98,6 +99,22 @@
   <!-- Hotels List -->
   <section class="hotels-list">
     <h2>Available Hotels</h2>
+    <div class="cards-grid">
+      <!-- cards will be injected here by hotels.js-->
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Drop In Dubai | All rights reserved | Social media
+  </footer>
+
+</body>
+</html>
+
+
+<!-- hardcoded hotel information 
+ <h2>Available Hotels</h2>
     <div class="cards-grid">
 
         <div class="card hotel-card" data-id="burj-single" data-price="2500" data-room="Single" data-adults="1" data-children="0">
@@ -459,37 +476,4 @@
             <button class="book-btn">Book</button>
             <span class="heart fav-btn">♥</span>
           </div>
-        </div>  
-    </div> 
-  </section>
-
-  <!-- Booking Modal -->
-  <div class="modal" id="bookingModal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h2>Book Hotel: <span id="modalHotelName"></span></h2>
-      <form id="bookingForm">
-        <label>Check-in:
-          <input type="date" id="modalCheckin" required>
-        </label>
-        <label>Check-out:
-          <input type="date" id="modalCheckout" required>
-        </label>
-        <label>Adults:
-          <input type="number" id="modalAdults" min="1" value="1" required>
-        </label>
-        <label>Children:
-          <input type="number" id="modalChildren" min="0" value="0">
-        </label>
-        <button type="submit" class="book-btn">Confirm Booking</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <footer>
-    &copy; 2025 Drop In Dubai | All rights reserved | Social media
-  </footer>
-
-</body>
-</html>
+        </div>  -->
