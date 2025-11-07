@@ -186,22 +186,23 @@ body{
     overflow: hidden;
 }
 
-.cards{
+.cards {
     position: relative;
     display: flex;
     align-items: center;
     gap: 15px;
     padding: 20px;
-    overflow-x: hidden;  
-    scroll-behavior: smooth; 
+    overflow-x: auto;  
+    scroll-behavior: auto; /* Changed from smooth - let JS handle it */
+    will-change: scroll-position; /* GPU acceleration */
 }
 
-/*Hide scrollbar for a cleaner look*/
+/* Hide scrollbar for a cleaner look
 .cards ::-webkit-scrollbar {
-    display: none;
-}
+    display: none; */
+/*}*/
 
-.card{
+.card {
     background-color: rgb(240, 240, 240);
     flex: 0 0 300px;  
     border-style: solid;
@@ -209,6 +210,9 @@ body{
     border-radius: 10px;
     height: 300px;
     overflow: hidden;
+    /* Add these for smoother rendering */
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .card h3, .card p {
@@ -1650,11 +1654,11 @@ footer{
 }
 
 .restaurantshero {
-    background: url('images/restaurantshero.jpg') no-repeat center center/cover;
+    background: url('images/restauranthero.jpg') no-repeat center center/cover;
 }
 
 .attractionshero {
-    background: url('images/attractionshero.jpg') no-repeat center center/cover;
+    background: url('images/attractionshero.jpeg') no-repeat center center/cover;
 }
 
 .eventshero {
@@ -1662,5 +1666,5 @@ footer{
 }
 
 .hotelshero {
-    background: url('images/hotelhero.avif') no-repeat center center/cover;
+    background: url('images/hotelshero.jpeg') no-repeat center center/cover;
 }
