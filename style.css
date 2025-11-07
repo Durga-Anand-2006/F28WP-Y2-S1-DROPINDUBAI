@@ -208,7 +208,7 @@ body{
     border-style: solid;
     border-color: rgb(216, 215, 215);
     border-radius: 10px;
-    height: 300px;
+    height: 350px;
     overflow: hidden;
     /* Add these for smoother rendering */
     transform: translateZ(0);
@@ -225,9 +225,10 @@ body{
 
 .card img{
     width: 100%;
-    height: 60%;
+    height: 250px;
     display: block;
-    border-radius: 10px 10px 0px 0PX;
+    object-fit: cover;
+    border-radius: 10px 10px 0px 0PX;   
     padding-bottom: 10px;
 }
 
