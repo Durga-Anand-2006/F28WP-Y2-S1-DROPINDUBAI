@@ -10,31 +10,62 @@
  * and resets it to the start when it reaches the end. Jovering the 
  * mouse over any of the carousels pauses it using a boolean flag.
  */
-document.addEventListener("DOMContentLoaded", function(){
+function initializeCarousels() {
     const carousels = document.querySelectorAll(".carousel .cards");
+    console.log("🎠 Found", carousels.length, "carousels to initialize");
 
-    carousels.forEach(cards =>{
-        let scrollSpeed = 0.7;  // pixels per frame
-        let isPaused = false; 
-        // console.log(cards);
-
-        function scroll() {
-            if(!isPaused){
-                cards.scrollLeft += scrollSpeed;
-                if(cards.scrollLeft >= cards.scrollWidth - cards.clientWidth){
-                    cards.scrollLeft = 0; // loop back
-                }
-            }
-            requestAnimationFrame(scroll);
+    carousels.forEach((cards, index) => {
+        // Skip if carousel has no cards
+        if (cards.children.length === 0) {
+            console.warn(`⚠️ Carousel ${index} has no cards, skipping`);
+            return;
         }
-        // Pause when hovered over 
-        cards.addEventListener("mouseenter", () => isPaused = true);
-        cards.addEventListener("mouseleave", () => isPaused = false);
-        
-        // Start scrolling 
-        scroll();
+
+        let scrollSpeed = 0.5;  // Reduced speed for smoother motion
+        let isPaused = false;
+        let scrollInterval;
+
+        // Clone cards for infinite scroll effect
+        const cloneCards = () => {
+            const cardElements = Array.from(cards.children);
+            cardElements.forEach(card => {
+                const clone = card.cloneNode(true);
+                cards.appendChild(clone);
+            });
+        };
+
+        // Clone the cards once for seamless loop
+        cloneCards();
+
+        // Scroll function
+        const startScrolling = () => {
+            scrollInterval = setInterval(() => {
+                if (!isPaused && cards.scrollWidth > cards.clientWidth) {
+                    cards.scrollLeft += scrollSpeed;
+
+                    // Reset to start when halfway through
+                    if (cards.scrollLeft >= cards.scrollWidth / 2) {
+                        cards.scrollLeft = 0;
+                    }
+                }
+            }, 16); // ~60fps for smoother animation
+        };
+
+        // Pause on hover
+        cards.addEventListener("mouseenter", () => {
+            isPaused = true;
+        });
+
+        cards.addEventListener("mouseleave", () => {
+            isPaused = false;
+        });
+
+        // Start scrolling
+        startScrolling();
+        console.log(`✅ Carousel ${index} initialized with ${cards.children.length} cards`);
     });
-});
+}
+
 
 /**
  * -----------------------------
@@ -50,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function(){
     const mobileNav = document.querySelector(".mobile-nav");
 
     hamburger.addEventListener("click", function(){
-        mobileNav.classList.toggle("active");
+        mobileNav.classList.toggle("show");
         hamburger.classList.toggle("active");
     });
 });
