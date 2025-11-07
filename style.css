@@ -218,6 +218,18 @@ body{
 .card h3, .card p {
     padding: 10px;
 }
+.card h3 {
+  font-size: 1rem;
+  color: black;
+}
+
+.card p {
+  font-size: 1 rem;
+  color: black;
+  height: 48px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 .card h3:hover{
     color: #ec8305; 
