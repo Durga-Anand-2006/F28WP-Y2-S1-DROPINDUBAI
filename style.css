@@ -95,6 +95,19 @@ body{
     width: 25px;
     height: 3px;
     background: #EC8305;
+    transition: all 0.3s;
+}
+
+.hamburger.active div:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active div:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active div:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
 }
 
 .mobile-nav {
@@ -110,10 +123,17 @@ body{
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     z-index: 1001;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
 }
 
 .mobile-nav.show {
     display: flex; 
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
 }
 
 .mobile-nav a {
