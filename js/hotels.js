@@ -19,6 +19,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                 <p>${hotel.Description}</p>
                 <p><strong>Location: </strong> ${hotel.Location}</p>
                 <p><strong>Price:</strong> AED ${hotel.Price_Per_Night}</p>
+                <div class="card-actions">
+                    <button class="book-btn" 
+                            data-id="${hotel.ID}" 
+                            data-type="hotel" 
+                            data-name="${hotel.Name}">
+                        Book Now
+                    </button>
+                </div>
             </div>
             `;
 
