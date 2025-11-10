@@ -7,17 +7,19 @@
  * ---------------------------
  */
 /** It loops through each carousel, moves it a tiny bit every frame , 
- * and resets it to the start when it reaches the end. Jovering the 
+ * and resets it to the start when it reaches the end. Hovering the 
  * mouse over any of the carousels pauses it using a boolean flag.
  */
 function initializeCarousels() {
     const carousels = document.querySelectorAll(".carousel .cards");
-    console.log("🎠 Found", carousels.length, "carousels to initialize");
+    // safe exit if the page does not require this functionality 
+    if(!carousels.length) return;
+    console.log("Found", carousels.length, "carousels to initialize");
 
     carousels.forEach((cards, index) => {
         // Skip if carousel has no cards
         if (cards.children.length === 0) {
-            console.warn(`⚠️ Carousel ${index} has no cards, skipping`);
+            console.warn(` Carousel ${index} has no cards, skipping`);
             return;
         }
 
@@ -25,7 +27,7 @@ function initializeCarousels() {
         let isPaused = false;
         let scrollInterval;
 
-        // Clone cards for infinite scroll effect
+        // Clone cards for an infinite scroll effect
         const cloneCards = () => {
             const cardElements = Array.from(cards.children);
             cardElements.forEach(card => {
@@ -34,7 +36,7 @@ function initializeCarousels() {
             });
         };
 
-        // Clone the cards once for seamless loop
+        // Clone the cards once for an ideal loop
         cloneCards();
 
         // Scroll function
@@ -51,18 +53,18 @@ function initializeCarousels() {
             }, 16); // ~60fps for smoother animation
         };
 
-        // Pause on hover
+        // when mouse enters pause the carousel
         cards.addEventListener("mouseenter", () => {
             isPaused = true;
         });
-
+        // when mouse leaves continue the carousel
         cards.addEventListener("mouseleave", () => {
             isPaused = false;
         });
 
         // Start scrolling
         startScrolling();
-        console.log(`✅ Carousel ${index} initialized with ${cards.children.length} cards`);
+        console.log(` Carousel ${index} initialized with ${cards.children.length} cards`);
     });
 }
 
@@ -80,10 +82,15 @@ document.addEventListener("DOMContentLoaded", function(){
     const hamburger = document.querySelector(".hamburger");
     const mobileNav = document.querySelector(".mobile-nav");
 
-    hamburger.addEventListener("click", function(){
+    // attach the listener only if the above elements exist 
+    // safe guards pages that dont require this functionality 
+    if(hamburger && mobileNav){
+        hamburger.addEventListener("click", function() {
         mobileNav.classList.toggle("show");
         hamburger.classList.toggle("active");
-    });
+        });
+    }
+    
 });
 
 /**
@@ -91,7 +98,9 @@ document.addEventListener("DOMContentLoaded", function(){
  * 3. SMOOTH SCROLLING 
  * ---------------------------
  */
-/** This allows in-page links to scroll smoothly to a section instead of jumping instantly. */
+/** This allows in-page links to scroll smoothly to a section instead of jumping instantly. Gets rid of the jittery
+ * feeling when scrolling.
+ */
 
 document.querySelectorAll('a[href^="#"]').forEach(anchor =>{
     anchor.addEventListener('click', function(e){
@@ -109,4 +118,5 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor =>{
         }
     });
 });
+
 

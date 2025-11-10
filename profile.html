@@ -7,6 +7,7 @@
   <title>Profile</title>
   <link rel="stylesheet" href="style.css" />
   <script src="js/main.js" defer></script>
+  <script src="js/profile.js" defer></script>
 </head>
 
 <body class="profile">
@@ -53,8 +54,8 @@
     <aside class="profile-sidebar">
       <div class="user-info">
         <img src="images/profile.jpg" alt="User image" class="avatar">
-        <h2>Mickey Mouse</h2>
-        <p>mickeymouse123@gmail.com</p>
+        <h2 id="profile-username">Loading...</h2>
+        <p id="profile-email">Loading....</p>
       </div>
       <nav class="profile-nav">
         <ul>
@@ -70,142 +71,47 @@
     <main class="profile-main">
       <!-- Dashboard -->
       <section class="section section-active" id="dashboard">
-        <h2>Welcome back, Mickey!</h2>
+        <h2 id="welcome-message">Welcome back!</h2>
         <p>Here's a summary of your upcoming bookings.</p>
-
-        <h3>Upcoming Bookings</h3>
-        <div class="booking-card">
-          <div class="booking-info">
-            <p class="booking-title">Hotel: Atlantis, The Palm</p>
-            <p>Date: 12 Oct 2025 - 15 Oct 2025</p>
-            <p>Status: <span class="status confirmed">Confirmed</span></p>
-          </div>
-          <button class="view-btn">View Details</button>
-        </div>
-
-        <div class="booking-card">
-          <div class="booking-info">
-            <p class="booking-title">Attraction: Dubai Aquarium</p>
-            <p>Date: 14 Oct 2025</p>
-            <p>Status: <span class="status confirmed">Confirmed</span></p>
-          </div>
-          <button class="view-btn">View Details</button>
+        <div class="dashboard-bookings cards-grid">
+          <!-- JS will inject cards here -->
         </div>
       </section>
 
       <!-- Favorites -->
       <section class="section" id="favorites">
-        <h3>Favorite Places</h3>
-        <div class="cards-grid">
-          <div class="card">
-            <img src="images/burjkhalifa.jpg" alt="Place 1">
-            <div class="card-info">
-              <h4>Burj Khalifa</h4>
-              <p>Downtown Dubai</p>
-            </div>
-          </div>
-          <div class="card">
-            <img src="images/dubaimall.jpg" alt="Place 2">
-            <div class="card-info">
-              <h4>Dubai Mall</h4>
-              <p>Downtown Dubai</p>
-            </div>
-          </div>
-          <div class="card">
-            <img src="images/hotel2.jpg" alt="Place 3">
-            <div class="card-info">
-              <h4>Atlantis The Palm</h4>
-              <p>Palm Jumeirah</p>
-            </div>
-          </div>
+        <h3>Your favorite Places</h3>
+        <div id="favourites-container cards-grid">
+          <!-- JS will inject favourites here -->
         </div>
       </section>
 
       <!-- Bookings -->
       <section class="section" id="bookings">
         <h3>Upcoming Bookings</h3>
-        <div class="booking-card">
-          <div class="booking-info">
-            <p class="booking-title">Hotel: Atlantis, The Palm</p>
-            <p>Date: 12 Oct 2025 - 15 Oct 2025</p>
-            <p>Status: <span class="status confirmed">Confirmed</span></p>
-          </div>
-          <button class="view-btn">View Details</button>
+        <div class="booking-container cards-grid">
+           <!-- JS will inject bookings here -->
         </div>
-
-        <div class="booking-card">
-          <div class="booking-info">
-            <p class="booking-title">Attraction: Dubai Aquarium</p>
-            <p>Date: 14 Oct 2025</p>
-            <p>Status: <span class="status confirmed">Confirmed</span></p>
-          </div>
-          <button class="view-btn">View Details</button>
-        </div>
-
-        <div class="section-divider"></div>
-        <h3>Past Bookings</h3>
-
-        <div class="booking-card">
-          <div class="booking-info">
-            <p class="booking-title">Hotel: Burj Al Arab</p>
-            <p>Date: 01 Sept 2025 - 03 Sept 2025</p>
-            <p>Status: <span class="status past">Completed</span></p>
-          </div>
-          <button class="view-btn">View Summary</button>
-        </div>
-
-        <div class="booking-card">
-          <div class="booking-info">
-            <p class="booking-title">Restaurant: Pierchic</p>
-            <p>Date: 28 Aug 2025</p>
-            <p>Status: <span class="status past">Completed</span></p>
-          </div>
-          <button class="view-btn">View Summary</button>
-        </div>
-
       </section>
 
       <!-- Settings -->
       <section class="section" id="settings">
         <h3>Account Settings</h3>
-        <p>Update your personal information, password, and preferences below.</p>
-
-        <form class="settings-form">
+        <form id="settings-form" class="settings-form">
           <label for="name">Full Name</label>
-          <input type="text" id="name" placeholder="Enter your name" value="Mickey Mouse">
-
-          <label for="email">Email Address</label>
-          <input type="email" id="email" placeholder="Enter your email" value="mickeymouse123@gmail.com">
-
+          <input type="text" id="name" placeholder="Enter your name">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Enter your email">
           <label for="password">Change Password</label>
-          <input type="password" id="password" placeholder="Enter new password">
-
-          <label for="language">Preferred Language</label>
-          <select id="language">
-            <option selected>English</option>
-            <option>Arabic</option>
-            <option>Hindi</option>
-          </select>
-
-          <label for="notifications">Email Notifications</label>
-          <select id="notifications">
-            <option selected>Enabled</option>
-            <option>Disabled</option>
-          </select>
-
+          <input type="password" id="password" placeholder="New password">
           <button type="submit">Save Changes</button>
         </form>
-
-        <div class="danger-zone">
-          <h4>Danger Zone</h4>
-          <p>Once you delete your account, all your data and bookings will be permanently removed.</p>
-          <button class="delete-btn">Delete Account</button>
-        </div>
+        <button id="logout-btn" class="logout-btn">Log Out</button>
       </section>
-
-      <button class="logout-btn">Log Out</button>
     </main>
   </div>
+
+
 <!-- Booking Details Modal -->
   <div id="bookingModal" class="profile-modal">
     <div class="modal-content">
@@ -223,77 +129,6 @@
     <p>&copy; 2025 Drop In Dubai | All rights reserved | Social media</p>
   </footer>
 
-    <script>
-      const navItems = document.querySelectorAll('.profile-nav li');
-      const sections = document.querySelectorAll('.profile-main .section');
-  
-      navItems.forEach(item => {
-        item.addEventListener('click', () => {
-          navItems.forEach(i => i.classList.remove('active'));
-          item.classList.add('active');
-          sections.forEach(sec => sec.classList.remove('section-active'));
-          document.getElementById(item.dataset.target).classList.add('section-active');
-        });
-      });
-  
-      // Hamburger toggle
-      const hamburger = document.querySelector('.hamburger');
-      const mobileNav = document.querySelector('.mobile-nav');
-  
-      hamburger.addEventListener('click', () => {
-        mobileNav.classList.toggle('show');
-      });
-
-      // Get modal elements
-      const modal = document.getElementById('bookingModal');
-      const modalTitle = document.getElementById('modal-title');
-      const modalDate = document.getElementById('modal-date');
-      const modalStatus = document.getElementById('modal-status');
-      const modalLocation = document.getElementById('modal-location');
-      const modalDescription = document.getElementById('modal-description');
-      const modalImage = document.getElementById('modal-image');
-      const closeModal = document.querySelector('#bookingModal .close');
-
-// Open modal on View Details click
-      document.querySelectorAll('.view-btn').forEach(btn => {
-          btn.addEventListener('click', () => {
-              const card = btn.closest('.booking-card');
-              const title = card.querySelector('.booking-title').textContent;
-              const date = card.querySelector('p:nth-child(2)').textContent;
-              const status = card.querySelector('p:nth-child(3) .status').textContent;
-              
-              // Optional: If the booking has an image
-              const imgEl = card.querySelector('img');
-              if(imgEl){
-                  modalImage.src = imgEl.src;
-                  modalImage.style.display = 'block';
-              } else {
-                  modalImage.style.display = 'none';
-              }
-
-              modalTitle.textContent = title;
-              modalDate.textContent = date;
-              modalStatus.textContent = `Status: ${status}`;
-              modalLocation.textContent = card.dataset.location ? `Location: ${card.dataset.location}` : '';
-              modalDescription.textContent = card.dataset.description ? card.dataset.description : '';
-
-              modal.style.display = 'flex';
-          });
-      });
-
-        // Close modal
-        closeModal.addEventListener('click', () => {
-            modal.style.display = 'none';
-        });
-
-        // Close modal on click outside content
-        window.addEventListener('click', (e) => {
-            if(e.target === modal){
-                modal.style.display = 'none';
-            }
-        });
-
-    </script>
   </body>
   </html>
 
