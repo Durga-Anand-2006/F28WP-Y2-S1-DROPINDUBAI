@@ -78,7 +78,7 @@ CREATE TABLE `events` (
 
 INSERT INTO `events` (`ID`, `Name`, `Description`, `Location`, `Start_Date`, `End_Date`, `Price`, `Category`, `ImagePath`) VALUES
 (1, 'UNTOLD Dubai', 'Mega electronic music festival with international DJs', 'Dubai Parks & Resorts', '2025-11-06', '2025-11-09', '475+', 'Festival', 'images/untolddubai.jpg'),
-(2, 'Dubai Design Week 2025', 'Showcasing architecture, installations, design talks & exhibitions', 'Dubai Design District (d3)', '2025-11-04', '2025-11-09', 'Free', 'Festival', 'images/dubai-design-week'),
+(2, 'Dubai Design Week 2025', 'Showcasing architecture, installations, design talks & exhibitions', 'Dubai Design District (d3)', '2025-11-04', '2025-11-09', 'Free', 'Festival', 'images/dubai-design-week.jpg'),
 (3, 'Al Habtoor Tennis Challenge 2025', 'Women\'s professional tennis tournament', 'Al Habtoor Grand Resort', '2025-12-01', '2025-12-07', '100+', 'Sports', 'images/alhabtoor-tennis.jpg'),
 (4, 'Global Village - Season 30', 'Year-long multicultural festival with live performances, rides, food & pavilions', 'Dubailand, Dubai', '2025-10-15', '2026-05-10', '25-30', 'Festival', 'images/global-village.jpg'),
 (5, 'Dubai Fitness Challenge 2025', 'Month-long community fitness & sports events', 'Across Dubai (various venues)', '2025-11-01', '2025-11-30', 'Free', 'Sports', 'images/dubai-fitness-challenge.jpg'),
@@ -183,16 +183,17 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`ID`, `Email`, `FullName`, `Password`, `Phone`, `Country`, `CardNumber`, `CardExpiry`, `CardCVV`, `ProfilePicture`, `DateJoined`, `Role`) VALUES
-(1, 'mickeymouse123@gmail.com', 'Mickey Mouse', '$2y$10$placeholderhash1', '+971-50-111-0001', 'Dubai, UAE', 'XXXX-XXXX-XXXX-1001', '02/27', 'XXX', 'images/profile.jpg', '2025-10-17 10:30:00', 'admin'),
-(2, 'minnie.mouse@example.com', 'Minnie Mouse', '$2y$10$placeholderhash2', '+971-50-111-0002', 'Dubai, UAE', 'XXXX-XXXX-XXXX-1002', '04/26', 'XXX', 'images/profile.jpg', '2025-10-17 10:35:00', 'user'),
-(3, 'bugs.bunny@example.com', 'Bugs Bunny', '$2y$10$placeholderhash3', '+971-50-111-0003', 'Dubai, UAE', 'XXXX-XXXX-XXXX-1003', '12/25', 'XXX', 'images/profile.jpg', '2025-10-17 09:00:00', 'user'),
-(4, 'spongebob@example.com', 'SpongeBob SquarePants', '$2y$10$placeholderhash4', '+971-50-111-0004', 'Dubai, UAE', 'XXXX-XXXX-XXXX-1004', '01/26', 'XXX', 'images/profile.jpg', '2025-10-17 09:10:00', 'user'),
-(5, 'daffy.duck@example.com', 'Daffy Duck', '$2y$10$placeholderhash10', '+971-50-111-0005', 'Dubai, UAE', 'XXXX-XXXX-XXXX-1005', '03/26', 'XXX', 'images/profile.jpg', '2025-10-17 09:20:00', 'user'),
-(6, 'tom.cat@example.com', 'Tom Cat', '$2y$10$placeholderhash6', '+971-50-111-0006', 'Dubai, UAE', 'XXXX-XXXX-XXXX-1006', '06/26', 'XXX', 'images/profile.jpg', '2025-10-17 09:30:00', 'user'),
-(7, 'jerry.mouse@example.com', 'Jerry Mouse', '$2y$10$placeholderhash7', '+971-50-111-0007', 'Dubai, UAE', 'XXXX-XXXX-XXXX-1007', '07/26', 'XXX', 'images/profile.jpg', '2025-10-17 09:40:00', 'user'),
-(8, 'donald.duck@example.com', 'Donald Duck', '$2y$10$placeholderhash8', '+971-50-111-0008', 'Dubai, UAE', 'XXXX-XXXX-XXXX-1008', '08/26', 'XXX', 'images/profile.jpg', '2025-10-17 09:50:00', 'admin'),
-(9, 'daisy.duck@example.com', 'Daisy Duck', '$2y$10$placeholderhash9', '+971-50-111-0009', 'Dubai, UAE', 'XXXX-XXXX-XXXX-1009', '09/26', 'XXX', 'images/profile.jpg', '2025-10-17 10:25:00', 'user'),
-(10, 'scooby.doo@example.com', 'Scooby Doo', '$2y$10$placeholderhash10', '+971-50-111-0010', 'Dubai, UAE', 'XXXX-XXXX-XXXX-1010', '10/26', 'XXX', 'images/profile.jpg', '2025-10-17 10:00:00', 'user');
+(1, 'mickeymouse123@gmail.com', 'Mickey Mouse', '$2b$10$RlVjF42NikrvT2KEfFb9rez3W9O3rRvxYqr5BnExdcigLTBQrftD6', '+971-50-111-0001', 'Dubai, UAE', 'XXXX-XXXX-XXXX-1001', '02/27', 'XXX', 'images/profile.jpg', '2025-10-17 10:30:00', 'admin'),
+(2, 'minnie.mouse@example.com', 'Minnie Mouse', '$2b$10$TiKPobJo3ANkB7vNpf7v6eXD8F49MEK2wj8MRXEVfWmw/NDzDddmm', '+971-50-111-0002', 'Dubai, UAE', 'XXXX-XXXX-XXXX-1002', '04/26', 'XXX', 'images/profile.jpg', '2025-10-17 10:35:00', 'user'),
+(3, 'bugs.bunny@example.com', 'Bugs Bunny', '$2b$10$4PLl6kcu4qAgP3G1oYVXauLeXJd.pzYSHliuvYKeF44MM8MRhe8By', '+971-50-111-0003', 'Dubai, UAE', 'XXXX-XXXX-XXXX-1003', '12/25', 'XXX', 'images/profile.jpg', '2025-10-17 09:00:00', 'user'),
+(4, 'spongebob@example.com', 'SpongeBob SquarePants', '$2b$10$OUYjEtyKGA2CQJQFofirte8cdKya/kguTZhU5uyOL7Vf5HrsIMWSO', '+971-50-111-0004', 'Dubai, UAE', 'XXXX-XXXX-XXXX-1004', '01/26', 'XXX', 'images/profile.jpg', '2025-10-17 09:10:00', 'user'),
+(5, 'daffy.duck@example.com', 'Daffy Duck', '$2b$10$uMlDQSc29ZEnHsy1CWPmQenxrK6ADcRWKepYhtGNo65ytO1YRm8Iq', '+971-50-111-0005', 'Dubai, UAE', 'XXXX-XXXX-XXXX-1005', '03/26', 'XXX', 'images/profile.jpg', '2025-10-17 09:20:00', 'user'),
+(6, 'tom.cat@example.com', 'Tom Cat', '$2b$10$NoY/8r6KHkEeKvZapBhepe6Vc.yLUpc/7oOUtrWBo9KMJpF7TZqDu', '+971-50-111-0006', 'Dubai, UAE', 'XXXX-XXXX-XXXX-1006', '06/26', 'XXX', 'images/profile.jpg', '2025-10-17 09:30:00', 'user'),
+(7, 'jerry.mouse@example.com', 'Jerry Mouse', '$2b$10$6HmOY9/8QZLXbnhvW4fT3O2lStXiZHFx5tnbv4DXtfNT8WkNNaaOm', '+971-50-111-0007', 'Dubai, UAE', 'XXXX-XXXX-XXXX-1007', '07/26', 'XXX', 'images/profile.jpg', '2025-10-17 09:40:00', 'user'),
+(8, 'donald.duck@example.com', 'Donald Duck', '$2b$10$dP7WcYZG8X/oLeuLV.9YM.71eGILnTnpCQo4FoXyX79eV5.UeqT2y', '+971-50-111-0008', 'Dubai, UAE', 'XXXX-XXXX-XXXX-1008', '08/26', 'XXX', 'images/profile.jpg', '2025-10-17 09:50:00', 'admin'),
+(9, 'daisy.duck@example.com', 'Daisy Duck', '$2b$10$VpwWIduj3yIWj39uAKnnBOcVSNFsman3iWt1Jw.SsBIkYJ0sL5ciS', '+971-50-111-0009', 'Dubai, UAE', 'XXXX-XXXX-XXXX-1009', '09/26', 'XXX', 'images/profile.jpg', '2025-10-17 10:25:00', 'user'),
+(10, 'scooby.doo@example.com', 'Scooby Doo', '$2b$10$MDNdjX2VY8BXkRpUd.3gDOj56bGGq2XrJTBEy7FUxymJ3Jf7VayyG', '+971-50-111-0010', 'Dubai, UAE', 'XXXX-XXXX-XXXX-1010', '10/26', 'XXX', 'images/profile.jpg', '2025-10-17 10:00:00', 'user');
+
 
 --
 -- Indexes for dumped tables
@@ -233,11 +234,62 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for dumped tables
 --
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bookings`
+-- CREATED AFTER USERS PRIMARY KEY IS DEFINED
+--
+
+CREATE TABLE `bookings` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `UserID` int(11) NOT NULL,
+  `ItemType` enum('hotel','restaurant','attraction','event') NOT NULL,
+  `ItemID` int(11) NOT NULL,
+  `CheckIn` date DEFAULT NULL,
+  `CheckOut` date DEFAULT NULL,
+  `Guests` int(11) DEFAULT NULL,
+  `Status` enum('confirmed','cancelled') DEFAULT 'confirmed',
+  `CreatedAt` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`ID`),
+  KEY `fk_user_bookings` (`UserID`),
+  CONSTRAINT `fk_user_bookings` FOREIGN KEY (`UserID`) REFERENCES `users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `attractions`
+--
+ALTER TABLE `attractions`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `events`
+--
+ALTER TABLE `events`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `restaurants`
+--
+ALTER TABLE `restaurants`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `bookings`
+--
+ALTER TABLE `bookings`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
