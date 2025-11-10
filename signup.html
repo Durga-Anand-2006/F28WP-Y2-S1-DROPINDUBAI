@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sign Up</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="script.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/signup.js" defer></script>
 </head>
 
 <body class="signup-page">
@@ -22,19 +23,22 @@
       </div>
       <div class="right-section">
         <h2>Sign Up</h2>
-        <p>Username: </p>
-        <input type="text" placeholder="mickeymouse123">
-        <p>Email: </p>
-        <input type="email" placeholder="mickeymouse123@gmail.com">
+        <form id="signup-form">
+          <p>Username:</p>
+          <input type="text" id="name" placeholder="mickeymouse123">
 
-        <p>Password: </p>
-        <input type="password" placeholder="********">
-  
-        <p>Confirm password: </p>
-        <input type="password" placeholder="********">
-  
-        <button>Sign Up</button>
-        </div>
+          <p>Email:</p>
+          <input type="email" id="email" placeholder="mickeymouse123@gmail.com">
+
+          <p>Password:</p>
+          <input type="password" id="password" placeholder="********">
+
+          <p>Confirm password:</p>
+          <input type="password" id="confirm" placeholder="********">
+
+          <button type="submit">Sign Up</button>
+        </form>
+      </div>
       </div>
     </div>
   </body>
