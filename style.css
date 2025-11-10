@@ -615,6 +615,118 @@ body.profile h3 {
     border-radius: 2px;
 }
 
+/* ===== Booking Modal (for Hotels, Restaurants, Attractions, Events) ===== */
+
+.booking-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.booking-modal .modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.booking-modal .close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.3s;
+}
+
+.booking-modal .close-modal:hover {
+    color: #000;
+}
+
+.booking-modal h2 {
+    margin-bottom: 1.5rem;
+    color: #091057;
+    font-size: 1.8rem;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+.booking-modal label {
+    display: block;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.booking-modal input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.booking-modal input:focus {
+    border-color: #091057;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(9, 16, 87, 0.25);
+}
+
+.booking-modal .modal-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.booking-modal .confirm-btn,
+.booking-modal .cancel-btn {
+    flex: 1;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.booking-modal .confirm-btn {
+    background: #EC8305;
+    color: white;
+}
+
+.booking-modal .confirm-btn:hover {
+    background: #091057;
+}
+
+.booking-modal .cancel-btn {
+    background: #6c757d;
+    color: white;
+}
+
+.booking-modal .cancel-btn:hover {
+    background: #545b62;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
 /*============= Common to login & signup pages ===============*/
 body.login-page, body.signup-page{
     font-family: 'Poppins', sans-serif;
@@ -1322,7 +1434,7 @@ footer{
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    height: auto;
+    height: 450px;
     min-height: 400px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
