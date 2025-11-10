@@ -124,7 +124,7 @@ async function loadTopEvents()  {
 
 // call async functions using one DOMContentLoaded 
 document.addEventListener("DOMContentLoaded", async () =>{
-   console.log("🔄 Loading homepage data...");
+   console.log("Loading homepage data...");
     
     // Load all data first
     await Promise.all([
@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", async () =>{
         loadTopEvents()
     ]);
     
-    console.log("✅ All data loaded! Initializing carousels...");
+    console.log("All data loaded! Initializing carousels...");
     
     // NOW start the carousels after data is loaded
     initializeCarousels();
