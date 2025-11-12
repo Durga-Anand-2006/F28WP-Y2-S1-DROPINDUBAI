@@ -511,6 +511,7 @@ body{
 
 .profile .card {
   background: #F4F4F4;
+  height: 550 px;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
@@ -1434,8 +1435,8 @@ footer{
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    height: 450px;
-    min-height: 400px;
+    height: 520px;
+    min-height: 475px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -1796,6 +1797,194 @@ footer{
     .hero p {
         font-size: 1.2rem;
     }
+}
+
+/* Booking Action Buttons */
+.booking-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+}
+
+.modify-btn,
+.cancel-btn {
+    flex: 1;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.modify-btn {
+    background-color: #024CAA;
+    color: white;
+}
+
+.modify-btn:hover {
+    background-color: #091057;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cancel-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.cancel-btn:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Disabled state for cancelled bookings */
+.card[data-status="cancelled"] .booking-actions {
+    display: none;
+}
+
+/* Modify Modal Styling */
+.booking-modal .modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.booking-modal .modal-content label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.booking-modal .modal-content input[type="date"],
+.booking-modal .modal-content input[type="number"] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.booking-modal .modal-content button[type="submit"] {
+    background-color: #EC8305;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s ease;
+}
+
+/* ===== PROFILE PAGE BOOKING CARDS FIX ===== */
+
+/* Override fixed height for profile page cards */
+.profile-page .card,
+.profile-main .card,
+body.profile .card {
+    height: auto !important;
+    min-height: 400px;
+    overflow: visible !important;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-page .card-content,
+.profile-main .card-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 15px;
+}
+
+/* Booking Action Buttons */
+.booking-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 15px;
+    border-top: 1px solid #ddd;
+}
+
+.modify-btn,
+.cancel-btn {
+    flex: 1;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.modify-btn {
+    background-color: #024CAA;
+    color: white;
+}
+
+.modify-btn:hover {
+    background-color: #091057;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cancel-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.cancel-btn:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Modify Modal Styling */
+.booking-modal .modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.booking-modal .modal-content label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.booking-modal .modal-content input[type="date"],
+.booking-modal .modal-content input[type="number"] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    width: 100%;
+}
+
+.booking-modal .modal-content button[type="submit"] {
+    background-color: #EC8305;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s ease;
+}
+
+.booking-modal .modal-content button[type="submit"]:hover {
+    background-color: #091057;
+}
+
+.booking-modal .modal-content button[type="submit"]:hover {
+    background-color: #091057;
 }
 
 .restaurantshero {
