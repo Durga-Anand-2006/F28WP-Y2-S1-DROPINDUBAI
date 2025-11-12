@@ -29,9 +29,7 @@ function redirectToLogin() {
   window.location.href = "login.html";
 }
 
-/* -----------------------------
-    LOAD USER PROFILE
------------------------------- */
+/* LOAD USER PROFILE */
 
 async function loadUserProfile(userId) {
   try {
@@ -62,9 +60,7 @@ function updateProfileUI(user) {
   document.getElementById("email").value = user.Email;
 }
 
-/* -----------------------------
-    LOAD USER BOOKINGS
------------------------------- */
+/* LOAD USER BOOKINGS */
 
 async function loadUserBookings(userId) {
   console.log("Loading bookings for user:", userId);
@@ -158,15 +154,19 @@ function renderBookings(bookings) {
 function createBookingCard(b) {
   const card = document.createElement("div");
   card.classList.add("card");
+  card.setAttribute("data-status", b.Status); // Add status attribute
+  
+  const showActions = b.Status !== 'cancelled';
+  console.log(`Booking ${b.ID} - Status: ${b.Status}, Show Actions: ${showActions}`);
   
   card.innerHTML = `
     <img src="${b.ImagePath || 'images/default.jpg'}" alt="${b.ItemName}">
     <div class="card-content">
       <h3>${b.ItemName}</h3>
       <p class="card-category">${capitalize(b.ItemType)}</p>
-      <p class="card-location"> ${b.Location || 'N/A'}</p>
-      <p class="card-date"> ${b.CheckIn ? formatDate(b.CheckIn) : formatDate(b.CreatedAt)}</p>
-      ${b.Guests ? `<p class="card-guests"> ${b.Guests} guest${b.Guests > 1 ? 's' : ''}</p>` : ''}
+      <p class="card-location">${b.Location || 'N/A'}</p>
+      <p class="card-date">${b.CheckIn ? formatDate(b.CheckIn) : formatDate(b.CreatedAt)}</p>
+      ${b.Guests ? `<p class="card-guests">${b.Guests} guest${b.Guests > 1 ? 's' : ''}</p>` : ''}
       <p class="card-status status-${b.Status}">
         <span class="status-badge">${capitalize(b.Status)}</span>
       </p>
@@ -182,12 +182,17 @@ function createBookingCard(b) {
         data-guests="${b.Guests || ''}">
         View Details
       </button>
+      ${showActions ? `
+        <div class="booking-actions">
+            <button class="modify-btn" data-id="${b.ID}">Modify Booking</button>
+            <button class="cancel-btn" data-id="${b.ID}">Cancel Booking</button>
+        </div>
+      ` : ''}
     </div>
   `;
   
   return card;
 }
-
 /* -----------------------------
     NAVIGATION
 ------------------------------ */
@@ -251,6 +256,33 @@ function setupModal() {
   });
 }
 
+document.body.addEventListener("click", async (e) => {
+  const user = getCurrentUser();
+
+  // CANCEL BOOKING
+  if (e.target.classList.contains("cancel-btn")) {
+    const bookingId = e.target.dataset.id;
+    if (!confirm("Are you sure you want to cancel this booking?")) return;
+
+    const res = await fetch(`http://localhost:3000/api/bookings/${bookingId}/cancel`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userId: user.id })
+    });
+
+    const data = await res.json();
+    alert(data.message);
+    if (data.success) loadUserBookings(user.id);
+  }
+
+  // MODIFY BOOKING
+  if (e.target.classList.contains("modify-btn")) {
+    const bookingId = e.target.dataset.id;
+    openModifyModal(bookingId, user.id);
+  }
+});
+
+
 function openModal(data) {
   const modal = document.getElementById("bookingModal");
   document.getElementById("modal-image").src = data.image || "images/default.jpg";
@@ -279,6 +311,57 @@ function closeModal() {
   document.getElementById("bookingModal").style.display = "none";
 }
 
+function openModifyModal(bookingId, userId) {
+  const modal = document.createElement("div");
+  modal.className = "booking-modal";
+  modal.innerHTML = `
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h2>Modify Booking</h2>
+      <form id="modify-form">
+        <label>Check-In Date</label>
+        <input type="date" name="checkIn" required>
+
+        <label>Check-Out Date</label>
+        <input type="date" name="checkOut" required>
+
+        <label>Number of Guests</label>
+        <input type="number" name="guests" min="1" required>
+
+        <button type="submit">Save Changes</button>
+      </form>
+    </div>
+  `;
+  document.body.appendChild(modal);
+
+  // Close modal
+  modal.querySelector(".close-modal").onclick = () => modal.remove();
+  modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
+
+  // Handle form submission
+  modal.querySelector("#modify-form").onsubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+
+    const res = await fetch(`http://localhost:3000/api/bookings/${bookingId}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        userId: userId,
+        checkIn: formData.get("checkIn"),
+        checkOut: formData.get("checkOut"),
+        guests: formData.get("guests")
+      })
+    });
+
+    const data = await res.json();
+    alert(data.message);
+    modal.remove();
+    if (data.success) loadUserBookings(userId);
+  };
+}
+
+
 /* -----------------------------
     UTILS
 ------------------------------ */
@@ -293,3 +376,105 @@ function formatDate(dateStr) {
   const date = new Date(dateStr);
   return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
 }
+
+/* -----------------------------
+    SETTINGS FORM + DELETE ACCOUNT
+------------------------------ */
+
+// Settings form submission
+document.body.addEventListener("submit", async (e) => {
+  if (e.target.id === "settings-form") {
+    e.preventDefault();
+    
+    const user = getCurrentUser();
+    if (!user) return;
+    
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+    
+    if (!name || !email) {
+      alert("Please enter both name and email");
+      return;
+    }
+    
+    const updateData = { name, email };
+    if (password) {
+      updateData.password = password;
+    }
+    
+    try {
+      console.log("Updating user profile...");
+      const res = await fetch(`http://localhost:3000/api/users/${user.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updateData)
+      });
+      
+      const data = await res.json();
+      console.log("Update response:", data);
+      
+      if (data.success) {
+        // Update localStorage
+        user.name = name;
+        user.email = email;
+        localStorage.setItem("user", JSON.stringify(user));
+        
+        // Update UI
+        document.getElementById("profile-username").textContent = name;
+        document.getElementById("profile-email").textContent = email;
+        
+        alert("Settings updated successfully!");
+        
+        // Clear password field
+        if (password) {
+          document.getElementById("password").value = "";
+        }
+      } else {
+        alert(data.message || "Failed to update settings");
+      }
+    } catch (error) {
+      console.error("Error updating settings:", error);
+      alert("Error updating settings. Please try again.");
+    }
+  }
+});
+
+// Delete account button
+document.body.addEventListener("click", async (e) => {
+  if (e.target.classList.contains("delete-btn")) {
+    if (!confirm("WARNING: Are you ABSOLUTELY SURE you want to delete your account?\n\nThis will:\n- Delete all your bookings\n- Delete all your data\n- CANNOT be undone\n\nType 'DELETE' in the next prompt to confirm.")) {
+      return;
+    }
+    
+    const confirmation = prompt("Type DELETE (in capital letters) to confirm:");
+    if (confirmation !== "DELETE") {
+      alert("Account deletion cancelled.");
+      return;
+    }
+    
+    const user = getCurrentUser();
+    if (!user) return;
+    
+    try {
+      console.log("Deleting user account...");
+      const res = await fetch(`http://localhost:3000/api/users/${user.id}`, {
+        method: "DELETE"
+      });
+      
+      const data = await res.json();
+      console.log("Delete response:", data);
+      
+      if (data.success) {
+        localStorage.removeItem("user");
+        alert("Your account has been deleted.");
+        window.location.href = "index.html";
+      } else {
+        alert(data.message || "Failed to delete account");
+      }
+    } catch (error) {
+      console.error("Error deleting account:", error);
+      alert("Error deleting account. Please try again.");
+    }
+  }
+});
