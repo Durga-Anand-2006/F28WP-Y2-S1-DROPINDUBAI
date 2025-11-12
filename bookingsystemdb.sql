@@ -52,7 +52,7 @@ INSERT INTO `attractions` (`ID`, `Name`, `Description`, `Location`, `Rating`, `P
 (7, 'Ski Dubai', 'Indoor snow park offering ski slopes, tobogganing and penguin encounters', 'Mall of the Emirates', 4.5, 220.00, 'Theme park', 'images/wildwadi.jpg'),
 (8, 'Dubai Miracle Garden', 'Seasonal massive themed flower displays and sculptural floral installations', 'Al Barsha South', 4.6, 55.00, 'Sightseeing', 'images/miraclegarden.jpg'),
 (9, 'Dubai Frame', 'Giant picture-frame landmark with observation gallery linking old/new Dubai views', 'Zabeel Park', 4.3, 50.00, 'Sightseeing', 'images/dubaiframe.jpg'),
-(10, 'The Green Planet', 'Bio-dome rainforest with tropical flora, fauna and interactive exhibits', 'City Walk', 4.4, 100.00, 'Zoo', 'images/globalvillage.jpg');
+(10, 'The Green Planet', 'Bio-dome rainforest with tropical flora, fauna and interactive exhibits', 'City Walk', 4.4, 100.00, 'Zoo', 'images/green-planet.jpg');
 
 -- --------------------------------------------------------
 
