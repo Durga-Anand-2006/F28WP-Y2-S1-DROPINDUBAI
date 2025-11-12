@@ -19,8 +19,17 @@ document.addEventListener("DOMContentLoaded", async () => {
             <img src="${attraction.ImagePath}" alt ="${attraction.Name}"/>
             <h3>${attraction.Name}</h3>
             <p>${attraction.Description}</p>
+            <p><strong>Rating: </strong> ${attraction.Rating}</p>
             <p><strong>Location: </strong> ${attraction.Location}</p>
             <p><strong>Price: </strong> ${attraction.Price}</p>
+            <div class="card-actions">
+                    <button class="book-btn" 
+                            data-id="${attraction.ID}" 
+                            data-type="attraction" 
+                            data-name="${attraction.Name}">
+                        Book Now
+                    </button>
+                </div>
             </div>
             `;
 
@@ -28,5 +37,69 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     } catch(error){
         console.error("Error loading attractions:", error);
+    }
+});
+
+
+// SEARCH & FILTER 
+// Function to display attractions 
+function displayAttractions(attractions) {
+    const container = document.querySelector(".cards-grid");
+    container.innerHTML = "";
+    
+    if (attractions.length === 0) {
+        container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 2rem;">No attractions found matching your criteria.</p>';
+        return;
+    }
+    
+    attractions.forEach(attraction => {
+        const card = document.createElement("div");
+        card.classList.add("attraction-card");
+
+        card.innerHTML = `
+        <div>
+        <img src="${attraction.ImagePath}" alt ="${attraction.Name}"/>
+        <h3>${attraction.Name}</h3>
+        <p>${attraction.Description}</p>
+        <p><strong>Rating: </strong> ${attraction.Rating}</p>
+        <p><strong>Location: </strong> ${attraction.Location}</p>
+        <p><strong>Price: </strong> ${attraction.Price}</p>
+        <div class="card-actions">
+                <button class="book-btn" 
+                        data-id="${attraction.ID}" 
+                        data-type="attraction" 
+                        data-name="${attraction.Name}">
+                    Book Now
+                </button>
+            </div>
+        </div>
+        `;
+        container.appendChild(card);
+    });
+}
+
+// Filter form handler
+document.querySelector('.filter-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const search = document.getElementById('search').value;
+    const type = document.getElementById('type').value;
+    const rating = document.getElementById('rating').value;
+    const priceRange = document.getElementById('priceRange').value;
+    
+    const params = new URLSearchParams();
+    if (search) params.append('search', search);
+    if (type) params.append('type', type);
+    if (rating) params.append('rating', rating);
+    if (priceRange) params.append('priceRange', priceRange);
+    
+    try {
+        const response = await fetch(`http://localhost:3000/api/attractions/search?${params}`);
+        const attractions = await response.json();
+        displayAttractions(attractions);
+        console.log(`Found ${attractions.length} attractions`);
+    } catch (error) {
+        console.error('Error filtering attractions:', error);
+        alert('Error filtering attractions');
     }
 });
