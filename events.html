@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="style.css" />
     <script src="js/main.js" defer></script>
     <script src="js/events.js" defer></script>
+    <script src="js/booking.js" defer></script>
 </head>
 <body>
     <!-- Navbar -->
@@ -87,55 +88,11 @@
            <!-- cards will be injected here by events.js -->
         </div>
     </section>
-    
-<!-- Event Modal -->
-    <div class="modal" id="eventModal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h2 id="modalEventName"></h2>
-            <p><strong>Date:</strong> <span id="modalEventDate"></span></p>
-            <p><strong>Location:</strong> <span id="modalEventLocation"></span></p>
-            <p><strong>Price:</strong> <span id="modalEventPrice"></span></p>
-            <button id="confirmBooking">Confirm Booking</button>
-        </div>
-    </div>
-    
+ 
     <!-- Footer -->
     <footer>
         &copy; 2025 Drop In Dubai | All rights reserved | Social media
     </footer>
-
-    <script>
-        // ===== Modal Logic =====
-        const modal = document.getElementById("eventModal");
-        const closeBtn = document.querySelector(".close-btn");
-        const eventCards = document.querySelectorAll(".event-card .book-btn");
-    
-        const nameEl = document.getElementById("modalEventName");
-        const dateEl = document.getElementById("modalEventDate");
-        const locationEl = document.getElementById("modalEventLocation");
-        const priceEl = document.getElementById("modalEventPrice");
-    
-        eventCards.forEach(button => {
-          button.addEventListener("click", e => {
-            const card = e.target.closest(".event-card");
-            nameEl.textContent = card.dataset.name;
-            dateEl.textContent = card.dataset.date;
-            locationEl.textContent = card.dataset.location;
-            priceEl.textContent = card.dataset.price;
-    
-            modal.style.display = "flex";
-          });
-        });
-    
-        closeBtn.onclick = () => modal.style.display = "none";
-        window.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
-    
-        document.getElementById("confirmBooking").onclick = () => {
-          alert("✅ Booking confirmed successfully!");
-          modal.style.display = "none";
-        };
-      </script>
     
 </body>
 </html>
