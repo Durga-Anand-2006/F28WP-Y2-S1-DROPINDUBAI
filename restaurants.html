@@ -7,7 +7,8 @@
   <title>Drop In Dubai</title>
   <link rel="stylesheet" href="style.css" />
   <script src="js/main.js" defer></script>
-    <script src="js/restaurants.js" defer></script>
+  <script src="js/restaurants.js" defer></script>
+  <script src="js/booking.js" defer></script>
 </head>
 <body>
   <!-- Navbar -->
@@ -87,12 +88,12 @@
       </label>
 
       <label>
-        Max Price (AED)
+        Price Range
         <select id="priceRange">
-            <option value="">Any</option>
-            <option value="1">Under AED 100</option>
-            <option value="2">AED 100 - AED 300</option>
-            <option value="3">Above AED 300</option>
+          <option value="">Any</option>
+          <option value="1">Budget (Under AED 150)</option>
+          <option value="2">Mid-Range (AED 150-300)</option>
+          <option value="3">Upscale (AED 300+)</option>
         </select>
       </label>
       <button class="filter-btn" type="submit">Apply Filters</button>
@@ -106,29 +107,6 @@
       <!-- cards will be injected here by restaurants.js -->
     </div>
   </section>
-
-<!-- Booking Modal -->
-<div class="modal" id="bookingModal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h2 id="modalHotelName">Book</h2>
-    <form id="bookingForm">
-      <label>Check-in
-        <input type="date" id="modalCheckin" required>
-      </label>
-      <label>Check-out
-        <input type="date" id="modalCheckout" required>
-      </label>
-      <label>Adults
-        <input type="number" id="modalAdults" min="1" value="1">
-      </label>
-      <label>Children
-        <input type="number" id="modalChildren" min="0" value="0">
-      </label>
-      <button type="submit" class="book-btn">Confirm Booking</button>
-    </form>
-  </div>
-</div>
 
   <!-- Footer -->
   <footer>
