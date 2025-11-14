@@ -1435,6 +1435,7 @@ footer{
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    justify-content:flex-end;
     height: 520px;
     min-height: 475px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -1506,6 +1507,10 @@ footer{
     cursor: pointer;
     font-weight: 600;
     font-size: 0.95rem;
+    margin: auto 30px 30px auto; /* to right */
+    text-align: center;
+    position: static;
+    float: right; 
     transition: background-color 0.2s ease;
 }
 .book-btn:hover {
