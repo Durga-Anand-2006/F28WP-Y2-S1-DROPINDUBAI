@@ -474,7 +474,12 @@ body{
 }
 
 .profile #bookingModal #modal-description {
+    padding: 8px;
+    margin-bottom: 1%;
     font-weight: bold;
+    border-style: dashed;
+    border-color: #EC8305;
+    border-radius: 8px;
 }
 
 .profile #bookingModal .details {
