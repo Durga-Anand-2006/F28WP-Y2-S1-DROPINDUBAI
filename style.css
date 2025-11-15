@@ -399,8 +399,7 @@ body{
 .view-btn:hover { background: #091057; }
 
 /* ===== Profile Page Booking Modal  ===== */
-.profile-modal #bookingModal {
-    display: block;
+.profile-modal #bookingModal { 
     position: fixed;
     z-index: 1000;
     left: 0;
@@ -412,6 +411,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden; 
     padding: 20px;
 }
 
@@ -421,7 +421,7 @@ body{
     padding: 25px;
     width: 95%;
     max-width: 500px;
-    max-height: 20vh;
+    max-height: 90vh;
     position: relative;
     box-shadow: 0 15px 35px rgba(0,0,0,0.25);
     transform: translateY(-20px);
@@ -471,6 +471,10 @@ body{
     color: #333;
     line-height: 1.5;
     margin-bottom: 15px;
+}
+
+.profile #bookingModal #modal-description {
+    font-weight: bold;
 }
 
 .profile #bookingModal .details {
