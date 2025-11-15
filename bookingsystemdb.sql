@@ -79,12 +79,12 @@ CREATE TABLE `events` (
 INSERT INTO `events` (`ID`, `Name`, `Description`, `Location`, `Start_Date`, `End_Date`, `Price`, `Category`, `ImagePath`) VALUES
 (1, 'UNTOLD Dubai', 'Mega electronic music festival with international DJs', 'Dubai Parks & Resorts', '2025-11-06', '2025-11-09', '475+', 'Festival', 'images/untolddubai.jpg'),
 (2, 'Dubai Design Week 2025', 'Showcasing architecture, installations, design talks & exhibitions', 'Dubai Design District (d3)', '2025-11-04', '2025-11-09', 'Free', 'Festival', 'images/dubai-design-week.jpg'),
-(3, 'Al Habtoor Tennis Challenge 2025', 'Women\'s professional tennis tournament', 'Al Habtoor Grand Resort', '2025-12-01', '2025-12-07', '100+', 'Sports', 'images/alhabtoor-tennis.jpg'),
-(4, 'Global Village - Season 30', 'Year-long multicultural festival with live performances, rides, food & pavilions', 'Dubailand, Dubai', '2025-10-15', '2026-05-10', '25-30', 'Festival', 'images/global-village.jpg'),
+(3, 'Al Habtoor Tennis Challenge 2025', 'Women's professional tennis tournament', 'Al Habtoor Grand Resort', '2025-12-01', '2025-12-07', '100+', 'Sports', 'images/alhabtoor-tennis.jpg'),
+(4, 'Global Village - Season 30', 'Year-long multicultural festival with live performances, rides, food & pavilions', 'Dubailand, Dubai', '2025-10-15', '2026-05-10', '25-30', 'Festival', 'images/globalvillage.jpg'),
 (5, 'Dubai Fitness Challenge 2025', 'Month-long community fitness & sports events', 'Across Dubai (various venues)', '2025-11-01', '2025-11-30', 'Free', 'Sports', 'images/dubai-fitness-challenge.jpg'),
 (6, 'Dubai Marathon (25th Edition)', 'International road race with elite athletes & public participation', 'Umm Sequim / Jumeirah Beach', '2026-02-01', '2026-02-01', '500', 'Sports', 'images/dubai-marathon.jpg'),
 (7, 'Dubai Basketball vs Olympiacos & Real Madrid', 'Euroleague basketball matches', 'Coca-Cola Arena', '2026-02-03', '2026-02-05', '125+', 'Sports', 'images/dubai-basketball.jpg'),
-(8, 'Dubai Open Swimming Championship', 'Competitive swimming competition for regional & international athletes', 'Hamdan Sports Complex', '2026-02-06', '2026-02-08', '90+', 'Sports', 'images/dubai-swimming-championship.jpg'),
+(8, 'Dubai Open Swimming Championship', 'Competitive swimming competition for regional & international athletes', 'Hamdan Sports Complex', '2026-02-06', '2026-02-08', '90+', 'Sports', 'images/dubai-swimming.jpg'),
 (9, 'World Sports Summit 2025', 'Gathering of sports industry leaders, athletes & experts to discuss future of sports', 'Madinat Jumeirah, Dubai', '2025-12-29', '2025-12-30', '125+', 'Sports', 'images/worldsportssummit.jpg'),
 (10, 'Dubai Shopping Festival', 'Mega retail & entertainment festival with massive discounts, nightly fireworks & drone shows', 'Dubai (various malls + outdoor venues)', '2025-12-05', '2026-01-11', 'Free', 'Festival', 'images/dubaishoppingfestival.jpg');
 
@@ -114,15 +114,15 @@ INSERT INTO `hotels` (`ID`, `Name`, `Room_Type`, `Description`, `Location`, `Pri
 (1, 'Burj Al Arab', 'Double', 'Spacious double room with luxury amenities and Gulf view', 'Jumeirah Beach, Dubai', 4000.00, '*****', '3 people', 'images/hotel1.jpg'),
 (2, 'Atlantis The Palm', 'Suite', 'Luxury suite with private balcony and full Gulf view', 'Palm Jumeirah, Dubai', 6000.00, '*****', '4 adults, 2 children', 'images/hotel2.jpg'),
 (3, 'The Ritz-Carlton', 'Double', 'Spacious double room with balcony and partial sea view', 'JBR, Dubai', 2200.00, '****', '2 adults, 1 child', 'images/hotel3.jpg'),
-(3, 'The Ritz-Carlton', 'Single', 'Elegant single room near JBR beach with luxurious amenities', 'JBR, Dubai', 1200.00, '****', '1 adult', 'images/hotel3.jpg'),
-(4, 'Address Downtown', 'Double', 'Comfortable double room with Burj Khalifa view', 'Downtown Dubai', 2400.00, '*****', '2 adults, 1 child', 'images/hotel4.jpg'),
-(4, 'Address Downtown', 'Suite', 'Luxurious suite with living area and skyline view', 'Downtown Dubai', 5000.00, '****', '4 adults, 2 children', 'images/hotel4.jpg'),
-(5, 'Jumeirah Beach Hotel', 'Suite', 'Luxury suite with balcony and full sea view', 'Jumeirah Beach, Dubai', 5500.00, '*****', '4 adults, 2 children', 'images/hotel5.jpg'),
-(6, 'Palace Downtown', 'Suite', 'Luxury suite with living area and fountain views', 'Downtown Dubai', 5200.00, '*****', '4 adults, 2 children', 'images/hotel6.jpg'),
-(7, 'Rove Downtown', 'Single', 'Modern budget-friendly single room in Downtown Dubai', 'Downtown Dubai', 500.00, '***', '1 adult', 'images/hotel7.jpg'),
-(8, 'Rove Downtown', 'Double', 'Cozy double room with modern amenities', 'Downtown Dubai', 900.00, '***', '2 adults', 'images/hotel7.jpg'),
-(9, 'Waldorf Astoria', 'Suite', 'Luxurious suite with full sea view and private balcony', 'Palm Jumeirah, Dubai', 7000.00, '*****', '4 adults, 2 children', 'images/hotel8.jpg'),
-(10, 'Waldorf Astoria', 'Single', 'Elegant single room with premium amenities', 'Palm Jumeirah, Dubai', 2000.00, '****', '1 adult', 'images/hotel8.jpg');
+(4, 'The Ritz-Carlton', 'Single', 'Elegant single room near JBR beach with luxurious amenities', 'JBR, Dubai', 1200.00, '****', '1 adult', 'images/hotel3.1.jpg'),
+(5, 'Address Downtown', 'Double', 'Comfortable double room with Burj Khalifa view', 'Downtown Dubai', 2400.00, '*****', '2 adults, 1 child', 'images/hotel4.jpg'),
+(6, 'Address Downtown', 'Suite', 'Luxurious suite with living area and skyline view', 'Downtown Dubai', 5000.00, '****', '4 adults, 2 children', 'images/hotel4.1.jpg'),
+(7, 'Jumeirah Beach Hotel', 'Suite', 'Luxury suite with balcony and full sea view', 'Jumeirah Beach, Dubai', 5500.00, '*****', '4 adults, 2 children', 'images/hotel5.jpg'),
+(8, 'Palace Downtown', 'Suite', 'Luxury suite with living area and fountain views', 'Downtown Dubai', 5200.00, '*****', '4 adults, 2 children', 'images/hotel6.jpg'),
+(9, 'Rove Downtown', 'Single', 'Modern budget-friendly single room in Downtown Dubai', 'Downtown Dubai', 500.00, '***', '1 adult', 'images/hotel7.jpg'),
+(10, 'Rove Downtown', 'Double', 'Cozy double room with modern amenities', 'Downtown Dubai', 900.00, '***', '2 adults', 'images/hotel7.1.webp'),
+(11, 'Waldorf Astoria', 'Suite', 'Luxurious suite with full sea view and private balcony', 'Palm Jumeirah, Dubai', 7000.00, '*****', '4 adults, 2 children', 'images/hotel8.jpg'),
+(12, 'Waldorf Astoria', 'Single', 'Elegant single room with premium amenities', 'Palm Jumeirah, Dubai', 2000.00, '****', '1 adult', 'images/hotel8.1.webp');
 
 -- --------------------------------------------------------
 
@@ -255,6 +255,27 @@ CREATE TABLE `bookings` (
   KEY `fk_user_bookings` (`UserID`),
   CONSTRAINT `fk_user_bookings` FOREIGN KEY (`UserID`) REFERENCES `users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `favorites`
+-- ADD THIS SECTION HERE
+--
+
+CREATE TABLE `favorites` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `UserID` int(11) NOT NULL,
+  `ItemType` enum('hotel','restaurant','attraction','event') NOT NULL,
+  `ItemID` int(11) NOT NULL,
+  `CreatedAt` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `unique_favorite` (`UserID`, `ItemType`, `ItemID`),
+  KEY `fk_user_favorites` (`UserID`),
+  CONSTRAINT `fk_user_favorites` FOREIGN KEY (`UserID`) REFERENCES `users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
 
 --
 -- AUTO_INCREMENT for dumped tables
