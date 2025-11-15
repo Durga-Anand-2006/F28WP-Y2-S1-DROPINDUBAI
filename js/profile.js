@@ -9,6 +9,7 @@ async function initProfilePage() {
 
   await loadUserProfile(user.id);
   await loadUserBookings(user.id);
+  await loadUserFavourites(user.id);
   setupNavigation();
   setupLogout();
   setupModal();
@@ -81,7 +82,7 @@ async function loadUserBookings(userId) {
 }
 
 /* -----------------------------
-    RENDER DASHBOARD BOOKINGS (upcoming only)
+    RENDER DASHBOARD BOOKINGS 
 ------------------------------ */
 
 function renderDashboardBookings(bookings) {
@@ -193,6 +194,78 @@ function createBookingCard(b) {
   
   return card;
 }
+
+/* -----------------------------
+    LOAD USER FAVORITES
+------------------------------ */
+
+async function loadUserFavourites(userId) {
+  console.log("Loading favorites for user:", userId);
+  try {
+    const res = await fetch(`http://localhost:3000/api/favorites/${userId}`);
+    const data = await res.json();
+
+    console.log("Favorites response:", data);
+
+    if (!data.success) throw new Error("Failed to fetch favorites");
+
+    renderFavorites(data.favorites);
+  } catch (err) {
+    console.error("Error loading favorites:", err);
+  }
+}
+
+function renderFavorites(favorites) {
+  console.log("Rendering favorites:", favorites);
+  
+  const container = document.querySelector("#favorites-container");
+  
+  if (!container) {
+    console.error("ERROR: Favorites container not found!");
+    return;
+  }
+
+  container.innerHTML = "";
+
+  if (!favorites || favorites.length === 0) {
+    container.innerHTML = `<p>No favorites yet. Start exploring and add your favorites!</p>`;
+    return;
+  }
+
+  favorites.forEach(f => {
+    const card = createFavoriteCard(f);
+    container.appendChild(card);
+  });
+
+  console.log("Favorites rendered successfully!");
+}
+
+function createFavoriteCard(f) {
+  const card = document.createElement("div");
+  card.classList.add("card");
+  
+  card.innerHTML = `
+    <img src="${f.ImagePath || 'images/default.jpg'}" alt="${f.ItemName}">
+    <div class="card-content">
+      <h3>${f.ItemName}</h3>
+      <p class="card-category">${capitalize(f.ItemType)}</p>
+      <p class="card-location"> ${f.Location || 'N/A'}</p>
+      ${f.Price ? `<p class="card-price"> ${f.ItemType === 'hotel' ? 'AED ' + f.Price + '/night' : 'AED ' + f.Price}</p>` : ''}
+      <button class="fav-btn active" 
+        data-id="${f.ItemID}" 
+        data-type="${f.ItemType}">♥</button>
+      <button class="book-btn" 
+        data-id="${f.ItemID}" 
+        data-type="${f.ItemType}" 
+        data-name="${f.ItemName}">
+        Book Now
+      </button>
+    </div>
+  `;
+  
+  return card;
+}
+
 /* -----------------------------
     NAVIGATION
 ------------------------------ */
