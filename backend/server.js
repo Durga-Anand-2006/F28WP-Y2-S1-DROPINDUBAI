@@ -264,7 +264,7 @@ app.get("/api/user/:id", (req, res) => {
     });
 });
 
-// BOOKINGS API 
+// ===== BOOKINGS API =====
 
 // API ROUTE - create a new booking 
 app.post("/api/bookings", (req, res) => {
@@ -342,7 +342,7 @@ app.get("/api/bookings/:userId", (req, res) => {
     });
 });
 
-// API ROUTE - cancel a booking
+// API ROUTE - cancel a booking with userId check (for users from profile page)
 app.patch("/api/bookings/:bookingId/cancel", (req, res) => {
     const bookingId = req.params.bookingId;
     const { userId } = req.body; // To verify ownership
@@ -367,7 +367,7 @@ app.patch("/api/bookings/:bookingId/cancel", (req, res) => {
     });
 });
 
-// API ROUTE - get single booking details
+// API ROUTE - get a single booking details
 app.get("/api/booking/:bookingId", (req, res) => {
     const bookingId = req.params.bookingId;
 
@@ -431,8 +431,9 @@ app.put("/api/bookings/:bookingId", (req, res) => {
   });
 });
 
-// PROFILE.HTML 
-// API ROUTE - get user bookings for profile (alternative endpoint)
+// ===== PROFILE API  ===== 
+
+// API ROUTE - get user bookings for profile 
 app.get("/api/bookings/user/:userId", (req, res) => {
     const userId = req.params.userId;
 
@@ -528,7 +529,7 @@ app.delete("/api/users/:userId", (req, res) => {
     });
 });
 
-// SEARCH & FILTER 
+// ===== SEARCH & FILTER API ROUTES  =====
 // Hotels - search and filter 
 app.get("/api/hotels/search", (req,res) => {
     const { search, rating, roomType, priceRange, adults, children } = req.query;
@@ -619,7 +620,7 @@ app.get("/api/restaurants/search", (req, res) => {
 });
 
 
-// Attractions - search and filter 
+// ATTRACTIONS - search and filter 
 app.get("/api/attractions/search", (req, res) => {
     const { search, type, rating, priceRange } = req.query;
     
@@ -659,7 +660,7 @@ app.get("/api/attractions/search", (req, res) => {
 });
 
 
-// Events - search and filter 
+// EVENTS - search and filter 
 app.get("/api/events/search", (req, res) => {
     const { search, type, date } = req.query;
     
@@ -693,6 +694,375 @@ app.get("/api/events/search", (req, res) => {
 });
 
 
+// ===== FAVOURITES API ROUTES =====
+// API ROUTE - Add item to favourites 
+app.post("/api/favorites", (req,res) => {
+    const { userId, itemType, itemID } = req.body;
+
+    if(!userId || !itemType || !itemID) {
+        return res.status(400).json({ success: false, message: "Missing required fields"});
+    }
+
+    const sql = "INSERT INTO favorites (UserID, ItemType, ItemID) Values (?, ?, ?)";
+
+    db.query(sql, [userId, itemType, itemID], (err, result) => {
+        if(err) {
+            // check if the item is already favourited 
+            if(err.code === 'ER_DUP_ENTRY'){
+                return res.status(400).json({ success: false, message: "Item already in favourites"});
+            }
+            console.error("Error adding favourite:", err);
+            return res.status(500).json({ success: false, message: "Database error" });
+        }
+        res.json({ success: true, favouriteId: result.insertId});
+    });
+
+});
+
+// API ROUTE - remove an item from favourites 
+app.delete("/api/favorites", (req,res) => {
+    const {userId, itemType, itemID} = req.body;
+
+    if(!userId || !itemType || !itemID){
+        return res.status(400).json({ success: false, message: "Missing required fields"});
+    }
+
+    const sql = "DELETE FROM favorites WHERE UserID = ? and ItemType = ? AND ItemID = ?";
+
+    db.query(sql, [userId, itemType, itemID], (err, result) => {
+        if (err) {
+            console.error("Error removing favorite:", err);
+            return res.status(500).json({ success: false, message: "Database error" });
+        }
+        
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ success: false, message: "Favorite not found" });
+        }
+        
+        res.json({ success: true, message: "Removed from favorites" });
+    });
+});
+
+// API ROUTE - Get user's favorites
+app.get("/api/favorites/:userId", (req, res) => {
+    const userId = req.params.userId;
+
+    const sql = `
+        SELECT 
+            f.ID, f.ItemType, f.ItemID, f.CreatedAt,
+            CASE 
+                WHEN f.ItemType = 'hotel' THEN h.Name
+                WHEN f.ItemType = 'restaurant' THEN r.Name
+                WHEN f.ItemType = 'attraction' THEN a.Name
+                WHEN f.ItemType = 'event' THEN e.Name
+            END AS ItemName,
+            CASE 
+                WHEN f.ItemType = 'hotel' THEN h.ImagePath
+                WHEN f.ItemType = 'restaurant' THEN r.ImagePath
+                WHEN f.ItemType = 'attraction' THEN a.ImagePath
+                WHEN f.ItemType = 'event' THEN e.ImagePath
+            END AS ImagePath,
+            CASE 
+                WHEN f.ItemType = 'hotel' THEN h.Location
+                WHEN f.ItemType = 'restaurant' THEN r.Location
+                WHEN f.ItemType = 'attraction' THEN a.Location
+                WHEN f.ItemType = 'event' THEN e.Location
+            END AS Location,
+            CASE 
+                WHEN f.ItemType = 'hotel' THEN h.Price_Per_Night
+                WHEN f.ItemType = 'restaurant' THEN r.Price_Range
+                WHEN f.ItemType = 'attraction' THEN a.Price
+                WHEN f.ItemType = 'event' THEN e.Price
+            END AS Price,
+            CASE 
+                WHEN f.ItemType = 'hotel' THEN h.Description
+                WHEN f.ItemType = 'restaurant' THEN r.Description
+                WHEN f.ItemType = 'attraction' THEN a.Description
+                WHEN f.ItemType = 'event' THEN e.Description
+            END AS Description
+        FROM favorites f
+        LEFT JOIN hotels h ON f.ItemType = 'hotel' AND f.ItemID = h.ID
+        LEFT JOIN restaurants r ON f.ItemType = 'restaurant' AND f.ItemID = r.ID
+        LEFT JOIN attractions a ON f.ItemType = 'attraction' AND f.ItemID = a.ID
+        LEFT JOIN events e ON f.ItemType = 'event' AND f.ItemID = e.ID
+        WHERE f.UserID = ?
+        ORDER BY f.CreatedAt DESC
+    `;
+    
+    db.query(sql, [userId], (err, results) => {
+        if (err) {
+            console.error("Error fetching favorites:", err);
+            return res.status(500).json({ success: false, message: "Database error" });
+        }
+        res.json({ success: true, favorites: results });
+    });
+});
+
+// API ROUTE - Check if an item is favorited
+app.get("/api/favorites/check/:userId/:itemType/:itemID", (req, res) => {
+    const { userId, itemType, itemID } = req.params;
+    
+    const sql = "SELECT ID FROM favorites WHERE UserID = ? AND ItemType = ? AND ItemID = ?";
+    
+    db.query(sql, [userId, itemType, itemID], (err, results) => {
+        if (err) {
+            console.error("Error checking favorite:", err);
+            return res.status(500).json({ success: false, message: "Database error" });
+        }
+        res.json({ success: true, isFavorited: results.length > 0 });
+    });
+});
+
+
+// ===== ADMIN ROUTES =====
+
+// GET ALL BOOKINGS (for admin dashboard)
+app.get("/api/admin/bookings", (req, res) => {
+    const sql = `
+        SELECT b.*, 
+               u.FullName as user_name, 
+               u.Email as user_email,
+               CASE 
+                   WHEN b.ItemType = 'hotel' THEN h.Name
+                   WHEN b.ItemType = 'restaurant' THEN r.Name
+                   WHEN b.ItemType = 'attraction' THEN a.Name
+                   WHEN b.ItemType = 'event' THEN e.Name
+               END as item_name
+        FROM bookings b
+        JOIN users u ON b.UserID = u.ID
+        LEFT JOIN hotels h ON b.ItemType = 'hotel' AND b.ItemID = h.ID
+        LEFT JOIN restaurants r ON b.ItemType = 'restaurant' AND b.ItemID = r.ID
+        LEFT JOIN attractions a ON b.ItemType = 'attraction' AND b.ItemID = a.ID
+        LEFT JOIN events e ON b.ItemType = 'event' AND b.ItemID = e.ID
+        ORDER BY b.CreatedAt DESC
+    `;
+    
+    db.query(sql, (err, results) => {
+        if (err) {
+            console.error("Error fetching all bookings:", err);
+            return res.status(500).json({ error: "Database error" });
+        }
+        res.json(results);
+    });
+});
+
+// GET STATISTICS (for admin dashboard)
+app.get("/api/admin/stats", (req, res) => {
+    const queries = {
+        totalUsers: "SELECT COUNT(*) as count FROM users",
+        totalBookings: "SELECT COUNT(*) as count FROM bookings",
+        totalHotels: "SELECT COUNT(*) as count FROM hotels",
+        totalRestaurants: "SELECT COUNT(*) as count FROM restaurants",
+        totalAttractions: "SELECT COUNT(*) as count FROM attractions",
+        totalEvents: "SELECT COUNT(*) as count FROM events"
+    };
+    
+    const stats = {};
+    let completed = 0;
+    
+    Object.keys(queries).forEach(key => {
+        db.query(queries[key], (err, results) => {
+            if (!err) {
+                stats[key] = results[0].count;
+            }
+            completed++;
+            
+            if (completed === Object.keys(queries).length) {
+                res.json(stats);
+            }
+        });
+    });
+});
+
+// ===== HOTELS ADMIN =====
+app.post("/api/admin/hotels", (req, res) => {
+    const { name, roomType, description, location, price, stars, capacity, imagePath } = req.body;
+    
+    const sql = "INSERT INTO hotels (Name, Room_Type, Description, Location, Price_Per_Night, Stars, Capacity, ImagePath) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    db.query(sql, [name, roomType, description, location, price, stars, capacity, imagePath], (err, result) => {
+        if (err) {
+            console.error("Error adding hotel:", err);
+            return res.status(500).json({ error: "Failed to add hotel" });
+        }
+        res.json({ success: true, id: result.insertId });
+    });
+});
+
+app.put("/api/admin/hotels/:id", (req, res) => {
+    const { id } = req.params;
+    const { name, roomType, description, location, price, stars, capacity, imagePath } = req.body;
+    
+    const sql = "UPDATE hotels SET Name = ?, Room_Type = ?, Description = ?, Location = ?, Price_Per_Night = ?, Stars = ?, Capacity = ?, ImagePath = ? WHERE ID = ?";
+    db.query(sql, [name, roomType, description, location, price, stars, capacity, imagePath, id], (err) => {
+        if (err) {
+            console.error("Error updating hotel:", err);
+            return res.status(500).json({ error: "Update failed" });
+        }
+        res.json({ success: true });
+    });
+});
+
+app.delete("/api/admin/hotels/:id", (req, res) => {
+    const { id } = req.params;
+    db.query("DELETE FROM hotels WHERE ID = ?", [id], (err) => {
+        if (err) {
+            console.error("Error deleting hotel:", err);
+            return res.status(500).json({ error: "Delete failed" });
+        }
+        res.json({ success: true });
+    });
+});
+
+// ===== RESTAURANTS ADMIN =====
+app.post("/api/admin/restaurants", (req, res) => {
+    const { name, description, location, cuisine, priceRange, rating, imagePath } = req.body;
+    
+    const sql = "INSERT INTO restaurants (Name, Description, Location, Cuisine, Price_Range, Rating, ImagePath) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    db.query(sql, [name, description, location, cuisine, priceRange, rating, imagePath], (err, result) => {
+        if (err) {
+            console.error("Error adding restaurant:", err);
+            return res.status(500).json({ error: "Failed to add restaurant" });
+        }
+        res.json({ success: true, id: result.insertId });
+    });
+});
+
+app.put("/api/admin/restaurants/:id", (req, res) => {
+    const { id } = req.params;
+    const { name, description, location, cuisine, priceRange, rating, imagePath } = req.body;
+    
+    const sql = "UPDATE restaurants SET Name = ?, Description = ?, Location = ?, Cuisine = ?, Price_Range = ?, Rating = ?, ImagePath = ? WHERE ID = ?";
+    db.query(sql, [name, description, location, cuisine, priceRange, rating, imagePath, id], (err) => {
+        if (err) {
+            console.error("Error updating restaurant:", err);
+            return res.status(500).json({ error: "Update failed" });
+        }
+        res.json({ success: true });
+    });
+});
+
+app.delete("/api/admin/restaurants/:id", (req, res) => {
+    const { id } = req.params;
+    db.query("DELETE FROM restaurants WHERE ID = ?", [id], (err) => {
+        if (err) {
+            console.error("Error deleting restaurant:", err);
+            return res.status(500).json({ error: "Delete failed" });
+        }
+        res.json({ success: true });
+    });
+});
+
+// ===== ATTRACTIONS ADMIN =====
+app.post("/api/admin/attractions", (req, res) => {
+    const { name, description, location, rating, price, category, imagePath } = req.body;
+    
+    const sql = "INSERT INTO attractions (Name, Description, Location, Rating, Price, Category, ImagePath) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    db.query(sql, [name, description, location, rating, price, category, imagePath], (err, result) => {
+        if (err) {
+            console.error("Error adding attraction:", err);
+            return res.status(500).json({ error: "Failed to add attraction" });
+        }
+        res.json({ success: true, id: result.insertId });
+    });
+});
+
+app.put("/api/admin/attractions/:id", (req, res) => {
+    const { id } = req.params;
+    const { name, description, location, rating, price, category, imagePath } = req.body;
+    
+    const sql = "UPDATE attractions SET Name = ?, Description = ?, Location = ?, Rating = ?, Price = ?, Category = ?, ImagePath = ? WHERE ID = ?";
+    db.query(sql, [name, description, location, rating, price, category, imagePath, id], (err) => {
+        if (err) {
+            console.error("Error updating attraction:", err);
+            return res.status(500).json({ error: "Update failed" });
+        }
+        res.json({ success: true });
+    });
+});
+
+app.delete("/api/admin/attractions/:id", (req, res) => {
+    const { id } = req.params;
+    db.query("DELETE FROM attractions WHERE ID = ?", [id], (err) => {
+        if (err) {
+            console.error("Error deleting attraction:", err);
+            return res.status(500).json({ error: "Delete failed" });
+        }
+        res.json({ success: true });
+    });
+});
+
+// ===== EVENTS ADMIN =====
+app.post("/api/admin/events", (req, res) => {
+    const { name, description, location, startDate, endDate, price, category, imagePath } = req.body;
+    
+    const sql = "INSERT INTO events (Name, Description, Location, Start_Date, End_Date, Price, Category, ImagePath) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    db.query(sql, [name, description, location, startDate, endDate, price, category, imagePath], (err, result) => {
+        if (err) {
+            console.error("Error adding event:", err);
+            return res.status(500).json({ error: "Failed to add event" });
+        }
+        res.json({ success: true, id: result.insertId });
+    });
+});
+
+app.put("/api/admin/events/:id", (req, res) => {
+    const { id } = req.params;
+    const { name, description, location, startDate, endDate, price, category, imagePath } = req.body;
+    
+    const sql = "UPDATE events SET Name = ?, Description = ?, Location = ?, Start_Date = ?, End_Date = ?, Price = ?, Category = ?, ImagePath = ? WHERE ID = ?";
+    db.query(sql, [name, description, location, startDate, endDate, price, category, imagePath, id], (err) => {
+        if (err) {
+            console.error("Error updating event:", err);
+            return res.status(500).json({ error: "Update failed" });
+        }
+        res.json({ success: true });
+    });
+});
+
+app.delete("/api/admin/events/:id", (req, res) => {
+    const { id } = req.params;
+    db.query("DELETE FROM events WHERE ID = ?", [id], (err) => {
+        if (err) {
+            console.error("Error deleting event:", err);
+            return res.status(500).json({ error: "Delete failed" });
+        }
+        res.json({ success: true });
+    });
+});
+
+// API ROUTE - Admin cancel any booking (no userId check)
+app.patch("/api/admin/bookings/:bookingId/cancel", (req, res) => {
+    const bookingId = req.params.bookingId;
+
+    const sql = "UPDATE bookings SET Status = 'cancelled' WHERE ID = ? AND Status = 'confirmed'";
+    
+    db.query(sql, [bookingId], (err, result) => {
+        if (err) {
+            console.error("Error cancelling booking (admin):", err);
+            return res.status(500).json({ success: false, message: "Database error" });
+        }
+        
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ success: false, message: "Booking not found or already cancelled" });
+        }
+        
+        res.json({ success: true, message: "Booking cancelled successfully by admin" });
+    });
+});
+
+// API ROUTE - Admin delete booking permanently
+app.delete("/api/admin/bookings/:bookingId", (req, res) => {
+    const bookingId = req.params.bookingId;
+    
+    db.query("DELETE FROM bookings WHERE ID = ?", [bookingId], (err) => {
+        if (err) {
+            console.error("Error deleting booking (admin):", err);
+            return res.status(500).json({ error: "Delete failed" });
+        }
+        res.json({ success: true, message: "Booking deleted successfully" });
+    });
+});
+
+
 // Start the server 
 app.listen(3000, () => console.log("Server running on http://localhost:3000"));
-
