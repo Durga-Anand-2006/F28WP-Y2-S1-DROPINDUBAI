@@ -32,6 +32,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                             data-name="${event.Name}">
                         Book Now
                     </button>
+                    <button class="fav-btn" 
+                        data-id="${event.ID}" 
+                        data-type="event">  ♡
+                    </button>
                 </div>
             </div>
             `;

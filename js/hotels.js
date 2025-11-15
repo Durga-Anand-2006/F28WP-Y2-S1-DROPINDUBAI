@@ -12,6 +12,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             const card = document.createElement("div");
             card.classList.add("hotel-card");
 
+            // fallback image 
+            const imageSrc = hotel.ImagePath ? hotel.ImagePath : "images/default-hotel.jpg";
+
             card.innerHTML = `
             <div>
                 <img src="${hotel.ImagePath}" alt="${hotel.Name}"/>
@@ -27,6 +30,11 @@ document.addEventListener("DOMContentLoaded", async () => {
                             data-name="${hotel.Name}">
                         Book Now
                     </button>
+                    <button class="fav-btn" 
+                        data-id="${hotel.ID}" 
+                        data-type="hotel">  ♡
+                    </button>
+
                 </div>
             </div>
             `;

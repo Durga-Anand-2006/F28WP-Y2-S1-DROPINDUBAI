@@ -13,6 +13,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             const card = document.createElement("div");
             card.classList.add("restaurant-card");
             
+            // fallback image 
+            const imageSrc = restaurant.ImagePath ? restaurant.ImagePath : "images/default-restaurant.jpeg";
+
             card.innerHTML = `
             <div>
             <img src="${restaurant.ImagePath}" alt ="${restaurant.Name}"/>
@@ -28,6 +31,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                             data-type="restaurant" 
                             data-name="${restaurant.Name}">
                         Book Now
+                    </button>
+                    <button class="fav-btn" 
+                        data-id="${restaurant.ID}" 
+                        data-type="restaurant"> ♡
                     </button>
                 </div>
             </div>
