@@ -17,6 +17,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             card.innerHTML = `
             <div>
+                <button class="fav-btn" 
+                        data-id="${hotel.ID}" 
+                        data-type="hotel">  ♡
+                </button>
                 <img src="${hotel.ImagePath}" alt="${hotel.Name}"/>
                 <h3>${hotel.Name}</h3>
                 <p>${hotel.Description}</p>
@@ -30,11 +34,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                             data-name="${hotel.Name}">
                         Book Now
                     </button>
-                    <button class="fav-btn" 
-                        data-id="${hotel.ID}" 
-                        data-type="hotel">  ♡
-                    </button>
-
                 </div>
             </div>
             `;

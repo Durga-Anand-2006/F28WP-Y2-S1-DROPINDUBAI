@@ -152,6 +152,9 @@ async function updateFavoriteStates() {
     }
 }
 
+// Make updateFavoriteStates globally accessible for use after filtering
+window.updateFavoriteStates = updateFavoriteStates;
+
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     initializeFavoriteButtons();

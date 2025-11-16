@@ -17,7 +17,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             const imageSrc = attraction.ImagePath ? attraction.ImagePath : "images/default-attraction.avif";
 
             card.innerHTML = `
-            <div>
+            <button class="fav-btn" 
+                        data-id="${attraction.ID}" 
+                        data-type="attraction">♡
+            </button>
             <img src="${attraction.ImagePath}" alt ="${attraction.Name}"/>
             <h3>${attraction.Name}</h3>
             <p>${attraction.Description}</p>
@@ -25,17 +28,12 @@ document.addEventListener("DOMContentLoaded", async () => {
             <p><strong>Location: </strong> ${attraction.Location}</p>
             <p><strong>Price: </strong> ${attraction.Price}</p>
             <div class="card-actions">
-                    <button class="book-btn" 
-                            data-id="${attraction.ID}" 
-                            data-type="attraction" 
-                            data-name="${attraction.Name}">
-                        Book Now
-                    </button>
-                    <button class="fav-btn" 
+                <button class="book-btn" 
                         data-id="${attraction.ID}" 
-                        data-type="attraction">  ♡
-                    </button>
-                </div>
+                        data-type="attraction" 
+                        data-name="${attraction.Name}">
+                    Book Now
+                </button>
             </div>
             `;
 
@@ -63,7 +61,10 @@ function displayAttractions(attractions) {
         card.classList.add("attraction-card");
 
         card.innerHTML = `
-        <div>
+        <button class="fav-btn" 
+                    data-id="${attraction.ID}" 
+                    data-type="attraction">♡
+        </button>
         <img src="${attraction.ImagePath}" alt ="${attraction.Name}"/>
         <h3>${attraction.Name}</h3>
         <p>${attraction.Description}</p>
@@ -71,13 +72,12 @@ function displayAttractions(attractions) {
         <p><strong>Location: </strong> ${attraction.Location}</p>
         <p><strong>Price: </strong> ${attraction.Price}</p>
         <div class="card-actions">
-                <button class="book-btn" 
-                        data-id="${attraction.ID}" 
-                        data-type="attraction" 
-                        data-name="${attraction.Name}">
-                    Book Now
-                </button>
-            </div>
+            <button class="book-btn" 
+                    data-id="${attraction.ID}" 
+                    data-type="attraction" 
+                    data-name="${attraction.Name}">
+                Book Now
+            </button>
         </div>
         `;
         container.appendChild(card);
@@ -104,6 +104,13 @@ document.querySelector('.filter-form').addEventListener('submit', async (e) => {
         const attractions = await response.json();
         displayAttractions(attractions);
         console.log(`Found ${attractions.length} attractions`);
+        
+        // Re-initialize favorite states after filtering
+        setTimeout(() => {
+            if (window.updateFavoriteStates) {
+                window.updateFavoriteStates();
+            }
+        }, 100);
     } catch (error) {
         console.error('Error filtering attractions:', error);
         alert('Error filtering attractions');

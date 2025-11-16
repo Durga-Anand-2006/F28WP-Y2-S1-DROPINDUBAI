@@ -17,7 +17,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             const imageSrc = event.ImagePath ? event.ImagePath : "images/default-event.jpg";
 
             card.innerHTML = `
-            <div>
+            <button class="fav-btn" 
+                        data-id="${event.ID}" 
+                        data-type="event">♡
+            </button>
             <img src="${imageSrc}" alt="${event.Name}"/>
             <h3>${event.Name}</h3>
             <p>${event.Description}</p>
@@ -26,17 +29,12 @@ document.addEventListener("DOMContentLoaded", async () => {
             <p><strong>End Date: </strong> ${new Date (event.End_Date).toLocaleDateString()}</p>
             <p><strong>Price: </strong> ${event.Price}</p>
             <div class="card-actions">
-                    <button class="book-btn" 
-                            data-id="${event.ID}" 
-                            data-type="event" 
-                            data-name="${event.Name}">
-                        Book Now
-                    </button>
-                    <button class="fav-btn" 
+                <button class="book-btn" 
                         data-id="${event.ID}" 
-                        data-type="event">  ♡
-                    </button>
-                </div>
+                        data-type="event" 
+                        data-name="${event.Name}">
+                    Book Now
+                </button>
             </div>
             `;
 
@@ -64,7 +62,10 @@ function displayEvents(events) {
         const imageSrc = event.ImagePath ? event.ImagePath : "images/default-event.jpg";
 
         card.innerHTML = `
-        <div>
+        <button class="fav-btn" 
+                    data-id="${event.ID}" 
+                    data-type="event">♡
+        </button>
         <img src="${imageSrc}" alt="${event.Name}"/>
         <h3>${event.Name}</h3>
         <p>${event.Description}</p>
@@ -73,13 +74,12 @@ function displayEvents(events) {
         <p><strong>End Date: </strong> ${new Date(event.End_Date).toLocaleDateString()}</p>
         <p><strong>Price: </strong> ${event.Price}</p>
         <div class="card-actions">
-                <button class="book-btn" 
-                        data-id="${event.ID}" 
-                        data-type="event" 
-                        data-name="${event.Name}">
-                    Book Now
-                </button>
-            </div>
+            <button class="book-btn" 
+                    data-id="${event.ID}" 
+                    data-type="event" 
+                    data-name="${event.Name}">
+                Book Now
+            </button>
         </div>
         `;
         container.appendChild(card);
@@ -104,6 +104,13 @@ document.querySelector('.filter-form').addEventListener('submit', async (e) => {
         const events = await response.json();
         displayEvents(events);
         console.log(`Found ${events.length} events`);
+        
+        // Re-initialize favorite states after filtering
+        setTimeout(() => {
+            if (window.updateFavoriteStates) {
+                window.updateFavoriteStates();
+            }
+        }, 100);
     } catch (error) {
         console.error('Error filtering events:', error);
         alert('Error filtering events');
