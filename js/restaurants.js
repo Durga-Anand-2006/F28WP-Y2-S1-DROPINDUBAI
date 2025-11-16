@@ -17,7 +17,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             const imageSrc = restaurant.ImagePath ? restaurant.ImagePath : "images/default-restaurant.jpeg";
 
             card.innerHTML = `
-            <div>
+            <button class="fav-btn" 
+                        data-id="${restaurant.ID}" 
+                        data-type="restaurant">♡
+            </button>
             <img src="${restaurant.ImagePath}" alt ="${restaurant.Name}"/>
             <h3>${restaurant.Name}</h3>
             <p>${restaurant.Description}</p>
@@ -26,23 +29,16 @@ document.addEventListener("DOMContentLoaded", async () => {
             <p><strong>Location: </strong> ${restaurant.Location}</p>
             <p><strong>Price: </strong> ${restaurant.Price_Range}</p>
             <div class="card-actions">
-                    <button class="book-btn" 
-                            data-id="${restaurant.ID}" 
-                            data-type="restaurant" 
-                            data-name="${restaurant.Name}">
-                        Book Now
-                    </button>
-                    <button class="fav-btn" 
+                <button class="book-btn" 
                         data-id="${restaurant.ID}" 
-                        data-type="restaurant"> ♡
-                    </button>
-                </div>
+                        data-type="restaurant" 
+                        data-name="${restaurant.Name}">
+                    Book Now
+                </button>
             </div>
             `;
 
-
             container.appendChild(card);
-
         });
     } catch (error){
         console.error("Error loading restaurants:", error);
@@ -65,7 +61,10 @@ function displayRestaurants(restaurants) {
         card.classList.add("restaurant-card");
         
         card.innerHTML = `
-        <div>
+        <button class="fav-btn" 
+                    data-id="${restaurant.ID}" 
+                    data-type="restaurant">♡
+        </button>
         <img src="${restaurant.ImagePath}" alt ="${restaurant.Name}"/>
         <h3>${restaurant.Name}</h3>
         <p>${restaurant.Description}</p>
@@ -74,13 +73,12 @@ function displayRestaurants(restaurants) {
         <p><strong>Location: </strong> ${restaurant.Location}</p>
         <p><strong>Price: </strong> ${restaurant.Price_Range}</p>
         <div class="card-actions">
-                <button class="book-btn" 
-                        data-id="${restaurant.ID}" 
-                        data-type="restaurant" 
-                        data-name="${restaurant.Name}">
-                    Book Now
-                </button>
-            </div>
+            <button class="book-btn" 
+                    data-id="${restaurant.ID}" 
+                    data-type="restaurant" 
+                    data-name="${restaurant.Name}">
+                Book Now
+            </button>
         </div>
         `;
         container.appendChild(card);
@@ -114,6 +112,13 @@ document.querySelector('.filter-form').addEventListener('submit', async (e) => {
         const restaurants = await response.json();
         displayRestaurants(restaurants);
         console.log(`Found ${restaurants.length} restaurants`);
+        
+        // Re-initialize favorite states after filtering
+        setTimeout(() => {
+            if (window.updateFavoriteStates) {
+                window.updateFavoriteStates();
+            }
+        }, 100);
     } catch (error) {
         console.error('Error filtering restaurants:', error);
         alert('Error filtering restaurants');
