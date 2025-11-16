@@ -973,21 +973,31 @@ body.profile h3 {
 }
 
 .booking-modal .modal-actions {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 1rem;
     margin-top: 1.5rem;
+    align-items: end;
 }
 
 .booking-modal .confirm-btn,
 .booking-modal .cancel-btn {
     flex: 1;
-    padding: 0.75rem;
+    padding: 0.75rem 1rem;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
     font-size: 1rem;
     font-weight: 600;
     transition: background 0.3s;
+    text-align: center;
+    white-space: nowrap;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: normal;
+    vertical-align: middle; 
 }
 
 .booking-modal .confirm-btn {
@@ -1872,7 +1882,7 @@ footer{
 .attractions-list .cards-grid,
 .events-list .cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, max-content));
     gap: 25px;
     padding: 30px;
     max-width: 1200px;
@@ -1895,6 +1905,9 @@ footer{
     justify-content:flex-start;
     /* height: 520px;
     min-height: 475px; */
+    min-width: 320px;
+    max-width: 350px;
+    width: auto;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -2118,7 +2131,7 @@ footer{
 }
 
 /* ===== Events Cards Grid ===== */
-.events-list .cards-grid {
+/* .events-list .cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
@@ -2131,7 +2144,7 @@ footer{
     .events-list .cards-grid {
         grid-template-columns: repeat(3, 1fr);
     }
-}
+} */
 /* ===== Individual Event Card ===== */
 .event-card {
     background: #f4f4f4;
