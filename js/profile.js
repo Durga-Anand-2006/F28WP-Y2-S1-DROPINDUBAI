@@ -100,12 +100,46 @@ function renderDashboardBookings(bookings) {
 
   // Filter for upcoming bookings only
   const today = new Date();
+  today.setHours(0, 0, 0, 0); // Reset time to start of day for accurate comparison
+  
   const upcomingBookings = bookings.filter(b => {
-    if (b.CheckIn) {
-      return new Date(b.CheckIn) >= today;
+    // IMPORTANT: Filter out cancelled bookings
+    if (b.Status === 'cancelled') {
+      console.log(`Filtering out cancelled booking: ${b.ItemName}`);
+      return false;
     }
-    return true; // Include bookings without dates
-  }).slice(0, 3); // Show only first 3
+    
+    // Only show confirmed bookings
+    if (b.Status !== 'confirmed') {
+      console.log(`Filtering out non-confirmed booking: ${b.ItemName} (Status: ${b.Status})`);
+      return false;
+    }
+    
+    // Check if booking has a CheckIn date
+    if (b.CheckIn) {
+      const checkInDate = new Date(b.CheckIn);
+      checkInDate.setHours(0, 0, 0, 0);
+      const isUpcoming = checkInDate >= today;
+      console.log(`Booking ${b.ItemName}: CheckIn=${b.CheckIn}, isUpcoming=${isUpcoming}`);
+      return isUpcoming;
+    }
+    
+    // For bookings without CheckIn (like attractions/events), check CreatedAt
+    // and include them if created recently (within last 30 days) as "upcoming"
+    if (b.CreatedAt) {
+      const createdDate = new Date(b.CreatedAt);
+      const daysSinceCreated = Math.floor((today - createdDate) / (1000 * 60 * 60 * 24));
+      const isRecent = daysSinceCreated <= 30;
+      console.log(`Booking ${b.ItemName}: CreatedAt=${b.CreatedAt}, daysAgo=${daysSinceCreated}, isRecent=${isRecent}`);
+      return isRecent;
+    }
+    
+    // If no date info, include it
+    console.log(`Booking ${b.ItemName}: No date info, including by default`);
+    return true;
+  }).slice(0, 3); // Show only the first 3 bookings 
+
+  console.log(`Filtered bookings for dashboard: ${upcomingBookings.length} out of ${bookings.length}`);
 
   if (upcomingBookings.length === 0) {
     container.innerHTML = `<p>No upcoming bookings. Start exploring!</p>`;
@@ -116,6 +150,8 @@ function renderDashboardBookings(bookings) {
     const card = createBookingCard(b);
     container.appendChild(card);
   });
+  
+  console.log("Dashboard bookings rendered successfully!");
 }
 
 /* -----------------------------
@@ -384,19 +420,35 @@ function closeModal() {
   document.getElementById("bookingModal").style.display = "none";
 }
 
+
 function openModifyModal(bookingId, userId) {
+  // find the booking and get its type
+  const bookingCard = document.querySelector(`[data-id="${bookingId}"]`);
+  const bookingType = bookingCard ? bookingCard.dataset.type : 'hotel';
+  
+  console.log('Opening modify modal for booking type:', bookingType);
+  
   const modal = document.createElement("div");
   modal.className = "booking-modal";
+  
+  // Only show check-in/out dates for hotels
+  const showDates = bookingType === 'hotel';
+  
   modal.innerHTML = `
     <div class="modal-content">
       <span class="close-modal">&times;</span>
       <h2>Modify Booking</h2>
       <form id="modify-form">
-        <label>Check-In Date</label>
-        <input type="date" name="checkIn" required>
+        ${showDates ? `
+          <label>Check-In Date</label>
+          <input type="date" name="checkIn" required>
 
-        <label>Check-Out Date</label>
-        <input type="date" name="checkOut" required>
+          <label>Check-Out Date</label>
+          <input type="date" name="checkOut" required>
+        ` : `
+          <label>Visit Date</label>
+          <input type="date" name="visitDate" required>
+        `}
 
         <label>Number of Guests</label>
         <input type="number" name="guests" min="1" required>
@@ -416,15 +468,25 @@ function openModifyModal(bookingId, userId) {
     e.preventDefault();
     const formData = new FormData(e.target);
 
+    // Build request body based on booking type
+    const requestBody = {
+      userId: userId,
+      guests: formData.get("guests")
+    };
+
+    if (showDates) {
+      // For hotels: send check-in and check-out
+      requestBody.checkIn = formData.get("checkIn");
+      requestBody.checkOut = formData.get("checkOut");
+    } else {
+      // For attractions/events/restaurants: send visit date as check-in
+      requestBody.checkIn = formData.get("visitDate");
+    }
+
     const res = await fetch(`http://localhost:3000/api/bookings/${bookingId}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        userId: userId,
-        checkIn: formData.get("checkIn"),
-        checkOut: formData.get("checkOut"),
-        guests: formData.get("guests")
-      })
+      body: JSON.stringify(requestBody)
     });
 
     const data = await res.json();
@@ -433,7 +495,6 @@ function openModifyModal(bookingId, userId) {
     if (data.success) loadUserBookings(userId);
   };
 }
-
 
 /* -----------------------------
     UTILS
@@ -550,4 +611,18 @@ document.body.addEventListener("click", async (e) => {
       alert("Error deleting account. Please try again.");
     }
   }
+});
+
+
+// Admin - "Back to admin" button 
+// checks if the user is admin and adds a "back to admin page" button 
+document.addEventListener('DOMContentLoaded', () => {
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    if(user && user.role === 'admin'){
+      const adminBtn = document.getElementById('adminDashboardBtn');
+      if(adminBtn){
+        adminBtn.style.display = 'block';
+      }
+    }
 });
