@@ -7,6 +7,7 @@
   <title>Admin Dashboard</title>
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/admin.js"defer></script>
 </head>
 <body>
   <header id="admin-header">
@@ -18,6 +19,7 @@
     <aside class="sidebar">
       <ul>
         <li class="active" data-section="dashboard">Dashboard</li>
+        <li data-section="bookings">Bookings</li>
         <li data-section="hotels">Hotels</li>
         <li data-section="restaurants">Restaurants</li>
         <li data-section="attractions">Attractions</li>
@@ -48,48 +50,97 @@
           </div>
       </section>
 
-      <!-- Hotels -->
+      <!-- Bookings Section -->
+       <section id="bookings" class="section">
+        <h1>All User Bookings</h1>
+        <table id="bookingsTable">
+          <thead>
+            <tr>
+              <th>Booking ID</th>
+              <th>User</th>
+              <th>Email</th>
+              <th>Item</th>
+              <th>Type</th>
+              <th>Check-In</th>
+              <th>Check-Out</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+       </section>
+
+      <!-- Hotels Section -->
       <section id="hotels" class="section">
-        <h1>Hotels</h1>
-        <button class="add-btn" onclick="openModal('hotel')">Add Hotel</button>
-        <table id="hotelsTable">
-          <tr><th>Name</th><th>Location</th><th>Price</th><th>Actions</th></tr>
-          <tr><td>Burj Al Arab</td><td>Jumeirah</td><td>2500 AED</td><td class="actions"><button onclick="editRow(this)">Edit</button><button onclick="deleteRow(this)">Delete</button></td></tr>
-          <tr><td>Atlantis The Palm</td><td>Palm Jumeirah</td><td>2000 AED</td><td class="actions"><button onclick="editRow(this)">Edit</button><button onclick="deleteRow(this)">Delete</button></td></tr>
-        </table>
+          <h1>Hotels</h1>
+          <button class="add-btn" onclick="openAddModal('hotel')">Add Hotel</button>
+          <table id="hotelsTable">
+              <thead>
+                  <tr>
+                      <th>Name</th>
+                      <th>Location</th>
+                      <th>Price</th>
+                      <th>Room Type</th>
+                      <th>Actions</th>
+                  </tr>
+              </thead>
+              <tbody></tbody>
+          </table>
       </section>
 
-      <!-- Restaurants -->
+      <!-- Restaurants Section -->
       <section id="restaurants" class="section">
-        <h1>Restaurants</h1>
-        <button class="add-btn" onclick="openModal('restaurant')">Add Restaurant</button>
-        <table id="restaurantsTable">
-          <tr><th>Name</th><th>Cuisine</th><th>Rating</th><th>Actions</th></tr>
-          <tr><td>Zuma</td><td>Japanese</td><td>4.8</td><td class="actions"><button onclick="editRow(this)">Edit</button><button onclick="deleteRow(this)">Delete</button></td></tr>
-          <tr><td>Gaia</td><td>Mediterranean</td><td>4.6</td><td class="actions"><button onclick="editRow(this)">Edit</button><button onclick="deleteRow(this)">Delete</button></td></tr>
-        </table>
+          <h1>Restaurants</h1>
+          <button class="add-btn" onclick="openAddModal('restaurant')">Add Restaurant</button>
+          <table id="restaurantsTable">
+              <thead>
+                  <tr>
+                      <th>Name</th>
+                      <th>Cuisine</th>
+                      <th>Rating</th>
+                      <th>Location</th>
+                      <th>Actions</th>
+                  </tr>
+              </thead>
+              <tbody></tbody>
+          </table>
       </section>
 
-      <!-- Attractions -->
+      <!-- Attractions Section -->
       <section id="attractions" class="section">
-        <h1>Attractions</h1>
-        <button class="add-btn" onclick="openModal('attraction')">Add Attraction</button>
-        <table id="attractionsTable">
-          <tr><th>Name</th><th>Location</th><th>Type</th><th>Actions</th></tr>
-          <tr><td>Burj Khalifa</td><td>Downtown</td><td>Observation Deck</td><td class="actions"><button onclick="editRow(this)">Edit</button><button onclick="deleteRow(this)">Delete</button></td></tr>
-          <tr><td>Dubai Frame</td><td>Zabeel Park</td><td>Landmark</td><td class="actions"><button onclick="editRow(this)">Edit</button><button onclick="deleteRow(this)">Delete</button></td></tr>
-        </table>
+          <h1>Attractions</h1>
+          <button class="add-btn" onclick="openAddModal('attraction')">Add Attraction</button>
+          <table id="attractionsTable">
+              <thead>
+                  <tr>
+                      <th>Name</th>
+                      <th>Location</th>
+                      <th>Category</th>
+                      <th>Price</th>
+                      <th>Actions</th>
+                  </tr>
+              </thead>
+              <tbody></tbody>
+          </table>
       </section>
 
-      <!-- Events -->
+      <!-- Events Section -->
       <section id="events" class="section">
-        <h1>Events</h1>
-        <button class="add-btn" onclick="openModal('event')">Add Event</button>
-        <table id="eventsTable">
-          <tr><th>Event</th><th>Date</th><th>Venue</th><th>Actions</th></tr>
-          <tr><td>Dubai Shopping Festival</td><td>Dec 2025</td><td>Citywide</td><td class="actions"><button onclick="editRow(this)">Edit</button><button onclick="deleteRow(this)">Delete</button></td></tr>
-          <tr><td>Tech Week</td><td>Apr 2026</td><td>DICEC</td><td class="actions"><button onclick="editRow(this)">Edit</button><button onclick="deleteRow(this)">Delete</button></td></tr>
-        </table>
+          <h1>Events</h1>
+          <button class="add-btn" onclick="openAddModal('event')">Add Event</button>
+          <table id="eventsTable">
+              <thead>
+                  <tr>
+                      <th>Name</th>
+                      <th>Date</th>
+                      <th>Location</th>
+                      <th>Category</th>
+                      <th>Actions</th>
+                  </tr>
+              </thead>
+              <tbody></tbody>
+          </table>
       </section>
 
       <!-- Settings -->
@@ -119,116 +170,7 @@
     </div>
   </div>
 
-  <script>
-    // Sidebar navigation
-    const menuItems = document.querySelectorAll('.sidebar li');
-    const sections = document.querySelectorAll('.section');
-    menuItems.forEach(item => {
-      item.addEventListener('click', () => {
-        menuItems.forEach(i => i.classList.remove('active'));
-        item.classList.add('active');
-        sections.forEach(sec => sec.classList.remove('active'));
-        document.getElementById(item.dataset.section).classList.add('active');
-      });
-    });
-
-    // Pie Chart
-    const pieCtx = document.getElementById('pieChart');
-    new Chart(pieCtx, {
-    type: 'pie',
-    data: {
-        labels: ['Hotels', 'Restaurants', 'Attractions', 'Events'],
-        datasets: [{
-        data: [40, 25, 20, 15],
-        backgroundColor: ['#024CAA', '#EC8305', '#091057', '#DBD3D3']
-        }]
-    },
-    options: { 
-        responsive: true, 
-        maintainAspectRatio: false 
-    }
-    });
-
-    // Line Chart
-    const lineCtx = document.getElementById('lineChart');
-    new Chart(lineCtx, {
-    type: 'line',
-    data: {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-        datasets: [{
-        label: 'Monthly Bookings',
-        data: [300, 400, 500, 700, 800, 950],
-        borderColor: '#024CAA',
-        fill: false,
-        tension: 0.3
-        }]
-    },
-    options: { 
-        responsive: true, 
-        maintainAspectRatio: false, 
-        scales: { y: { beginAtZero: true } } 
-    }
-    });
-
-    // Modal logic
-    let currentType = '', currentRow = null;
-    function openModal(type) {
-      currentType = type;
-      currentRow = null;
-      document.getElementById('modalTitle').innerText = 'Add ' + capitalize(type);
-      document.getElementById('input1').value = '';
-      document.getElementById('input2').value = '';
-      document.getElementById('input3').value = '';
-      document.getElementById('modal').style.display = 'flex';
-    }
-
-    function closeModal() { document.getElementById('modal').style.display = 'none'; }
-    window.onclick = e => { if (e.target == document.getElementById('modal')) closeModal(); };
-
-    function editRow(btn) {
-      currentRow = btn.closest('tr');
-      const cells = currentRow.querySelectorAll('td');
-      document.getElementById('input1').value = cells[0].innerText;
-      document.getElementById('input2').value = cells[1].innerText;
-      document.getElementById('input3').value = cells[2].innerText;
-      document.getElementById('modalTitle').innerText = 'Edit Listing';
-      document.getElementById('modal').style.display = 'flex';
-    }
-
-    document.getElementById('modalForm').addEventListener('submit', e => {
-      e.preventDefault();
-      const v1 = document.getElementById('input1').value;
-      const v2 = document.getElementById('input2').value;
-      const v3 = document.getElementById('input3').value;
-
-      if (currentRow) {
-        currentRow.children[0].innerText = v1;
-        currentRow.children[1].innerText = v2;
-        currentRow.children[2].innerText = v3;
-      } else {
-        const table = document.getElementById(currentType + 'sTable');
-        const newRow = table.insertRow();
-        newRow.innerHTML = `<td>${v1}</td><td>${v2}</td><td>${v3}</td>
-        <td class="actions"><button onclick="editRow(this)">Edit</button>
-        <button onclick="deleteRow(this)">Delete</button></td>`;
-      }
-      closeModal();
-    });
-
-    function deleteRow(btn) {
-      if (confirm('Delete this listing?')) btn.closest('tr').remove();
-    }
-
-    function capitalize(str) { return str.charAt(0).toUpperCase() + str.slice(1); }
-
-    // Settings
-    function saveSettings() {
-      const maintenance = document.getElementById('maintenance').checked;
-      const password = document.getElementById('adminPass').value;
-      const theme = document.getElementById('theme').value;
-      alert(`Settings saved!\nMaintenance: ${maintenance}\nPassword: ${password ? 'Updated' : 'No Change'}\nTheme: ${theme}`);
-    }
-  </script>
+  
 
  <footer>
     &copy; 2025 Drop In Dubai. All rights reserved.
