@@ -1,3 +1,8 @@
+// signup.js -> signup page, allows user to create an account
+  
+
+//using the FETCH API calls from server.js 
+
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('#signup-form');
 

@@ -1,3 +1,5 @@
+// index.js -> displays rotating carousels for top hotels/restaurants/events/attractions
+
 // using the Fetch api calls from server.js 
 // /api/top-hotels 
 async function loadTopHotels() {

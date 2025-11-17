@@ -1,3 +1,5 @@
+// attractions.js -> attractions page, displays data retrieved from the database, includes search and filter functionaliity 
+
 // using the Fetch API call from server.js
 document.addEventListener("DOMContentLoaded", async () => {
     try{

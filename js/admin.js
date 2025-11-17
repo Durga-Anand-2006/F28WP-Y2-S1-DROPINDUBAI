@@ -93,9 +93,6 @@ async function loadAllBookings() {
         
         console.log('All bookings loaded:', bookings.length);
         
-        // You can display these in a table on the dashboard if you want
-        // For now, just log them
-        
     } catch (error) {
         console.error('Error loading bookings:', error);
     }
@@ -214,7 +211,7 @@ async function loadEvents() {
     }
 }
 
-// Helper to create tbody if table doesn't have one
+// Helper function to create tbody if table doesn't have one
 function createTableBody(tableId) {
     const table = document.getElementById(tableId);
     const tbody = document.createElement('tbody');
@@ -222,7 +219,7 @@ function createTableBody(tableId) {
     return tbody;
 }
 
-// ========== MODAL SETUP ==========
+// ======== MODAL SETUP ==========
 let currentEditId = null;
 let currentEditType = null;
 
@@ -315,7 +312,7 @@ function getFormFields(type) {
     }
 }
 
-// Handle form submission
+// Handling form submission
 document.addEventListener('submit', async (e) => {
     if (e.target.id === 'modalForm') {
         e.preventDefault();
@@ -323,10 +320,10 @@ document.addEventListener('submit', async (e) => {
         const formData = getFormData(currentEditType);
         
         if (currentEditId) {
-            // Update existing
+            // Update existing listing
             await updateListing(currentEditType, currentEditId, formData);
         } else {
-            // Add new
+            // Add new listing
             await addListing(currentEditType, formData);
         }
         
@@ -673,6 +670,8 @@ async function cancelUserBooking(bookingId) {
 }
 
 // Add permanent delete function for admin
+// if the admin simply cancels a booking its cancelled for the user but it remains as an entry in the datbase 
+// if the admin deletes a booking its cancelled for the user and it is removed from the database 
 async function deleteUserBooking(bookingId) {
     if (!confirm('WARNING: This will PERMANENTLY DELETE this booking. This action cannot be undone. Are you sure?')) return;
     

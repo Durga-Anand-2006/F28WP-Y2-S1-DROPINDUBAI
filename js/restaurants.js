@@ -1,3 +1,6 @@
+// restaurants.js -> restaurants page, displays data retrieved from the database, includes search and filter functionaliity 
+
+
 // using the Fetch API all from server.js 
 document.addEventListener("DOMContentLoaded", async () => {
     try{

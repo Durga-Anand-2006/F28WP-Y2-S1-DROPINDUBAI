@@ -1,7 +1,6 @@
 /**
- * ===============================
- * FAVORITES FUNCTIONALITY
- * ===============================
+ * favourites.js -> favourites functionality (user hearts a card on any of the pages)
+ * 
  * Handles adding/removing favorites across all pages
  */
 

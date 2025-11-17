@@ -1,3 +1,8 @@
+// profile.js -> displays user details, bookings, favourites & account settings 
+// allows users to manage their profile 
+
+//using the FETCH API calls from server.js 
+
 document.addEventListener("DOMContentLoaded", initProfilePage);
 
 async function initProfilePage() {

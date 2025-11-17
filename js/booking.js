@@ -1,7 +1,5 @@
 /**
- * ===============================
- * BOOKING FUNCTIONALITY
- * ===============================
+ * booking.js - Booking functionality (hotels, attractions, events, restaurants)
  * Handles "Book Now" button clicks across all pages
  */
 console.log("Booking buttons initialized!");
@@ -133,8 +131,6 @@ async function handleBookingSubmission(form, modal) {
         if (result.success) {
             alert('Booking confirmed successfully!');
             modal.remove();
-            // Optionally redirect to profile/bookings page
-            // window.location.href = 'profile.html?tab=bookings';
         } else {
             alert('Booking failed: ' + result.message);
         }

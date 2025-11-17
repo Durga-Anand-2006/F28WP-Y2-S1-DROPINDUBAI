@@ -1,6 +1,10 @@
 // Debugging line- checking if the connection was made correctly 
 // console.log("main.js is loaded");
 
+// main.js -> handles universal navigationa nd utilities
+
+//using the FETCH API calls from server.js 
+
 /**
  * ----------------------------
  * 1. CAROUSEL AUTO SCORLL 

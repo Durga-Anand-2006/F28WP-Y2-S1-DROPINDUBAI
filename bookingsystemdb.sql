@@ -79,7 +79,7 @@ CREATE TABLE `events` (
 INSERT INTO `events` (`ID`, `Name`, `Description`, `Location`, `Start_Date`, `End_Date`, `Price`, `Category`, `ImagePath`) VALUES
 (1, 'UNTOLD Dubai', 'Mega electronic music festival with international DJs', 'Dubai Parks & Resorts', '2025-11-06', '2025-11-09', '475+', 'Festival', 'images/untolddubai.jpg'),
 (2, 'Dubai Design Week 2025', 'Showcasing architecture, installations, design talks & exhibitions', 'Dubai Design District (d3)', '2025-11-04', '2025-11-09', 'Free', 'Festival', 'images/dubai-design-week.jpg'),
-(3, 'Al Habtoor Tennis Challenge 2025', 'Women's professional tennis tournament', 'Al Habtoor Grand Resort', '2025-12-01', '2025-12-07', '100+', 'Sports', 'images/alhabtoor-tennis.jpg'),
+(3, 'Al Habtoor Tennis Challenge 2025', 'Women''s professional tennis tournament', 'Al Habtoor Grand Resort', '2025-12-01', '2025-12-07', '100+', 'Sports', 'images/alhabtoor-tennis.jpg'),
 (4, 'Global Village - Season 30', 'Year-long multicultural festival with live performances, rides, food & pavilions', 'Dubailand, Dubai', '2025-10-15', '2026-05-10', '25-30', 'Festival', 'images/globalvillage.jpg'),
 (5, 'Dubai Fitness Challenge 2025', 'Month-long community fitness & sports events', 'Across Dubai (various venues)', '2025-11-01', '2025-11-30', 'Free', 'Sports', 'images/dubai-fitness-challenge.jpg'),
 (6, 'Dubai Marathon (25th Edition)', 'International road race with elite athletes & public participation', 'Umm Sequim / Jumeirah Beach', '2026-02-01', '2026-02-01', '500', 'Sports', 'images/dubai-marathon.jpg'),
@@ -149,7 +149,7 @@ INSERT INTO `restaurants` (`ID`, `Name`, `Description`, `Location`, `Cuisine`, `
 (1, 'Ossiano', 'Luxurious underwater restaurant offering refined French seafood dishes', 'Atlantis, The Palm', 'European, Seafood', '250', 5.0, 'images/ossiano.jpg'),
 (2, 'Zuma Dubai', 'Trendy urban Japanese dining with lively izakaya vibes', 'DIFC', 'Japanese', '200', 4.2, 'images/zuma.jpg'),
 (3, 'Nobu', 'World-famous restaurant blending Japanese flavors with modern innovation', 'Atlantis, Palm Jumeirah', 'Japanese', '350', 3.8, 'images/nobu.jpg'),
-(4, 'Fi\'lia', 'Female-led Italian restaurant with homestyle cooking and skyline views', 'SLS Dubai Hotel, Business Bay', 'Italian', '250-400', 4.5, 'images/filia.jpg'),
+(4, 'Fi\''lia', 'Female-led Italian restaurant with homestyle cooking and skyline views', 'SLS Dubai Hotel, Business Bay', 'Italian', '250-400', 4.5, 'images/filia.jpg'),
 (5, 'Al Nafoorah', 'Luxurious Lebanese dining experience featuring rich Middle Eastern flavors', 'Jumeirah Al Naseem, Madinat Jumeirah', 'Lebanese', '300-500', 4.8, 'images/alnafoorah.jpg'),
 (6, 'The Meat Co', 'Upscale steakhouse offering premium cuts and African-inspired cuisine', 'Souk Al Bahar, Downtown Dubai', 'Steakhouse', '300-600', 3.6, 'images/themeatco.jpg'),
 (7, 'Pierchic', 'Iconic overwater restaurant serving gourmet seafood with panoramic views', 'Al Qasr, Madinat Jumeirah', 'Seafood', '400+', 5.0, 'images/pierchic.jpg'),

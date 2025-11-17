@@ -1,4 +1,9 @@
-// generate-passwords.js
+// generate-passwords.js -> we used this to generate hashed passwords for users in our database and test that the bcrypt hashing
+// algorithm works and correctly hashes passwords keyeed in by the user 
+// hashed passwords are stored in the databse
+// user keys in password - this is hashed - this hashed input is compared with the password (hashed) in the database 
+// if compare is true user can login
+
 const bcrypt = require('bcrypt');
 
 async function generateHashes() {
@@ -26,7 +31,7 @@ async function generateHashes() {
     }
     
     console.log('='.repeat(80));
-    console.log('\n✅ Done! Copy the hashes above into your SQL INSERT statement.');
+    console.log('\nDone! Copy the hashes above into your SQL INSERT statement.');
 }
 
 generateHashes();

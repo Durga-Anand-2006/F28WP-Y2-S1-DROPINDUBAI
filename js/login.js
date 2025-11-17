@@ -1,3 +1,7 @@
+// login.js -> user can login into their account and view their profile 
+
+//using the FETCH API calls from server.js 
+
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('form');
 

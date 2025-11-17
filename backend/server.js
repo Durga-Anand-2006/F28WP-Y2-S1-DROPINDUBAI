@@ -40,7 +40,7 @@ app.get("/", (req, res) => {
 
 //API ROUTES - FETCHING DATA FROM THE DATABASE 
 
-// INDEX.HTML 
+//  ==== INDEX.HTML =====
 // API Route - Top Hotels 
 app.get("/api/top-hotels", (req, res) => {
     const sql = "SELECT * FROM hotels LIMIT 7";
@@ -93,7 +93,7 @@ app.get("/api/top-events", (req, res) => {
     });
 });
 
-// HOTELS.HTML
+//  ===== HOTELS.HTML ======
 // API route - Get all hotels 
 app.get("/api/hotels", (req, res) => {
     const sql = "SELECT * FROM hotels";
@@ -108,7 +108,7 @@ app.get("/api/hotels", (req, res) => {
     });
 });
 
-// ATTRACTIONS.HTML
+//  ==== ATTRACTIONS.HTML ======
 // API route - Get all attractions
 app.get("/api/attractions", (req, res) => {
     const sql = "SELECT * FROM attractions";
@@ -122,7 +122,7 @@ app.get("/api/attractions", (req, res) => {
     });
 });
 
-// EVENTS.HTML
+//  ===== EVENTS.HTML ======
 //API route  - Get all events 
 app.get("/api/events", (req, res) => {
     const sql = "SELECT * FROM events";
@@ -136,7 +136,7 @@ app.get("/api/events", (req, res) => {
     });
 });
 
-// RESTAURANTS.HTML
+//  ====== RESTAURANTS.HTML ======
 // API Route - Get all resturants 
 app.get("/api/restaurants", (req, res) => {
     const sql = "SELECT * FROM restaurants";
@@ -151,7 +151,7 @@ app.get("/api/restaurants", (req, res) => {
 });
 
 
-// LOGIN.HTML
+//  ===== LOGIN.HTML ======
 // API Route - User login
 app.post("/api/login", (req, res) => {
     const{ email, password } = req.body;
@@ -197,7 +197,7 @@ app.post("/api/login", (req, res) => {
     });
 });
 
-// SIGNUP.HTML 
+//   ====== SIGNUP.HTML ======
 // API ROUTE - New user sign up 
 app.post("/api/signup", (req, res) => {
     const{ name, email, password } = req.body;
@@ -247,7 +247,7 @@ app.post("/api/signup", (req, res) => {
 });
 
 
-// PROFILE.HTML 
+//  ====== PROFILE.HTML =======
 // API ROUTE - Get user profile info 
 app.get("/api/user/:id", (req, res) => {
     const userId = req.params.id;
