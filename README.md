@@ -115,3 +115,7 @@ Group 14 — Heriot-Watt University Dubai
 
 **Year:** 2025–2026
 
+---
+
+<img width="2880" height="1642" alt="DropInDubai" src="https://github.com/user-attachments/assets/7365e04b-b416-48fb-a641-6efa99ee0e9e" />
+
